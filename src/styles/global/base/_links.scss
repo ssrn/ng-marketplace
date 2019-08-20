@@ -1,0 +1,10 @@
+a,
+.link {
+  color: $link-color;
+  text-decoration: none;
+  transition: color .2s linear;
+
+  &:hover {
+    color: $brand-contrast;
+  }
+}

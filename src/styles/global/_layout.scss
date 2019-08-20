@@ -1,0 +1,39 @@
+* {
+  box-sizing: border-box;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin-right: auto;
+  margin-left: auto;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+body.is-fixed {
+  overflow: hidden;
+}
+
+.page-content {
+  margin-top: 16px;
+
+  @include media(sm) {
+    margin-top: 48px;
+  }
+}
+
+.navigation {
+  margin-bottom: 16px;
+
+  @include media(sm) {
+    margin-bottom: 20px;
+  }
+
+  .messenger & {
+    @include media(ms, max) {
+      padding: 0 15px;
+    }
+  }
+}
+

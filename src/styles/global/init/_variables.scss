@@ -1,0 +1,50 @@
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+** Font-sizes
+*/
+$base-font-size:   16px;
+$base-line-height: 1.5;
+
+$h1-font-size: 36px;
+$h2-font-size: 21px;
+$h3-font-size: 18px;
+$xs-font-size: 12px;
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+** Spaces
+*/
+
+$space-xxs:  6px;
+$space-xs:   12px;
+$space-sm:   18px;
+$space-md:   24px;
+$space-lg:   30px;
+$space-xl:   36px;
+$space-xxl:  48px;
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+** Breakpoints
+*/
+
+$media-stack:
+        (group: xs, id: general, rule: "only screen and (max-width: 479px)"),
+
+        (group: ms, id: general, rule: "only screen and (min-width: 480px)"),
+        (group: ms, id: max, rule: "only screen and (max-width: 767px)"),
+        (group: ms, id: between, rule: "only screen and (min-width: 480px) and (max-width: 767px)"),
+
+        (group: sm, id: general, rule: "only screen and (min-width: 768px)"),
+        (group: sm, id: max, rule: "only screen and (max-width: 991px)"),
+        (group: sm, id: between, rule: "only screen and (min-width: 768px) and (max-width: 991px)"),
+
+        (group: md, id: general, rule: "only screen and (min-width: 992px)"),
+        (group: md, id: max, rule: "only screen and (max-width: 1199px)"),
+        (group: md, id: between, rule: "only screen and (min-width: 992px) and (max-width: 1199px)"),
+
+        (group: lg, id: general, rule: "only screen and (min-width: 1200px)"),
+
+        (group: retina, id: general, rule: "only screen and (-webkit-min-device-pixel-ratio: 2),only screen and (min--moz-device-pixel-ratio: 2),only screen and (-o-min-device-pixel-ratio: 2/1),only screen and (min-device-pixel-ratio: 2),only screen and (min-resolution: 192dpi),only screen and (min-resolution: 2dppx)"),
+        (group: print, id: general, rule: "only print");
+
+
+$border-radius: 3px;
+$box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);

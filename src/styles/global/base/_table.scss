@@ -1,0 +1,21 @@
+table {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+  border: 1px solid #bebfb9;
+}
+
+tr.even {
+  background: #f3f4ee;
+}
+
+th {
+  padding: .75em 8px;
+  text-align: left;
+  background: #e1e2dc;
+  border: 1px solid #ccc;
+}
+
+td {
+  padding: 0.75em 8px;
+}

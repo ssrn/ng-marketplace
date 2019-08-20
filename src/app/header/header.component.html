@@ -1,0 +1,49 @@
+<header class="page-header">
+  <div class="page-header__inner container">
+    <a class="page-header__logo" href="/">
+      <img class="page-header__logo-img" src="./assets/images/four-leaves-logo.png" alt="">
+      <span>Veggieplace</span>
+    </a>
+
+    <form class="page-header__search search-form" role='search' action="/" method="get">
+      <label class="visually-hidden" for="header-search">Поиск</label>
+      <input class="search-form__input" id="header-search" type="text" placeholder="Поиск..."/>
+      <div class="search-form__icon">
+        <svg class="icon-search">
+          <use xlink:href="./assets/images/svg/search.svg#search"></use>
+        </svg>
+      </div>
+      <button class="visually-hidden" type="submit">Искать</button>
+    </form>
+
+    <div class="header-services">
+      <div class="header-services__inner">
+        <a href="/wishlist.html" class="header-services__item header-services__wishlist" title="Избранное" aria-label="Избранное">
+          <span class="header-services__icon">
+            <svg class="icon-heart">
+              <use xlink:href="./assets/images/svg/heart.svg#heart"></use>
+            </svg>
+          </span>
+        </a>
+        <a href="/profile/messenger" class="header-services__item header-services__messages" aria-label="Сообщения" title="Сообщения">
+          <span class="header-services__icon">
+            <svg class="icon-message">
+              <use xlink:href="./assets/images/svg/message.svg#message"></use>
+            </svg>
+          </span>
+        </a>
+        <a href="/profile" class="header-services__item header-services__products">Мои объявления</a>
+        <a href="#login" class="header-services__item header-services__login">Вход и регистрация</a>
+      </div>
+    </div>
+
+    <a href="/additem" class="page-header__button button button--primary">Продать урожай</a>
+
+    <button class="main-nav-trigger" type="button" title="Главное меню">
+      <span class="main-nav-trigger__line"></span>
+      <span class="main-nav-trigger__line"></span>
+      <span class="main-nav-trigger__line"></span>
+      <span class="main-nav-trigger__line"></span>
+    </button>
+  </div>
+</header>

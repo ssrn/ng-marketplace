@@ -1,0 +1,38 @@
+body {
+  color: $text-primary;
+  font-family: 'Arial', sans-serif;
+  font-size: $base-font-size;
+  line-height: $base-line-height;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+}
+
+h1 {
+  font-size: 24px;
+  line-height: 1.15;
+
+  @include media(sm) {
+    font-size: $h1-font-size;
+  }
+}
+
+h2 {
+  margin: 1.4em 0;
+  font-size: 22px;
+
+  @include media(sm) {
+    font-size: $h2-font-size;
+  }
+}
+
+h3 {
+  margin: 1.4em 0;
+}
