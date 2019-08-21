@@ -9,12 +9,24 @@ import { Product } from './product-list.interfaces';
 export class ProductListComponent implements OnInit {
   productList: Product[] = [
     {
+      url: './assets/images/product-images/strawberry.jpg',
       name: 'Клубника',
       price: 250,
     },
     {
-      name: 'Огурцы',
+      url: './assets/images/product-images/cucumber.png',
+      name: 'Огурцы хрустящие',
       price: 80,
+    },
+    {
+      url: './assets/images/product-images/apples.jpg',
+      name: 'Яблоки «Ред Делишес»',
+      price: 90,
+    },
+    {
+      url: './assets/images/product-images/apples.jpg',
+      name: 'Яблоки молодые белый налив',
+      price: 65,
     }
   ];
 

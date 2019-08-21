@@ -1,7 +1,7 @@
 <div class="product">
   <a href="/" class="product__link">
     <div class="product__img-wrap">
-      <img class="product__img cropped-image" src="/assets/images/strawberry.jpg" alt="" loading="lazy">
+      <img class="product__img cropped-image" src="{{product.url}}" alt="" loading="lazy">
     </div>
     <div class="product__desc">
       <div class="product__name">{{product.name}}</div>
@@ -10,7 +10,7 @@
   </a>
   <button class="button button-wishlist " type="button" title="Добавить в избранное" aria-label="Добавить в избранное">
     <svg>
-      <use xlink:href="../img/svg/wishlist-heart.svg#wishlist-heart"></use>
+      <use xlink:href="./assets/images/svg/wishlist-heart.svg#wishlist-heart"></use>
     </svg>
   </button>
 </div>
