@@ -1,189 +1,191 @@
 @import "~src/styles/init";
 
-.page-header {
-  padding: 12px 0;
+:host {
+  .page-header {
+    padding: 12px 0;
 
-  @include media(ms, max) {
-    border-bottom: 1px solid #ccc;
-  }
-}
-
-.page-header__inner {
-  display: grid;
-  grid-template-columns: min-content minmax(auto, 500px) auto;
-  grid-column-gap: 30px;
-  justify-content: space-between;
-  align-items: center;
-
-  @include media(sm) {
-    grid-template-columns: min-content auto auto auto;
+    @include media(ms, max) {
+      border-bottom: 1px solid #ccc;
+    }
   }
 
-  @include media(lg) {
-    grid-template-columns: 1fr 1fr 450px 1fr;
-  }
-}
+  .page-header__inner {
+    display: grid;
+    grid-template-columns: min-content minmax(auto, 500px) auto;
+    grid-column-gap: 30px;
+    justify-content: space-between;
+    align-items: center;
 
-.page-header__logo {
-  display: flex;
-  align-items: center;
-  color: #3f6a03;
-
-  &:hover {
-    color: #3f6a03;
-  }
-
-  span {
-    display: none;
-
-    @include media(md) {
-      display: block;
-      margin-left: 8px;
-      font-size: 24px;
+    @include media(sm) {
+      grid-template-columns: min-content auto auto auto;
     }
 
     @include media(lg) {
-      font-size: 28px;
+      grid-template-columns: 1fr 1fr 450px 1fr;
     }
   }
-}
 
-.page-header__logo-img {
-  width: 34px;
-  max-width: inherit;
+  .page-header__logo {
+    display: flex;
+    align-items: center;
+    color: #3f6a03;
 
-  @include media(lg) {
-    width: 46px;
-  }
-}
+    &:hover {
+      color: #3f6a03;
+    }
 
-/* Header services*/
-.header-services {
-  justify-self: end;
-  font-size: 15px;
+    span {
+      display: none;
 
-  @include media(ms, max) {
-    display: none;
-  }
-}
+      @include media(md) {
+        display: block;
+        margin-left: 8px;
+        font-size: 24px;
+      }
 
-.header-services__inner {
-  display: inline-flex;
-  align-items: center;
-  margin: 0 -5px;
-}
-
-.header-services__item {
-  position: relative;
-  display: inline-block;
-  padding: 0 5px;
-  color: $text-primary;
-}
-
-.notify-number {
-  position: absolute;
-  top: -4px;
-  right: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 14px;
-  height: 14px;
-  color: #fff;
-  font-size: 10px;
-  border-radius: 50%;
-  background: $brand-contrast;
-}
-
-.header-services__icon {
-  display: flex;
-  color: #ccc;
-
-  &:hover {
-    color: darken(#ccc, 15%);
+      @include media(lg) {
+        font-size: 28px;
+      }
+    }
   }
 
-  .icon-heart {
-    width: 21px;
-    height: 24px;
+  .page-header__logo-img {
+    width: 34px;
+    max-width: inherit;
+
+    @include media(lg) {
+      width: 46px;
+    }
   }
 
-  .icon-message {
-    width: 24px;
-    height: 24px;
+  /* Header services*/
+  .header-services {
+    justify-self: end;
+    font-size: 15px;
+
+    @include media(ms, max) {
+      display: none;
+    }
   }
-}
 
-.header-services__wishlist,
-.header-services__messages,
-.header-services__products {
-  @include media(sm, between) {
-    display: none;
+  .header-services__inner {
+    display: inline-flex;
+    align-items: center;
+    margin: 0 -5px;
   }
-}
 
-.header-services__login {
-  color: $link-color;
-}
-
-.header-services__profile {
-  position: relative;
-}
-
-.header-services__profile-menu {
-  position: absolute;
-  top: 100%;
-  max-height: 0;
-  overflow: hidden;
-  background: #fff;
-  box-shadow: $box-shadow;
-  visibility: hidden;
-  z-index: 100;
-
-  .header-services__profile:hover & {
-    max-height: none;
-    visibility: visible;
-    padding: 8px 20px;
-  }
-}
-
-.profile-menu__item {
-  white-space: nowrap;
-
-  a {
+  .header-services__item {
+    position: relative;
     display: inline-block;
-    padding: 4px 0;
+    padding: 0 5px;
+    color: $text-primary;
   }
-}
 
-.header-services__avatar {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 32px;
-  height: 32px;
-  margin-top: 8px;
-  margin-bottom: 8px;
-  color: #fff;
-  font-size: 18px;
-  background: #0091d9;
-  border-radius: 50%;
-  overflow: hidden;
-
-  &:hover {
+  .notify-number {
+    position: absolute;
+    top: -4px;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 14px;
+    height: 14px;
     color: #fff;
+    font-size: 10px;
+    border-radius: 50%;
+    background: $brand-contrast;
   }
-}
 
-.page-header__button {
-  background: $brand-primary;
+  .header-services__icon {
+    display: flex;
+    color: #ccc;
 
-  &:hover {
+    &:hover {
+      color: darken(#ccc, 15%);
+    }
+
+    .icon-heart {
+      width: 21px;
+      height: 24px;
+    }
+
+    .icon-message {
+      width: 24px;
+      height: 24px;
+    }
+  }
+
+  .header-services__wishlist,
+  .header-services__messages,
+  .header-services__products {
+    @include media(sm, between) {
+      display: none;
+    }
+  }
+
+  .header-services__login {
+    color: $link-color;
+  }
+
+  .header-services__profile {
+    position: relative;
+  }
+
+  .header-services__profile-menu {
+    position: absolute;
+    top: 100%;
+    max-height: 0;
+    overflow: hidden;
+    background: #fff;
+    box-shadow: $box-shadow;
+    visibility: hidden;
+    z-index: 100;
+
+    .header-services__profile:hover & {
+      max-height: none;
+      visibility: visible;
+      padding: 8px 20px;
+    }
+  }
+
+  .profile-menu__item {
+    white-space: nowrap;
+
+    a {
+      display: inline-block;
+      padding: 4px 0;
+    }
+  }
+
+  .header-services__avatar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 32px;
+    height: 32px;
+    margin-top: 8px;
+    margin-bottom: 8px;
     color: #fff;
-    background-color: darken($brand-primary, 4%);
+    font-size: 18px;
+    background: #0091d9;
+    border-radius: 50%;
+    overflow: hidden;
+
+    &:hover {
+      color: #fff;
+    }
   }
 
-  @include media(ms, max) {
-    display: none;
+  .page-header__button {
+    background: $brand-primary;
+
+    &:hover {
+      color: #fff;
+      background-color: darken($brand-primary, 4%);
+    }
+
+    @include media(ms, max) {
+      display: none;
+    }
   }
 }
