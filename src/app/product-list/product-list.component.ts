@@ -9,7 +9,6 @@ import { Product } from '../shared/product.interfaces';
 export class ProductListComponent implements OnInit {
   productList: Product[] = [
     {
-      id: 1,
       category: '',
       img: './assets/images/product-images/strawberry.jpg',
       name: 'Клубника',
@@ -18,7 +17,6 @@ export class ProductListComponent implements OnInit {
       metro: ''
     },
     {
-      id: 2,
       category: '',
       img: './assets/images/product-images/cucumber.png',
       name: 'Огурцы хрустящие',
@@ -31,7 +29,6 @@ export class ProductListComponent implements OnInit {
       metro: ''
     },
     {
-      id: 3,
       category: '',
       img: './assets/images/product-images/apples.jpg',
       name: 'Яблоки «Ред Делишес»',
@@ -40,7 +37,6 @@ export class ProductListComponent implements OnInit {
       metro: ''
     },
     {
-      id: 4,
       category: '',
       img: './assets/images/product-images/apples.jpg',
       name: 'Яблоки молодые белый налив',
