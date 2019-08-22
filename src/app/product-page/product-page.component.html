@@ -1,0 +1,23 @@
+<div class="full-product">
+  <div class="full-product__left">
+    <img class="full-product__img" src="{{product.img}}" alt="">
+    <button class="button button-wishlist  " type="button" title="Добавить в избранное" aria-label="Добавить в избранное">
+      <svg>
+        <use xlink:href="./assets/images/svg/wishlist-heart.svg#wishlist-heart"></use>
+      </svg>
+    </button>
+  </div>
+  <div class="full-product__right">
+    <h1 class="full-product__title">{{product.name}}</h1>
+    <div class="full-product__desc">{{product.desc}}</div>
+    <div class="full-product__price">{{product.price}}</div>
+    <div class="full-product__actions">
+      <div class="full-product__buy">
+        <button class="button button--primary button--l" type="submit">Оплатить</button>
+      </div>
+      <div class="full-product__send-message">
+        <button class="button button--l">Написать сообщение</button>
+      </div>
+    </div>
+  </div>
+</div>

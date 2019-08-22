@@ -1,1 +1,54 @@
+@import "~src/styles/init";
 
+:host {
+  .full-product {
+    display: grid;
+    grid-gap: 30px;
+
+    @include media(sm) {
+      grid-template-columns: 1fr 2fr;
+    }
+  }
+
+  .full-product__left {
+    position: relative;
+    max-width: 380px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .full-product__img {
+    width: 380px;
+  }
+
+  .full-product__title {
+    margin-top: 0;
+  }
+
+  .full-product__desc {
+    margin-bottom: 16px;
+  }
+
+  .full-product__price {
+    margin-bottom: 16px;
+    font-size: 32px;
+
+    &:after {
+      content: ' \20BD';
+    }
+  }
+
+  .full-product__actions {
+    @include media(sm) {
+      width: 320px;
+    }
+
+    .button {
+      width: 100%;
+    }
+  }
+
+  .full-product__buy {
+    margin-bottom: 16px;
+  }
+}

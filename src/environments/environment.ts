@@ -3,7 +3,15 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  firebaseConfig: {
+    apiKey: 'AIzaSyADceUtCEwrNDQ3_70jieRn_jJczJ8NnXE',
+    authDomain: 'veggie-marketplace.firebaseapp.com',
+    databaseURL: 'https://veggie-marketplace.firebaseio.com',
+    projectId: 'veggie-marketplace',
+    storageBucket: '',
+    messagingSenderId: '534691830480',
+  }
 };
 
 /*

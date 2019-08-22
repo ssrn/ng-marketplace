@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import { Product } from './product-list.interfaces';
+import { Product } from '../shared/product.interfaces';
 
 @Component({
   selector: 'app-product-list',
@@ -9,24 +9,44 @@ import { Product } from './product-list.interfaces';
 export class ProductListComponent implements OnInit {
   productList: Product[] = [
     {
-      url: './assets/images/product-images/strawberry.jpg',
+      id: 1,
+      category: '',
+      img: './assets/images/product-images/strawberry.jpg',
       name: 'Клубника',
       price: 250,
+      desc: '',
+      metro: ''
     },
     {
-      url: './assets/images/product-images/cucumber.png',
+      id: 2,
+      category: '',
+      img: './assets/images/product-images/cucumber.png',
       name: 'Огурцы хрустящие',
       price: 80,
+      desc: 'Выращены в экологически чистом районе. Хрустящие, не горчат. Огурцы привычный для нас овощ,' +
+        ' без которого невозможно представить многие салаты. Также их широко используют для соления.' +
+        ' Огурцы на 95% состоят из воды, поэтому содержат мало калорий и идеально подходят для диетического питания.' +
+        ' Благодаря содержанию ферментов они способствуют усвоению животных белков. Огурцы нужны в нашем рационе,' +
+        ' так как содержат важные для организма питательные вещества.',
+      metro: ''
     },
     {
-      url: './assets/images/product-images/apples.jpg',
+      id: 3,
+      category: '',
+      img: './assets/images/product-images/apples.jpg',
       name: 'Яблоки «Ред Делишес»',
       price: 90,
+      desc: '',
+      metro: ''
     },
     {
-      url: './assets/images/product-images/apples.jpg',
+      id: 4,
+      category: '',
+      img: './assets/images/product-images/apples.jpg',
       name: 'Яблоки молодые белый налив',
       price: 65,
+      desc: '',
+      metro: ''
     }
   ];
 
