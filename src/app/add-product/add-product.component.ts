@@ -35,7 +35,13 @@ export class AddProductComponent implements OnInit {
   }
 
   onSubmitProductData(product) {
-    this.firestoreService.addProduct(product);
+    this.firestoreService.addProduct(product)
+      .then(result => {
+        alert('Успешно');
+      })
+      .catch((error) => {
+        alert('Ошибка');
+      });
   }
 }
 
