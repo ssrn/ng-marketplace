@@ -1,0 +1,99 @@
+@import "~src/styles/init";
+
+:host {
+  .main-nav {
+    padding: 12px 15px;
+    background: #f8f4ef;
+
+    @include media(xs) {
+      display: none;
+    }
+  }
+
+  .main-nav__list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .main-nav__item {
+    display: inline-block;
+  }
+
+  .main-nav__link {
+    display: block;
+    padding: 0 16px;
+    color: $text-primary;
+    font-size: 21px;
+    text-decoration: none;
+
+    &:hover {
+      color: $brand-contrast;
+    }
+  }
+
+  .main-nav-trigger {
+    position: relative;
+    display: block;
+    width: 42px;
+    height: 36px;
+    padding: 8px;
+    background: none;
+    border: none;
+    transform: rotate(0deg);
+    transition: all .3s ease-in-out 0s;
+    cursor: pointer;
+
+    @include media(sm) {
+      display: none;
+    }
+  }
+
+  .main-nav-trigger__line {
+    position: absolute;
+    left: 8px;
+    display: block;
+    height: 2px;
+    width: 26px;
+    background: $brand-primary;
+    border-radius: $border-radius;
+    transform: rotate(0deg);
+    transition: all .25s ease-in-out 0s;
+    opacity: 1;
+
+    &:nth-child(1) {
+      top: 8px;
+    }
+
+    &:nth-child(2),
+    &:nth-child(3) {
+      top: 18px;
+    }
+
+    &:nth-child(4) {
+      top: 28px;
+    }
+
+    .main-nav-trigger.is-active & {
+      &:nth-child(1) {
+        top: 18px;
+        left: 50%;
+        width: 0;
+      }
+
+      &:nth-child(2) {
+        transform: rotate(45deg);
+      }
+
+      &:nth-child(3) {
+        transform: rotate(-45deg);
+      }
+
+      &:nth-child(4) {
+        top: 18px;
+        left: 50%;
+        width: 0;
+      }
+    }
+  }
+}
