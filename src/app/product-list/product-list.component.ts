@@ -1,5 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
+import {AngularFirestore, AngularFirestoreCollection, QuerySnapshot} from '@angular/fire/firestore';
+import { FirestoreService } from '../services/firestore.service';
 import { Product } from '../shared/product.interfaces';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-product-list',
@@ -7,51 +10,16 @@ import { Product } from '../shared/product.interfaces';
   styleUrls: ['./product-list.component.scss']
 })
 export class ProductListComponent implements OnInit {
-  productList: Product[] = [
-    {
-      category: '',
-      img: './assets/images/product-images/strawberry.jpg',
-      name: 'Клубника',
-      price: 250,
-      desc: '',
-      metro: ''
-    },
-    {
-      category: '',
-      img: './assets/images/product-images/cucumber.png',
-      name: 'Огурцы хрустящие',
-      price: 80,
-      desc: 'Выращены в экологически чистом районе. Хрустящие, не горчат. Огурцы привычный для нас овощ,' +
-        ' без которого невозможно представить многие салаты. Также их широко используют для соления.' +
-        ' Огурцы на 95% состоят из воды, поэтому содержат мало калорий и идеально подходят для диетического питания.' +
-        ' Благодаря содержанию ферментов они способствуют усвоению животных белков. Огурцы нужны в нашем рационе,' +
-        ' так как содержат важные для организма питательные вещества.',
-      metro: ''
-    },
-    {
-      category: '',
-      img: './assets/images/product-images/apples.jpg',
-      name: 'Яблоки «Ред Делишес»',
-      price: 90,
-      desc: '',
-      metro: ''
-    },
-    {
-      category: '',
-      img: './assets/images/product-images/apples.jpg',
-      name: 'Яблоки молодые белый налив',
-      price: 65,
-      desc: '',
-      metro: ''
-    }
-  ];
+  products: Observable<Product[]>;
 
   @Input() title: object;
   @Input() titleTagClass: string;
 
-  constructor() {
+  constructor(private afs: FirestoreService) {
   }
 
   ngOnInit() {
+    this.products = this.afs.getProducts();
   }
 }
+

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FirestoreService } from '../services/firebase.service';
+import { FirestoreService } from '../services/firestore.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
@@ -8,11 +8,11 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
   styleUrls: ['./add-product.component.scss']
 })
 export class AddProductComponent implements OnInit {
-  public addProductForm: FormGroup;
+  private addProductForm: FormGroup;
 
   constructor(
-    public firestoreService: FirestoreService,
-    public fb: FormBuilder
+    private afs: FirestoreService,
+    private fb: FormBuilder
   ) { }
 
   ngOnInit() {
@@ -35,7 +35,7 @@ export class AddProductComponent implements OnInit {
   }
 
   onSubmitProductData(product) {
-    this.firestoreService.addProduct(product)
+    this.afs.addProduct(product)
       .then(result => {
         alert('Успешно');
       })
