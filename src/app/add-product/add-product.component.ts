@@ -1,16 +1,19 @@
-import { Component, OnInit } from '@angular/core';
-import { FirestoreService } from '../services/firestore.service';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import {Component, OnInit} from '@angular/core';
+import {FirestoreService} from '../services/firestore.service';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {Product} from '../shared/product.interfaces';
 
 @Component({
   selector: 'app-add-product',
   templateUrl: './add-product.component.html',
   styleUrls: ['./add-product.component.scss']
 })
+
 export class AddProductComponent implements OnInit {
   private addProductForm: FormGroup;
-  fileToUpload: File = null;
-  productId = '';
+  filesToUpload: FileList;
+  productPhotoPaths: string[] = [];
+  productId: string;
 
   constructor(
     private db: FirestoreService,
@@ -36,17 +39,19 @@ export class AddProductComponent implements OnInit {
     });
   }
 
-  onSubmitProductData(product) {
+  onSubmitProductData(product: Product) {
     this.db.addProduct(product)
       .then(result => this.productId = result.id)
-      .then(result => this.db.uploadPhotos(this.fileToUpload))
-      .then(result => this.db.updateProduct(this.productId, `products/${this.fileToUpload.name}`))
-      .catch(error => alert('Ошибка'));
+      .then(result => this.db.uploadPhotos(this.filesToUpload))
+      .then(result => this.db.updateProduct(this.productId, this.productPhotoPaths))
+      .then(result => alert('success'))
+      .catch(error => console.log(error));
   }
 
   handlePhotosInput(files: FileList) {
-    this.fileToUpload = files.item(0);
-    console.log('this.fileToUpload', this.fileToUpload.name);
+    this.filesToUpload = files;
+    Array.from(this.filesToUpload).forEach(file => {
+      this.productPhotoPaths.push(`products/${file.name}`);
+    });
   }
 }
-

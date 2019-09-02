@@ -15,6 +15,6 @@ export class ProductCardComponent implements OnInit {
   constructor( private db: FirestoreService ) { }
 
   ngOnInit() {
-    this.photoUrl = this.db.downloadPhotos(this.product.img);
+    this.photoUrl = this.db.downloadPhotos(this.product.img[0]);
   }
 }

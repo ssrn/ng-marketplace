@@ -26,21 +26,23 @@ export class FirestoreService {
     return this.productCollection.valueChanges();
   }
 
-  uploadPhotos(file) {
-    const filePath = `products/${file.name}`;
-    this.storage.ref(filePath).put(file)
-      .then(snapshot => console.log('Uploaded a blob or file!'))
-      .catch(error => console.log('error:', error));
+  uploadPhotos(files: FileList) {
+    Array.from(files).forEach(file => {
+      const filePath = `products/${file.name}`;
+      this.storage.ref(filePath).put(file)
+        .catch(error => console.log(error));
+    });
   }
 
-  downloadPhotos(path) {
+  downloadPhotos(path: string) {
     const ref = this.storage.ref(path);
     return ref.getDownloadURL();
   }
 
-  updateProduct(id, ref) {
+  updateProduct(id: string, refs: string[]) {
     this.productCollection.doc(id).update({
-        img: ref
-      });
+        img: refs
+      })
+      .catch(error => console.log(error));
   }
 }
