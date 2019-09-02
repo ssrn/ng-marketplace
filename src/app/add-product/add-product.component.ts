@@ -9,9 +9,11 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 })
 export class AddProductComponent implements OnInit {
   private addProductForm: FormGroup;
+  fileToUpload: File = null;
+  productId = '';
 
   constructor(
-    private afs: FirestoreService,
+    private db: FirestoreService,
     private fb: FormBuilder
   ) { }
 
@@ -22,26 +24,29 @@ export class AddProductComponent implements OnInit {
   initProductForm() {
     this.addProductForm = this.fb.group({
       category: '',
+      img: null,
       name: ['', [
           Validators.required,
           // Validators.pattern(/[А-я]/)
         ]
       ],
       price: [null, [Validators.required]],
-      photos: '',
       description: '',
       metro: ''
     });
   }
 
   onSubmitProductData(product) {
-    this.afs.addProduct(product)
-      .then(result => {
-        alert('Успешно');
-      })
-      .catch((error) => {
-        alert('Ошибка');
-      });
+    this.db.addProduct(product)
+      .then(result => this.productId = result.id)
+      .then(result => this.db.uploadPhotos(this.fileToUpload))
+      .then(result => this.db.updateProduct(this.productId, `products/${this.fileToUpload.name}`))
+      .catch(error => alert('Ошибка'));
+  }
+
+  handlePhotosInput(files: FileList) {
+    this.fileToUpload = files.item(0);
+    console.log('this.fileToUpload', this.fileToUpload.name);
   }
 }
 

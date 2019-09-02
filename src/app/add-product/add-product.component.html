@@ -35,8 +35,13 @@
       <span class="number-format-currency">₽</span>
     </div>
     <div class="form-item">
-      <label for="fld-product-photos">Фотографии</label>
-      <input type="file" id="fld-product-photos" formControlName="photos" accept="image/gif,image/png,image/jpeg,image/pjpeg" multiple="">
+      <label for="fld-product-img">Фотографии</label>
+      <input type="file"
+             (change)="handlePhotosInput($event.target.files)"
+             id="fld-product-img"
+             formControlName="img"
+             accept="image/gif,image/png,image/jpeg,image/pjpeg"
+             multiple="">
     </div>
     <div class="form-item">
       <label for="fld-product-metro">Метро</label>

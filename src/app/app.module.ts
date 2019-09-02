@@ -14,6 +14,8 @@ import { AngularFireModule } from '@angular/fire';
 import { environment } from '../environments/environment';
 import { AddProductComponent } from './add-product/add-product.component';
 import { MenuComponent } from './menu/menu.component';
+import {AngularFireStorage} from '@angular/fire/storage';
+import { AngularFireStorageModule } from '@angular/fire/storage';
 
 const appRoutes: Routes = [
   { path: '', component: ProductListComponent },
@@ -50,8 +52,9 @@ const appRoutes: Routes = [
     ),
     ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireStorageModule
   ],
-  providers: [AngularFirestore],
+  providers: [AngularFirestore, AngularFireStorage],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

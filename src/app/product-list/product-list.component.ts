@@ -15,11 +15,11 @@ export class ProductListComponent implements OnInit {
   @Input() title: object;
   @Input() titleTagClass: string;
 
-  constructor(private afs: FirestoreService) {
+  constructor(private db: FirestoreService) {
   }
 
   ngOnInit() {
-    this.products = this.afs.getProducts();
+    this.products = this.db.getProducts();
   }
 }
 

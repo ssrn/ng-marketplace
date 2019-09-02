@@ -1,5 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Product } from '../shared/product.interfaces';
+import { FirestoreService } from '../services/firestore.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-product-card',
@@ -7,11 +9,12 @@ import { Product } from '../shared/product.interfaces';
   styleUrls: ['./product-card.component.scss']
 })
 export class ProductCardComponent implements OnInit {
-
   @Input() product: Product;
+  photoUrl: Observable<string | null>;
 
-  constructor() { }
+  constructor( private db: FirestoreService ) { }
 
   ngOnInit() {
+    this.photoUrl = this.db.downloadPhotos(this.product.img);
   }
 }

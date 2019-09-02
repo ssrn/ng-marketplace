@@ -9,7 +9,7 @@ export const environment = {
     authDomain: 'veggie-marketplace.firebaseapp.com',
     databaseURL: 'https://veggie-marketplace.firebaseio.com',
     projectId: 'veggie-marketplace',
-    storageBucket: '',
+    storageBucket: 'veggie-marketplace.appspot.com',
     messagingSenderId: '534691830480',
   }
 };
