@@ -2,31 +2,41 @@
 
 :host {
   .main-nav {
-    padding: 12px 15px;
-    background: #f8f4ef;
-
-    @include media(xs) {
+    @media screen and (max-width: 940px) {
       display: none;
     }
   }
 
-  .main-nav__list {
+  .main-nav__inner-wrap {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    padding: 0;
+  }
+
+  .main-nav__list {
+    display: inline-flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    min-width: 50%;
   }
 
   .main-nav__item {
     display: inline-block;
+    margin-right: 30px;
+
+    &:last-child {
+      margin-right: 16px;
+    }
   }
 
   .main-nav__link {
     display: block;
-    padding: 0 16px;
     color: $text-primary;
     font-size: 21px;
     text-decoration: none;
 
+    &.is-active,
     &:hover {
       color: $brand-contrast;
     }
@@ -37,6 +47,7 @@
     display: block;
     width: 42px;
     height: 36px;
+    margin-left: 7px;
     padding: 8px;
     background: none;
     border: none;
@@ -44,7 +55,7 @@
     transition: all .3s ease-in-out 0s;
     cursor: pointer;
 
-    @include media(sm) {
+    @media screen and (min-width: 940px) {
       display: none;
     }
   }
@@ -95,5 +106,17 @@
         width: 0;
       }
     }
+  }
+
+  .logged-in-only {
+    display: none;
+
+    body.logged-in & {
+      display: block;
+    }
+  }
+
+  body.logged-in .unlogged-only {
+    display: none;
   }
 }

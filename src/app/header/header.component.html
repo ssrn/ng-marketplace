@@ -1,51 +1,67 @@
 <header class="page-header">
-  <div class="page-header__inner container">
-    <a class="page-header__logo" routerLink="/" routerLinkActive="active">
-      <img class="page-header__logo-img" src="./assets/images/FNB_logo.png" alt="">
-    </a>
+  <div class="container">
 
-    <div class="page-header__search"></div>
+    <div class="page-header__inner">
+      <a class="page-header__logo" routerLink="/" routerLinkActive="active">
+        <img class="page-header__logo-img" src="./assets/images/FNB_logo.png" alt="">
+      </a>
 
-<!--    <form class="page-header__search search-form" role='search' action="/" method="get">-->
-<!--      <label class="visually-hidden" for="header-search">Поиск</label>-->
-<!--      <input class="search-form__input" id="header-search" type="text" placeholder="Поиск..."/>-->
-<!--      <div class="search-form__icon">-->
-<!--        <svg class="icon-search">-->
-<!--          <use xlink:href="./assets/images/svg/search.svg#search"></use>-->
-<!--        </svg>-->
-<!--      </div>-->
-<!--      <button class="visually-hidden" type="submit">Искать</button>-->
-<!--    </form>-->
+      <app-menu></app-menu>
 
-    <div class="header-services">
-      <div class="header-services__inner">
-        <a href="/wishlist.html" class="header-services__item header-services__wishlist" title="Избранное" aria-label="Избранное">
+      <div class="page-header__right">
+
+<!--        <div class="page-header__search">-->
+<!--          <form class="search-form" action="" autocomplete="on">-->
+<!--            <label class="visually-hidden" for="header-search">Поиск</label>-->
+<!--            <input id="header-search" name="search" type="text" placeholder="Поиск...">-->
+<!--            <input value="" type="submit">-->
+<!--          </form>-->
+<!--        </div>-->
+
+        <div class="header-services">
+          <div class="header-services__inner">
+            <a href="./wishlist.html" class="header-services__item header-services__wishlist" title="Избранное" aria-label="Избранное">
           <span class="header-services__icon">
             <svg class="icon-heart">
               <use xlink:href="./assets/images/svg/heart.svg#heart"></use>
             </svg>
           </span>
-        </a>
-        <a href="/profile/messenger" class="header-services__item header-services__messages" aria-label="Сообщения" title="Сообщения">
-          <span class="header-services__icon">
+            </a>
+            <a href="./messenger-channels.html" class="header-services__item header-services__messages logged-in-only" aria-label="Сообщения" title="Сообщения">
+              <span class="header-services__icon">
             <svg class="icon-message">
               <use xlink:href="./assets/images/svg/message.svg#message"></use>
             </svg>
           </span>
-          <div class="notify-number">2</div>
-        </a>
-        <a href="/profile" class="header-services__item header-services__products">Мои объявления</a>
-        <a href="#login" class="header-services__item header-services__login">Вход и регистрация</a>
+              <div class="notify-number">2</div>
+            </a>
+            <a href="./my-products.html" class="header-services__item header-services__products logged-in-only">Мои объявления</a>
+
+            <a href="#login" class="header-services__item header-services__login unlogged-only">
+              <span class="header-services__icon">
+            <svg class="icon-user">
+              <use xlink:href="./img/svg/user.svg#user"></use>
+            </svg>
+          </span>
+            </a>
+
+            <div class="header-services__item header-services__profile logged-in-only">
+              <a href="./profile.html" class="header-services__avatar">
+                C
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <a href="./add-product.html" class="page-header__button button button--primary">Продать урожай</a>
+
+        <button class="main-nav-trigger" type="button" title="Главное меню">
+          <span class="main-nav-trigger__line"></span>
+          <span class="main-nav-trigger__line"></span>
+          <span class="main-nav-trigger__line"></span>
+          <span class="main-nav-trigger__line"></span>
+        </button>
       </div>
     </div>
-
-    <a href="/additem" class="page-header__button button button--primary">Продать урожай</a>
-
-    <button class="main-nav-trigger" type="button" title="Главное меню">
-      <span class="main-nav-trigger__line"></span>
-      <span class="main-nav-trigger__line"></span>
-      <span class="main-nav-trigger__line"></span>
-      <span class="main-nav-trigger__line"></span>
-    </button>
   </div>
 </header>
