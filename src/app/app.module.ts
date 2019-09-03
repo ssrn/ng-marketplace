@@ -20,7 +20,7 @@ import { AngularFireStorageModule } from '@angular/fire/storage';
 const appRoutes: Routes = [
   { path: '', component: ProductListComponent },
   { path: 'add-product', component: AddProductComponent },
-  // { path: 'hero/:id',      component: HeroDetailComponent },
+  { path: 'products/:id', component: ProductPageComponent },
   // {
   //   path: 'heroes',
   //   component: HeroListComponent,

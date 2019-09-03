@@ -1,7 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {AngularFirestore, AngularFirestoreCollection, QuerySnapshot} from '@angular/fire/firestore';
-import { FirestoreService } from '../services/firestore.service';
-import { Product } from '../shared/product.interfaces';
+import {FirestoreService} from '../services/firestore.service';
+import {Product} from '../shared/product.interfaces';
 import {Observable} from 'rxjs';
 
 @Component({

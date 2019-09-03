@@ -1,6 +1,6 @@
 <div class="full-product">
   <div class="full-product__left">
-    <img class="full-product__img" src="{{product.img}}" alt="">
+    <img class="full-product__img" src="{{photoUrl | async}}" alt="">
     <button class="button button-wishlist  " type="button" title="Добавить в избранное" aria-label="Добавить в избранное">
       <svg>
         <use xlink:href="./assets/images/svg/wishlist-heart.svg#wishlist-heart"></use>

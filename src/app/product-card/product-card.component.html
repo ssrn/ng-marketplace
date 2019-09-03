@@ -1,5 +1,5 @@
 <div class="product">
-  <a href="/product/{{product.name}}" class="product__link">
+  <a [title]="product.name" [routerLink]="['/products', product.id]" class="product__link">
     <div class="product__img-wrap">
       <img class="product__img cropped-image" src="{{photoUrl | async}}" alt="" loading="lazy">
     </div>

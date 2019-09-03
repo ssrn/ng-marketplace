@@ -26,6 +26,7 @@ export class AddProductComponent implements OnInit {
 
   initProductForm() {
     this.addProductForm = this.fb.group({
+      id: '',
       category: '',
       img: null,
       name: ['', [

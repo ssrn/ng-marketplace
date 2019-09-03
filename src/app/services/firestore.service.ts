@@ -26,6 +26,10 @@ export class FirestoreService {
     return this.productCollection.valueChanges();
   }
 
+  getProduct(id: string) {
+    return this.productCollection.doc(id).valueChanges();
+  }
+
   uploadPhotos(files: FileList) {
     Array.from(files).forEach(file => {
       const filePath = `products/${file.name}`;
@@ -34,13 +38,14 @@ export class FirestoreService {
     });
   }
 
-  downloadPhotos(path: string) {
+  downloadPhoto(path: string) {
     const ref = this.storage.ref(path);
     return ref.getDownloadURL();
   }
 
   updateProduct(id: string, refs: string[]) {
     this.productCollection.doc(id).update({
+        id,
         img: refs
       })
       .catch(error => console.log(error));
