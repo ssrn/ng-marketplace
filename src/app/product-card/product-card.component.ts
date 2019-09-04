@@ -1,7 +1,8 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { Product } from '../shared/product.interfaces';
+import { Component, Input, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { FirestoreService } from '../services/firestore.service';
+import { Product } from '../app.interfaces';
+
 
 @Component({
   selector: 'app-product-card',

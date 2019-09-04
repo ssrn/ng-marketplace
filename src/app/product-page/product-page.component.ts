@@ -1,13 +1,14 @@
-import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
-import {FirestoreService} from '../services/firestore.service';
-import {Observable} from 'rxjs';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { FirestoreService } from '../services/firestore.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-product-page',
   templateUrl: './product-page.component.html',
   styleUrls: ['./product-page.component.scss']
 })
+
 export class ProductPageComponent implements OnInit {
   product;
   photoUrl: Observable<string | null>;
@@ -26,5 +27,4 @@ export class ProductPageComponent implements OnInit {
         });
     });
   }
-
 }

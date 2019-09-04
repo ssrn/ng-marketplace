@@ -1,7 +1,7 @@
-import {Component, OnInit} from '@angular/core';
-import {FirestoreService} from '../services/firestore.service';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {Product} from '../shared/product.interfaces';
+import { Component, OnInit } from '@angular/core';
+import { FirestoreService } from '../services/firestore.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Product } from '../app.interfaces';
 
 @Component({
   selector: 'app-add-product',

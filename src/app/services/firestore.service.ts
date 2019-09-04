@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import {AngularFirestore, AngularFirestoreCollection, DocumentReference} from '@angular/fire/firestore';
+import { AngularFirestore, AngularFirestoreCollection, DocumentReference } from '@angular/fire/firestore';
 import { AngularFireStorage } from '@angular/fire/storage';
-import { Product } from '../shared/product.interfaces';
-import {Observable} from 'rxjs';
+import { Observable } from 'rxjs';
+import { Product } from '../app.interfaces';
 
 @Injectable({
   providedIn: 'root'
