@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {AngularFirestore, AngularFirestoreCollection, DocumentReference} from '@angular/fire/firestore';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { Product } from '../shared/product.interfaces';
+import {Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -9,12 +10,14 @@ import { Product } from '../shared/product.interfaces';
 
 export class FirestoreService {
   private productCollection: AngularFirestoreCollection<Product>;
+  private categoryCollection: AngularFirestoreCollection;
 
   constructor(
     private storage: AngularFireStorage,
     private db: AngularFirestore
   ) {
     this.productCollection = db.collection<Product>('products');
+    this.categoryCollection = db.collection('product_categories', ref => ref.where('parentId', '==', ''));
   }
 
 
@@ -22,12 +25,16 @@ export class FirestoreService {
     return this.productCollection.add(product);
   }
 
-  getProducts() {
+  getProducts(): Observable<Product[]> {
     return this.productCollection.valueChanges();
   }
 
+  getCategories() {
+    return this.categoryCollection.valueChanges();
+  }
+
   getProduct(id: string) {
-    return this.productCollection.doc(id).valueChanges();
+    return this.productCollection.doc(id).get();
   }
 
   uploadPhotos(files: FileList) {

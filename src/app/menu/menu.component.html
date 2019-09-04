@@ -1,10 +1,9 @@
 <nav class="main-nav">
   <div class="main-nav__inner-wrap container">
     <ul class="main-nav__list">
-      <li class="main-nav__item"><a href="./catalog.html" class="main-nav__link">Овощи</a></li>
-      <li class="main-nav__item"><a href="./catalog.html" class="main-nav__link">Фрукты</a></li>
-      <li class="main-nav__item"><a href="./catalog.html" class="main-nav__link">Ягоды</a></li>
-      <li class="main-nav__item"><a href="./catalog.html" class="main-nav__link">Зелень</a></li>
+      <li class="main-nav__item" *ngFor="let productCategory of productCategories | async">
+        <a routerLink="/catalog/{{productCategory.name}}" routerLinkActive="active" class="main-nav__link">{{productCategory.name}}</a>
+      </li>
     </ul>
   </div>
 </nav>

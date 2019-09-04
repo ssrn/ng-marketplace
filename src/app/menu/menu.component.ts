@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {Observable} from 'rxjs';
+import {FirestoreService} from '../services/firestore.service';
 
 @Component({
   selector: 'app-menu',
@@ -6,10 +8,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./menu.component.scss']
 })
 export class MenuComponent implements OnInit {
+  productCategories;
 
-  constructor() { }
+  constructor(private db: FirestoreService) { }
 
   ngOnInit() {
+    this.productCategories = this.db.getCategories();
+    console.log('this.productCategories', this.productCategories.subscribe(x => console.log('x', x)));
   }
-
 }
