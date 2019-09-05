@@ -14,6 +14,5 @@ export class MenuComponent implements OnInit {
 
   ngOnInit() {
     this.productCategories = this.db.getCategories();
-    console.log('this.productCategories', this.productCategories.subscribe(x => console.log('x', x)));
   }
 }
