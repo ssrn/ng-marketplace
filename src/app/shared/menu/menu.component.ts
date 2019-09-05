@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FirestoreService } from '../../services/firestore.service';
+import { Observable } from 'rxjs';
+import { DocumentData } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-menu',
@@ -8,7 +10,7 @@ import { FirestoreService } from '../../services/firestore.service';
 })
 
 export class MenuComponent implements OnInit {
-  productCategories;
+  productCategories: Observable<DocumentData[]>;
 
   constructor(private db: FirestoreService) { }
 

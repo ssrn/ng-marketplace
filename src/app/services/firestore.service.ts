@@ -1,5 +1,11 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore, AngularFirestoreCollection, DocumentReference } from '@angular/fire/firestore';
+import {
+  AngularFirestore,
+  AngularFirestoreCollection,
+  AngularFirestoreDocument,
+  DocumentData,
+  DocumentReference
+} from '@angular/fire/firestore';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { Observable } from 'rxjs';
 import { Product } from '../app.interfaces';
@@ -29,15 +35,16 @@ export class FirestoreService {
     return this.productCollection.valueChanges();
   }
 
-  getCategories() {
+  getCategories(): Observable<DocumentData[]> {
     return this.categoryCollection.valueChanges();
   }
 
-  getProduct(id: string) {
-    return this.productCollection.doc(id).get();
+  getProduct(id: string): Observable<Product> {
+    const afd: AngularFirestoreDocument<Product> = this.productCollection.doc(id);
+    return afd.valueChanges();
   }
 
-  uploadPhotos(files: FileList) {
+  uploadPhotos(files: FileList): void {
     Array.from(files).forEach(file => {
       const filePath = `products/${file.name}`;
       this.storage.ref(filePath).put(file)
@@ -45,12 +52,12 @@ export class FirestoreService {
     });
   }
 
-  downloadPhoto(path: string) {
+  downloadPhoto(path: string): Observable<string> {
     const ref = this.storage.ref(path);
     return ref.getDownloadURL();
   }
 
-  updateProduct(id: string, refs: string[]) {
+  updateProduct(id: string, refs: string[]): void {
     this.productCollection.doc(id).update({
         id,
         img: refs

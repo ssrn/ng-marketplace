@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FirestoreService } from '../services/firestore.service';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
+import { Product } from '../app.interfaces';
 
 @Component({
   selector: 'app-product-page',
@@ -9,9 +10,10 @@ import { Observable } from 'rxjs';
   styleUrls: ['./product-page.component.scss']
 })
 
-export class ProductPageComponent implements OnInit {
-  product;
-  photoUrl: Observable<string | null>;
+export class ProductPageComponent implements OnInit, OnDestroy {
+  product: Product;
+  photoUrl: Observable<string>;
+  subscription: Subscription;
 
   constructor(
     private route: ActivatedRoute,
@@ -19,12 +21,16 @@ export class ProductPageComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.route.paramMap.subscribe(params => {
+    this.subscription = this.route.paramMap.subscribe(params => {
       this.db.getProduct(params.get('id'))
-        .subscribe(x => {
-          this.product = x;
+        .subscribe(data => {
+          this.product = data;
           this.photoUrl = this.db.downloadPhoto(this.product.img[0]);
         });
     });
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 }
