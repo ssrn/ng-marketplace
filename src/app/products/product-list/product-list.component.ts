@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, TrackByFunction } from '@angular/core';
 import { FirestoreService } from '../../services/firestore.service';
 import { Observable } from 'rxjs';
 import { Product } from '../../app.interfaces';
@@ -11,6 +11,7 @@ import { Product } from '../../app.interfaces';
 
 export class ProductListComponent implements OnInit {
   products: Observable<Product[]>;
+  ngForTrackBy: TrackByFunction<any>;
 
   @Input() title: string;
   @Input() titleTagClass: string;
