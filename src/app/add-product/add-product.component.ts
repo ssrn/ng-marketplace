@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FirestoreService } from '../services/firestore.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Product } from '../app.interfaces';
@@ -6,7 +6,8 @@ import { Product } from '../app.interfaces';
 @Component({
   selector: 'app-add-product',
   templateUrl: './add-product.component.html',
-  styleUrls: ['./add-product.component.scss']
+  styleUrls: ['./add-product.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 
 export class AddProductComponent implements OnInit {
@@ -43,9 +44,9 @@ export class AddProductComponent implements OnInit {
   onSubmitProductData(product: Product) {
     this.db.addProduct(product)
       .then(result => this.productId = result.id)
-      .then(result => this.db.uploadPhotos(this.filesToUpload))
-      .then(result => this.db.updateProduct(this.productId, this.productPhotoPaths))
-      .then(result => alert('success'))
+      .then(() => this.db.uploadPhotos(this.filesToUpload))
+      .then(() => this.db.updateProduct(this.productId, this.productPhotoPaths))
+      .then(() => alert('success'))
       .catch(error => console.log(error));
   }
 

@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FirestoreService } from '../services/firestore.service';
 import { Observable, Subscription } from 'rxjs';
@@ -7,7 +7,8 @@ import { Product } from '../app.interfaces';
 @Component({
   selector: 'app-product-page',
   templateUrl: './product-page.component.html',
-  styleUrls: ['./product-page.component.scss']
+  styleUrls: ['./product-page.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 
 export class ProductPageComponent implements OnInit, OnDestroy {
