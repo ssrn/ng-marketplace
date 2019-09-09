@@ -12,6 +12,7 @@ import { AngularFireModule } from '@angular/fire';
 import { environment } from '../environments/environment';
 import { AddProductComponent } from './add-product/add-product.component';
 import { AngularFireStorage, AngularFireStorageModule } from '@angular/fire/storage';
+import { CatalogModule } from './catalog/catalog.module';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { AngularFireStorage, AngularFireStorageModule } from '@angular/fire/stor
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireStorageModule,
     SharedModule,
-    MainPageModule
+    MainPageModule,
+    CatalogModule
   ],
   providers: [AngularFirestore, AngularFireStorage],
   bootstrap: [AppComponent]

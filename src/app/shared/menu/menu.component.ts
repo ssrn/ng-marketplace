@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, TrackByFunction } from '@angular/core';
 import { FirestoreService } from '../../services/firestore.service';
 import { Observable } from 'rxjs';
 import { DocumentData } from '@angular/fire/firestore';
@@ -12,6 +12,7 @@ import { DocumentData } from '@angular/fire/firestore';
 
 export class MenuComponent implements OnInit {
   productCategories: Observable<DocumentData[]>;
+  ngForTrackBy: TrackByFunction<any>;
 
   constructor(private db: FirestoreService) { }
 

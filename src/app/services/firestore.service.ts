@@ -9,6 +9,7 @@ import {
 import { AngularFireStorage } from '@angular/fire/storage';
 import { Observable } from 'rxjs';
 import { Product } from '../app.interfaces';
+import { FirestoreSearchQuery } from './firestoreSearchQuery.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -22,17 +23,26 @@ export class FirestoreService {
     private storage: AngularFireStorage,
     private db: AngularFirestore
   ) {
-    this.productCollection = db.collection<Product>('products');
     this.categoryCollection = db.collection('product_categories', ref => ref.where('parentId', '==', ''));
   }
-
 
   addProduct(product: Product): Promise<DocumentReference> {
     return this.productCollection.add(product);
   }
 
-  getProducts(): Observable<Product[]> {
-    return this.productCollection.valueChanges();
+  getProducts(searchQuery: FirestoreSearchQuery): Observable<any> {
+    // @ts-ignore
+    return this.db.collection('products', ref => {
+      if (searchQuery.where !== undefined) {
+        searchQuery.where.forEach(obj => {
+          return ref.where(obj.fieldPath, obj.opStr, obj.value);
+        });
+      }
+      if (searchQuery.limit !== undefined) {
+        return ref.limit(searchQuery.limit);
+      }
+      return ref;
+    }).valueChanges();
   }
 
   getCategories(): Observable<DocumentData[]> {

@@ -1,7 +1,7 @@
 <nav class="main-nav">
   <div class="main-nav__inner-wrap container">
     <ul class="main-nav__list">
-      <li class="main-nav__item" *ngFor="let productCategory of productCategories | async">
+      <li class="main-nav__item" *ngFor="let productCategory of productCategories | async; trackBy: ngForTrackBy">
         <a routerLink="/catalog/{{productCategory.name}}" routerLinkActive="active" class="main-nav__link">{{productCategory.name}}</a>
       </li>
     </ul>
