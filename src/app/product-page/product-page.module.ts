@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SellerComponent } from './seller/seller.component';
 import { ProductPageComponent } from './product-page.component';
-import { ProductsRoutingModule } from '../products/products-routing.module';
+import { ProductPageRoutingModule } from './product-page-routing.module';
 
 
 @NgModule({
@@ -12,7 +12,7 @@ import { ProductsRoutingModule } from '../products/products-routing.module';
   ],
   imports: [
     CommonModule,
-    ProductsRoutingModule
+    ProductPageRoutingModule
   ],
   bootstrap: [ProductPageComponent]
 })
