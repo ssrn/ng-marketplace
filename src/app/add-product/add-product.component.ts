@@ -22,6 +22,7 @@ export class AddProductComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    console.log('пиу');
     this.initProductForm();
   }
 
@@ -29,13 +30,13 @@ export class AddProductComponent implements OnInit {
     this.addProductForm = this.fb.group({
       id: '',
       category: '',
-      img: null,
+      img: '',
       name: ['', [
           Validators.required,
           // Validators.pattern(/[А-я]/)
         ]
       ],
-      price: [null, [Validators.required]],
+      price: [0, [Validators.required]],
       description: '',
       metro: ''
     });

@@ -8,7 +8,7 @@ import { FirestoreSearchQuery } from '../../services/firestoreSearchQuery.interf
   selector: 'app-product-list',
   templateUrl: './product-list.component.html',
   styleUrls: ['./product-list.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  // changeDetection: ChangeDetectionStrategy.OnPush
 })
 
 export class ProductListComponent implements OnInit {

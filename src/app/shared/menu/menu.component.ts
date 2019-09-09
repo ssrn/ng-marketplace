@@ -7,16 +7,16 @@ import { DocumentData } from '@angular/fire/firestore';
   selector: 'app-menu',
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  // changeDetection: ChangeDetectionStrategy.OnPush
 })
 
 export class MenuComponent implements OnInit {
-  productCategories: Observable<DocumentData[]>;
+  menu: Observable<DocumentData[]>;
   ngForTrackBy: TrackByFunction<any>;
 
   constructor(private db: FirestoreService) { }
 
   ngOnInit() {
-    this.productCategories = this.db.getCategories();
+    this.menu = this.db.getMenu();
   }
 }

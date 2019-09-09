@@ -17,13 +17,14 @@ import { FirestoreSearchQuery } from './firestoreSearchQuery.interface';
 
 export class FirestoreService {
   private productCollection: AngularFirestoreCollection<Product>;
-  private categoryCollection: AngularFirestoreCollection;
+  private menuCollection: AngularFirestoreCollection;
 
   constructor(
     private storage: AngularFireStorage,
     private db: AngularFirestore
   ) {
-    this.categoryCollection = db.collection('product_categories', ref => ref.where('parentId', '==', ''));
+    this.productCollection = db.collection('products');
+    this.menuCollection = db.collection('menu', ref => ref.orderBy('weight'));
   }
 
   addProduct(product: Product): Promise<DocumentReference> {
@@ -31,22 +32,24 @@ export class FirestoreService {
   }
 
   getProducts(searchQuery: FirestoreSearchQuery): Observable<any> {
-    // @ts-ignore
-    return this.db.collection('products', ref => {
-      if (searchQuery.where !== undefined) {
-        searchQuery.where.forEach(obj => {
-          return ref.where(obj.fieldPath, obj.opStr, obj.value);
-        });
-      }
-      if (searchQuery.limit !== undefined) {
-        return ref.limit(searchQuery.limit);
-      }
-      return ref;
-    }).valueChanges();
+    return this.productCollection.valueChanges();
+    // // @ts-ignore
+    // return this.db.collection('products', ref => {
+    //   if (searchQuery.where !== undefined) {
+    //     return ref.where(searchQuery.where[0].fieldPath, searchQuery.where[0].opStr, searchQuery.where[0].value);
+    //     // searchQuery.where.forEach(obj => {
+    //     //   return ref.where(obj.fieldPath, obj.opStr, obj.value);
+    //     // });
+    //   }
+    //   if (searchQuery.limit !== undefined) {
+    //     return ref.limit(searchQuery.limit);
+    //   }
+    //   return ref;
+    // }).valueChanges();
   }
 
-  getCategories(): Observable<DocumentData[]> {
-    return this.categoryCollection.valueChanges();
+  getMenu(): Observable<DocumentData[]> {
+    return this.menuCollection.valueChanges();
   }
 
   getProduct(id: string): Observable<Product> {
