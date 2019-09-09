@@ -1,0 +1,39 @@
+@import "~src/styles/init";
+
+:host {
+  .full-product__actions {
+    margin-bottom: 8px;
+  }
+
+  .full-product__button {
+    width: 100%;
+    margin-bottom: 16px;
+    min-height: 50px;
+  }
+
+  .button--show-phone {
+    font-size: 18px;
+
+    span {
+      display: block;
+      margin-top: 2px;
+      font-size: 15px;
+    }
+  }
+
+  .full-product__buy {
+    background: $fnb-extra;
+
+    &:hover {
+      background: $fnb-extra;
+    }
+  }
+
+  .full-product__seller-info {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 16px;
+    margin-bottom: 16px;
+    line-height: 1.4;
+  }
+}
