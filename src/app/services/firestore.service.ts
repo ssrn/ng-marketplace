@@ -32,20 +32,20 @@ export class FirestoreService {
   }
 
   getProducts(searchQuery: FirestoreSearchQuery): Observable<any> {
-    return this.productCollection.valueChanges();
-    // // @ts-ignore
-    // return this.db.collection('products', ref => {
-    //   if (searchQuery.where !== undefined) {
-    //     return ref.where(searchQuery.where[0].fieldPath, searchQuery.where[0].opStr, searchQuery.where[0].value);
-    //     // searchQuery.where.forEach(obj => {
-    //     //   return ref.where(obj.fieldPath, obj.opStr, obj.value);
-    //     // });
-    //   }
-    //   if (searchQuery.limit !== undefined) {
-    //     return ref.limit(searchQuery.limit);
-    //   }
-    //   return ref;
-    // }).valueChanges();
+    // @ts-ignore
+    return this.db.collection('products', ref => {
+      if (searchQuery.where !== undefined) {
+        console.log(searchQuery.where);
+        return ref.where(searchQuery.where[0].fieldPath, searchQuery.where[0].opStr, searchQuery.where[0].value);
+        // searchQuery.where.forEach(obj => {
+        //   return ref.where(obj.fieldPath, obj.opStr, obj.value);
+        // });
+      }
+      if (searchQuery.limit !== undefined) {
+        return ref.limit(searchQuery.limit);
+      }
+      return ref;
+    }).valueChanges();
   }
 
   getMenu(): Observable<DocumentData[]> {

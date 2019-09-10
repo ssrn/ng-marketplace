@@ -17,14 +17,18 @@ export class CatalogComponent implements OnInit, OnDestroy {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-  ) {}
-
-  ngOnInit() {
+  ) {
     this.subscription = this.route.paramMap.subscribe(params => {
       console.log(params.get('url'));
       this.searchQuery = {where: [{fieldPath: 'category', opStr: '==', value: params.get('url')}]};
-      console.log(this.searchQuery);
     });
+  }
+
+  ngOnInit() {
+    // this.subscription = this.route.paramMap.subscribe(params => {
+    //   console.log(params.get('url'));
+    //   this.searchQuery = {where: [{fieldPath: 'category', opStr: '==', value: params.get('url')}]};
+    // });
   }
 
   ngOnDestroy() {

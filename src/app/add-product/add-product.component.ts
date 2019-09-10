@@ -22,7 +22,6 @@ export class AddProductComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    console.log('пиу');
     this.initProductForm();
   }
 
