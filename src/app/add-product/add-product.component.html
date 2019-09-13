@@ -5,7 +5,7 @@
       <label for="category">Выберете категорию</label>
       <select formControlName="category" class="select--custom" id="category" name="category">
         <optgroup *ngFor="let category of productMainCategories; let i = index;" label="{{category.name}}">
-          <option *ngFor="let category of productSubCategories[i]" [ngValue]="{id: category.id, parentId: category.parentId}">
+          <option *ngFor="let category of productSubcategories[i]" [ngValue]="{id: category.id, parentId: category.parentId}">
             {{category.name}}
           </option>
         </optgroup>

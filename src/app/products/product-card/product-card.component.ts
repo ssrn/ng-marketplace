@@ -19,7 +19,7 @@ export class ProductCardComponent implements OnInit {
 
   ngOnInit() {
     if (this.product.img !== null) {
-      this.photoUrl = this.db.downloadPhoto(this.product.img[0]);
+      this.photoUrl = this.db.getProductPhoto(this.product.img[0]);
     }
   }
 }

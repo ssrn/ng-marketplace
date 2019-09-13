@@ -1,6 +1,7 @@
 import { Component, OnInit, TrackByFunction } from '@angular/core';
 import { FirestoreService } from '../../shared/services/firestore.service';
 import { ActivatedRoute } from '@angular/router';
+import { Category } from '../../app.interfaces';
 
 @Component({
   selector: 'app-categories-menu',
@@ -8,9 +9,9 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./categories-menu.component.scss']
 })
 export class CategoriesMenuComponent implements OnInit {
-  categories;
+  categories: Category[];
   url: string;
-  ngForTrackBy: TrackByFunction<any>;
+  ngForTrackBy: TrackByFunction<string>;
 
   constructor(
     private db: FirestoreService,
@@ -20,7 +21,7 @@ export class CategoriesMenuComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe(routeParams => {
       this.url = routeParams.url;
-      this.db.getMenuCategories(routeParams.url)
+      this.db.getSubcategoriesMenu(routeParams.url)
         .subscribe(data => {
           this.categories = data;
         });

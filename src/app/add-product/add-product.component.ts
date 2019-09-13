@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FirestoreService } from '../shared/services/firestore.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Product } from '../app.interfaces';
+import { Category, Product } from '../app.interfaces';
 
 @Component({
   selector: 'app-add-product',
@@ -14,8 +14,8 @@ export class AddProductComponent implements OnInit {
   filesToUpload: FileList;
   productPhotoPaths: string[] = [];
   productId: string;
-  productMainCategories;
-  productSubCategories;
+  productMainCategories: Category[];
+  productSubcategories: Category[];
 
   constructor(
     private db: FirestoreService,
@@ -31,7 +31,7 @@ export class AddProductComponent implements OnInit {
           const subCategory = categories.filter(category => category.parentId === mainCategory.id);
           subCategoriesArr.push(subCategory);
         });
-        this.productSubCategories = subCategoriesArr;
+        this.productSubcategories = subCategoriesArr;
       }
     );
     this.initProductForm();
@@ -57,7 +57,7 @@ export class AddProductComponent implements OnInit {
     if (product.img !== null) {
       this.db.addProduct(product)
         .then(result => this.productId = result.id)
-        .then(() => this.db.uploadPhotos(this.filesToUpload))
+        .then(() => this.db.uploadProductPhotos(this.filesToUpload))
         .then(() => this.db.updateProduct(this.productId, this.productPhotoPaths))
         .then(() => alert('success'))
         .catch(error => console.log(error));

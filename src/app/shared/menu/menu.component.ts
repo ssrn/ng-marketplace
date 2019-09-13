@@ -12,11 +12,11 @@ import { DocumentData } from '@angular/fire/firestore';
 
 export class MenuComponent implements OnInit {
   menu: Observable<DocumentData[]>;
-  ngForTrackBy: TrackByFunction<any>;
+  ngForTrackBy: TrackByFunction<string>;
 
   constructor(private db: FirestoreService) { }
 
   ngOnInit() {
-    this.menu = this.db.getMenu();
+    this.menu = this.db.getMainMenu();
   }
 }
