@@ -3,12 +3,11 @@ import { Observable } from 'rxjs';
 import { FirestoreService } from '../../shared/services/firestore.service';
 import { Product } from '../../app.interfaces';
 
-
 @Component({
   selector: 'app-product-card',
   templateUrl: './product-card.component.html',
   styleUrls: ['./product-card.component.scss'],
-  // changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 
 export class ProductCardComponent implements OnInit {

@@ -39,8 +39,7 @@ export class FirestoreService {
   }
 
   getProducts(searchQuery: FirestoreSearchQuery): Observable<Product[]> {
-    // @ts-ignore
-    return this.db.collection('products', ref => {
+    const products: AngularFirestoreCollection<Product> = this.db.collection('products', ref => {
       if (searchQuery.where !== undefined) {
         return ref.where(searchQuery.where[0].fieldPath, searchQuery.where[0].opStr, searchQuery.where[0].value);
         // searchQuery.where.forEach(obj => {
@@ -51,7 +50,8 @@ export class FirestoreService {
         return ref.limit(searchQuery.limit);
       }
       return ref;
-    }).valueChanges();
+    });
+    return products.valueChanges();
   }
 
   getProduct(id: string): Observable<Product> {

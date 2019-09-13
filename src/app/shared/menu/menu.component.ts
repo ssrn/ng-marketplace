@@ -7,7 +7,7 @@ import { DocumentData } from '@angular/fire/firestore';
   selector: 'app-menu',
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.scss'],
-  // changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 
 export class MenuComponent implements OnInit {

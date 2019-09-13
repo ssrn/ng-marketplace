@@ -26,7 +26,9 @@ export class ProductPageComponent implements OnInit, OnDestroy {
       this.db.getProduct(params.get('id'))
         .subscribe(data => {
           this.product = data;
-          // this.photoUrl = this.db.downloadPhoto(this.product.img[0]);
+          if (this.product.img !== null) {
+            this.photoUrl = this.db. getProductPhoto(this.product.img[0]);
+          }
         });
     });
   }
