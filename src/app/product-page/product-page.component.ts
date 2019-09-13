@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { FirestoreService } from '../services/firestore.service';
+import { FirestoreService } from '../shared/services/firestore.service';
 import { Observable, Subscription } from 'rxjs';
 import { Product } from '../app.interfaces';
 
@@ -26,7 +26,7 @@ export class ProductPageComponent implements OnInit, OnDestroy {
       this.db.getProduct(params.get('id'))
         .subscribe(data => {
           this.product = data;
-          this.photoUrl = this.db.downloadPhoto(this.product.img[0]);
+          // this.photoUrl = this.db.downloadPhoto(this.product.img[0]);
         });
     });
   }

@@ -5,7 +5,16 @@ import { CatalogComponent } from './catalog.component';
 
 
 const routes: Routes = [
-  { path: '', component: CatalogComponent },
+  {
+    path: '',
+    component: CatalogComponent,
+    children: [
+      {
+        path: ':url',
+        component: CatalogComponent,
+      }
+    ]
+  },
 ];
 
 @NgModule({

@@ -1,24 +1,14 @@
 <div class="add-product">
   <h1 class="page-title">Новое объявление</h1>
-  <form class="add-product__form" [formGroup]="addProductForm" (ngSubmit)="onSubmitProductData(addProductForm.value)">
+  <form class="add-product__form" [formGroup]="productForm" (ngSubmit)="onSubmitProductData(productForm.value)">
     <div class="form-item">
-      <label for="fld-category">Выберете категорию</label>
-      <select id="fld-category" class="select--custom" formControlName="category">
-        <option value="">Любая категория</option>
-        <option value="">Овощи</option>
-        <option value="">&nbsp; &nbsp;Огурцы</option>
-        <option value="">&nbsp; &nbsp;Помидоры</option>
-        <option value="">Фрукты</option>
-        <option value="">&nbsp; &nbsp;Яблоки</option>
-        <option value="">&nbsp; &nbsp;Груши</option>
-        <option value="">&nbsp; &nbsp;Сливы</option>
-        <option value="">Ягоды</option>
-        <option value="">&nbsp; &nbsp;Клубника</option>
-        <option value="">&nbsp; &nbsp;Малина</option>
-        <option value="">&nbsp; &nbsp;Вишня</option>
-        <option value="">Зелень</option>
-        <option value="">&nbsp; &nbsp;Салаты</option>
-        <option value="">&nbsp; &nbsp;Мята</option>
+      <label for="category">Выберете категорию</label>
+      <select formControlName="category" class="select--custom" id="category" name="category">
+        <optgroup *ngFor="let category of productMainCategories; let i = index;" label="{{category.name}}">
+          <option *ngFor="let category of productSubCategories[i]" [ngValue]="{id: category.id, parentId: category.parentId}">
+            {{category.name}}
+          </option>
+        </optgroup>
       </select>
     </div>
     <div class="form-item">

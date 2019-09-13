@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { FirestoreService } from '../../services/firestore.service';
+import { FirestoreService } from '../../shared/services/firestore.service';
 import { Product } from '../../app.interfaces';
 
 
@@ -18,6 +18,8 @@ export class ProductCardComponent implements OnInit {
   constructor( private db: FirestoreService ) { }
 
   ngOnInit() {
-    this.photoUrl = this.db.downloadPhoto(this.product.img[0]);
+    if (this.product.img !== null) {
+      this.photoUrl = this.db.downloadPhoto(this.product.img[0]);
+    }
   }
 }

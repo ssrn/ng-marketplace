@@ -1,2 +1,4 @@
 <h1>Каталог</h1>
-<app-product-list [searchQuery]="searchQuery"></app-product-list>
+<!--<div>{{searchQuery}}</div>-->
+<app-categories-menu></app-categories-menu>
+<app-product-list [searchQuery]="searchQuery | async" ></app-product-list>

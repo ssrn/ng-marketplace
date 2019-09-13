@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component, Input, OnInit, TrackByFunction } from '@angular/core';
-import { FirestoreService } from '../../services/firestore.service';
+import { FirestoreService } from '../../shared/services/firestore.service';
 import { Observable } from 'rxjs';
 import { Product } from '../../app.interfaces';
-import { FirestoreSearchQuery } from '../../services/firestoreSearchQuery.interface';
+import { FirestoreSearchQuery } from '../../shared/services/firestoreSearchQuery.interface';
 
 @Component({
   selector: 'app-product-list',
@@ -17,7 +17,7 @@ export class ProductListComponent implements OnInit {
 
   @Input() title: string;
   @Input() titleTagClass: string;
-  @Input() searchQuery: FirestoreSearchQuery;
+  @Input() searchQuery;
 
   constructor(private db: FirestoreService) { }
 

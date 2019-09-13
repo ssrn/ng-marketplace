@@ -1,0 +1,11 @@
+<div class="catalog-categories">
+  <div class="catalog-categories__filter-buttons-wrap">
+    <button class="catalog-categories__filter-button catalog-categories__filter-button--open button button--filters is-active" type="button" title="Показать фильтры">Показать категории</button>
+    <button class="catalog-categories__filter-button catalog-categories__filter-button--hide button button--filters" type="button" title="Показать фильтры">Скрыть категории</button>
+  </div>
+  <ul class="catalog-categories__list">
+    <li class="catalog-category" *ngFor="let category of categories; trackBy: ngForTrackBy">
+      <a [routerLink]="['/catalog', url, category.url]" routerLinkActive="active" class="button is-active">{{category.name}}</a>
+    </li>
+  </ul>
+</div>

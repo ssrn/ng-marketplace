@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { FirestoreSearchQuery } from '../services/firestoreSearchQuery.interface';
+import { FirestoreSearchQuery } from '../shared/services/firestoreSearchQuery.interface';
 
 @Component({
   selector: 'app-main-page',

@@ -1,0 +1,64 @@
+@import "~src/styles/init";
+
+:host {
+  .catalog-categories__filter-buttons-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 24px;
+
+    @include media(sm) {
+      display: none;
+    }
+  }
+
+  .catalog-categories__filter-button {
+    display: none;
+
+    &:hover {
+      background-color: #fff;
+    }
+
+    &.is-active {
+      display: block;
+    }
+  }
+
+  .catalog-categories__list {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 24px -8px;
+
+    @include media(ms, max) {
+      display: none;
+    }
+  }
+
+  .catalog-category {
+    display: inline-block;
+    margin: 8px;
+
+    @include media(sm) {
+      flex-basis: 9%;
+      min-width: 106px;
+
+      a {
+        padding-right: 10px;
+        padding-left: 10px;
+      }
+    }
+
+    a {
+      display: block;
+      color: $text-primary;
+      border-color: $brand-primary;
+      transition: none;
+
+      &:hover,
+      &.is-active {
+        color: #fff;
+        background: $brand-primary;
+      }
+    }
+  }
+}

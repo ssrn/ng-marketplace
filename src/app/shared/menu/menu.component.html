@@ -2,7 +2,7 @@
   <div class="main-nav__inner-wrap container">
     <ul class="main-nav__list">
       <li class="main-nav__item" *ngFor="let menuItem of menu | async; trackBy: ngForTrackBy">
-        <a routerLink="{{menuItem.url}}" routerLinkActive="active" class="main-nav__link">{{menuItem.name}}</a>
+        <a [routerLink]="['/catalog', menuItem.url]" routerLinkActive="active" class="main-nav__link">{{menuItem.name}}</a>
       </li>
     </ul>
   </div>
