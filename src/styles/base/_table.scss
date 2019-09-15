@@ -5,17 +5,68 @@ table {
   border: 1px solid #bebfb9;
 }
 
-tr.even {
+tr:hover {
   background: #f3f4ee;
 }
 
 th {
   padding: .75em 8px;
   text-align: left;
-  background: #e1e2dc;
-  border: 1px solid #ccc;
+  background: #f8f4ef;
+  border-bottom: 1px solid #ccc;
 }
 
 td {
-  padding: 0.75em 8px;
+  padding: 8px;
+  border-bottom: 1px solid #ccc;
+}
+
+@include media(ms, max) {
+  table {
+    border: none;
+  }
+
+  thead {
+    display: none;
+  }
+
+  tr {
+    display: block;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+
+    &:hover {
+      background: transparent;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  td {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding-right: 16px;
+    padding-left: 16px;
+    border: none;
+
+    &:first-child {
+      padding-top: 16px;
+    }
+
+    &:last-child {
+      padding-bottom: 16px;
+    }
+  }
+
+  [data-th] {
+    &:before {
+      display: block;
+      content: attr(data-th)": ";
+      font-weight: bold;
+      padding-right: 20px;
+    }
+  }
 }

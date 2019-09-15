@@ -4,18 +4,23 @@ import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './header/header.component';
 import { MenuComponent } from './menu/menu.component';
 import { AppRoutingModule } from '../app-routing.module';
+import { LoginDialogComponent } from './login-dialog/login-dialog.component';
+import { NgxSmartModalModule } from 'ngx-smart-modal';
 
 @NgModule({
   declarations: [
     HeaderComponent,
-    MenuComponent
+    MenuComponent,
+    LoginDialogComponent
   ],
   imports: [
     CommonModule,
-    AppRoutingModule
+    AppRoutingModule,
+    NgxSmartModalModule
   ],
   exports: [
-    HeaderComponent
+    HeaderComponent,
+    LoginDialogComponent
   ]
 })
 

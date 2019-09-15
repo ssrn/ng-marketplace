@@ -53,14 +53,13 @@
           </div>
         </div>
 
-        <a routerLink="/add-product" routerLinkActive="active" class="page-header__button button button--primary">Продать урожай</a>
-
-        <button class="main-nav-trigger" type="button" title="Главное меню">
-          <span class="main-nav-trigger__line"></span>
-          <span class="main-nav-trigger__line"></span>
-          <span class="main-nav-trigger__line"></span>
-          <span class="main-nav-trigger__line"></span>
-        </button>
+        <div *ngIf="authService.isLoggedIn; then thenBlock else elseBlock"></div>
+        <ng-template #thenBlock>
+          <a routerLink="/add-product" class="page-header__button button button--primary">Продать урожай</a>
+        </ng-template>
+        <ng-template #elseBlock>
+          <button (click)="ngxSmartModalService.getModal('login').open()" class="page-header__button button button--primary">Продать урожай</button>
+        </ng-template>
       </div>
     </div>
   </div>

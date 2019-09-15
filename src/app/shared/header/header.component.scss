@@ -1,6 +1,10 @@
-@import "~src/styles/init";
+@import "../../../styles/init";
 
 :host {
+  .logged-in-only {
+    display: none !important;
+  }
+
   .page-header {
     background: #f8f4ef;
     border-bottom: 1px solid #ccc;
@@ -166,6 +170,7 @@
     margin-left: 15px;
     padding-right: 20px;
     padding-left: 20px;
+    line-height: 1.5;
 
     &:hover {
       color: #fff;
@@ -174,65 +179,5 @@
     @include media(md, max) {
       display: none;
     }
-  }
-
-  .switch-container {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-  }
-
-  /* The switch - the box around the slider */
-  .switch {
-    position: relative;
-    display: block;
-    width: 60px;
-    height: 34px;
-    margin: 8px 60px 8px auto;
-    color: $text-primary;
-    line-height: 34px;
-  }
-
-  /* Hide default HTML checkbox */
-  .switch input {
-    opacity: 0;
-    width: 0;
-    height: 0;
-  }
-
-  /* The slider */
-  .slider {
-    position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 60px;
-    right: 0;
-    bottom: 0;
-    width: 100%;
-    background-color: #ccc;
-    transition: .4s;
-  }
-
-  .slider:before {
-    position: absolute;
-    content: "";
-    height: 26px;
-    width: 26px;
-    left: 4px;
-    bottom: 4px;
-    background-color: white;
-    transition: .4s;
-  }
-
-  input:checked + .slider {
-    background-color: $fnb-extra;
-  }
-
-  input:focus + .slider {
-    box-shadow: 0 0 1px $fnb-extra;
-  }
-
-  input:checked + .slider:before {
-    transform: translateX(26px);
   }
 }

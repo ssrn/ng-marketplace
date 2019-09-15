@@ -8,6 +8,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireModule } from '@angular/fire';
 import { environment } from '../environments/environment';
 import { AngularFireStorage, AngularFireStorageModule } from '@angular/fire/storage';
+import { NgxSmartModalModule } from 'ngx-smart-modal';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { AngularFireStorage, AngularFireStorageModule } from '@angular/fire/stor
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireStorageModule,
+    NgxSmartModalModule.forRoot(),
     SharedModule,
   ],
   providers: [AngularFirestore, AngularFireStorage],

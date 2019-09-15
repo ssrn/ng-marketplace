@@ -1,2 +1,33 @@
 /* You can add global styles to this file, and also import other style files */
-@import "~src/styles/styles";
+@import "../src/styles/styles";
+@import "~ngx-smart-modal/ngx-smart-modal";
+
+.overlay {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.nsm-content {
+  padding: 24px 32px;
+}
+
+.nsm-dialog-btn-close {
+  position: absolute;
+  top: -5px;
+  right: -36px;
+  width: 32px;
+  height: 32px;
+  background: url(./assets/images/svg/close-cross.svg) center center;
+  border: none;
+  cursor: pointer;
+  opacity: .8;
+
+  &:hover {
+    opacity: 1;
+  }
+
+  img {
+    display: none;
+  }
+}

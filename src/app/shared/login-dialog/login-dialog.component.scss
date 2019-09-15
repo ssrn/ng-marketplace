@@ -1,0 +1,62 @@
+@import "../../../styles/init";
+
+:host {
+  .nsm-content {
+    padding: 24px 32px;
+  }
+
+  .login {
+    .action-button {
+      height: 48px;
+      width: 100%;
+      margin-bottom: 12px;
+    }
+  }
+
+  .login__form-item {
+    margin: 12px 0;
+
+    input {
+      width: 100%;
+    }
+  }
+
+  .button--social-account {
+    display: block;
+    height: 48px;
+    line-height: 30px;
+    margin: 12px 0;
+    padding-left: 48px;
+    color: #fff;
+    text-align: left;
+    background-repeat: no-repeat;
+    background-position: 4px center;
+    overflow: hidden;
+  }
+
+  .button--vk {
+    background-color: #4d75a3;
+    background-image: url(../../../assets/images/svg/login-logo-vk.svg);
+
+    &:hover {
+      color: #fff;
+      background-color: #4d75a3;
+    }
+  }
+
+  .button--fb {
+    background-color: #3b5998;
+    background-image: url(../../../assets/images/svg/login-logo-fb.svg);
+
+    &:hover {
+      color: #fff;
+      background-color: #3b5998;
+    }
+  }
+
+  .login__divider {
+    margin: 24px 0;
+    font-size: 18px;
+    text-align: center;
+  }
+}
