@@ -37,13 +37,13 @@
             </a>
             <a href="./my-products.html" class="header-services__item header-services__products logged-in-only">Мои объявления</a>
 
-            <a href="#login" class="header-services__item header-services__login unlogged-only">
+            <button (click)="ngxSmartModalService.getModal('login').open()" class="header-services__item header-services__login">
               <span class="header-services__icon">
-            <svg class="icon-user">
-              <use xlink:href="./assets/images/svg/user.svg#user"></use>
-            </svg>
-          </span>
-            </a>
+                <svg class="icon-user">
+                  <use xlink:href="./assets/images/svg/user.svg#user"></use>
+                </svg>
+              </span>
+            </button>
 
             <div class="header-services__item header-services__profile logged-in-only">
               <a href="./profile.html" class="header-services__avatar">
