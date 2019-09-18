@@ -34,17 +34,17 @@ export class LoginDialogComponent implements OnInit {
   }
 
   handleSubmit(user): void {
-    this.authService.login(user).subscribe(result => {
-      if (result.length > 0) {
-        this.ngxSmartModalService.getModal('login').close();
-        const redirect = this.authService.redirectUrl ? this.router.parseUrl(this.authService.redirectUrl) : '/';
-        this.router.navigateByUrl(redirect, this.navigationExtras);
-        const key = 'isLoggedIn';
-        localStorage.setItem(key, 'true');
-        // return this.authService.isLoggedIn = true;
-      } else {
-        this.errorMsg = 'Ошибка авторизации';
-      }
-    });
+    // this.authService.login(user).subscribe(result => {
+    //   if (result.length > 0) {
+    //     this.ngxSmartModalService.getModal('login').close();
+    //     const redirect = this.authService.redirectUrl ? this.router.parseUrl(this.authService.redirectUrl) : '/';
+    //     this.router.navigateByUrl(redirect, this.navigationExtras);
+    //     const key = 'isLoggedIn';
+    //     localStorage.setItem(key, 'true');
+    //     // return this.authService.isLoggedIn = true;
+    //   } else {
+    //     this.errorMsg = 'Ошибка авторизации';
+    //   }
+    // });
   }
 }

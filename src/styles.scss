@@ -1,6 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 @import "../src/styles/styles";
 @import "~ngx-smart-modal/ngx-smart-modal";
+@import '~font-awesome/css/font-awesome.css';
 
 .overlay {
   display: flex;
@@ -30,4 +31,8 @@
   img {
     display: none;
   }
+}
+
+.ngx-gallery-image.ngx-gallery-active {
+  z-index: 1 !important;
 }

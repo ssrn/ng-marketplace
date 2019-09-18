@@ -6,7 +6,7 @@ import {
   DocumentReference
 } from '@angular/fire/firestore';
 import { AngularFireStorage } from '@angular/fire/storage';
-import { Observable } from 'rxjs';
+import { forkJoin, Observable } from 'rxjs';
 import { Category, Menu, Product } from '../../app.interfaces';
 import { FirestoreSearchQuery } from './firestoreSearchQuery.interface';
 
@@ -59,9 +59,11 @@ export class FirestoreService {
     return afd.valueChanges();
   }
 
-  getProductPhoto(path: string): Observable<string> {
-    const ref = this.storage.ref(path);
-    return ref.getDownloadURL();
+  getProductPhotos(paths: string[]): Observable<string[]> {
+    return forkJoin(paths.map(path => {
+      const ref = this.storage.ref(path);
+      return ref.getDownloadURL();
+    }));
   }
 
   updateProduct(id: string, refs?: string[]): void {

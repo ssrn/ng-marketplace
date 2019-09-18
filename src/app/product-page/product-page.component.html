@@ -1,15 +1,12 @@
 <div class="full-product">
   <div class="full-product__top">
-    <h1 class="full-product__title">{{product.name}}</h1>
-    <div class="full-product__price">{{product.price}}</div>
+    <h1 class="full-product__title">{{(product | async)?.name}}</h1>
+    <div class="full-product__price">{{(product | async)?.price}}</div>
   </div>
   <div class="full-product__main">
     <div class="full-product__left">
-      <ul id="lightSlider">
-        <li>
-          <img src="{{photoUrl | async}}" />
-        </li>
-      </ul>
+      <ngx-gallery [options]="galleryOptions" [images]="galleryImages">
+      </ngx-gallery>
 
       <button class="button button-wishlist" type="button" title="Добавить в избранное" aria-label="Добавить в избранное">
         <svg>
@@ -19,7 +16,7 @@
     </div>
     <div class="full-product__about">
       <div class="full-product__desc">
-        <p>{{product.description}}</p>
+        <p>{{(product | async)?.description}}</p>
       </div>
     </div>
   </div>

@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { SellerComponent } from './seller/seller.component';
 import { ProductPageComponent } from './product-page.component';
 import { ProductPageRoutingModule } from './product-page-routing.module';
+import { NgxGalleryModule } from 'ngx-gallery';
 
 
 @NgModule({
@@ -12,7 +13,8 @@ import { ProductPageRoutingModule } from './product-page-routing.module';
   ],
   imports: [
     CommonModule,
-    ProductPageRoutingModule
+    ProductPageRoutingModule,
+    NgxGalleryModule
   ],
   bootstrap: [ProductPageComponent]
 })
