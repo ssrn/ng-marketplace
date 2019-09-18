@@ -1,10 +1,6 @@
 @import "../../../styles/init";
 
 :host {
-  .logged-in-only {
-    display: none !important;
-  }
-
   .page-header {
     background: #f8f4ef;
     border-bottom: 1px solid #ccc;

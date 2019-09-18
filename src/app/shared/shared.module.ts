@@ -6,6 +6,7 @@ import { MenuComponent } from './menu/menu.component';
 import { AppRoutingModule } from '../app-routing.module';
 import { LoginDialogComponent } from './login-dialog/login-dialog.component';
 import { NgxSmartModalModule } from 'ngx-smart-modal';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { NgxSmartModalModule } from 'ngx-smart-modal';
   imports: [
     CommonModule,
     AppRoutingModule,
-    NgxSmartModalModule
+    NgxSmartModalModule,
+    ReactiveFormsModule
   ],
   exports: [
     HeaderComponent,

@@ -1,6 +1,6 @@
 <div class="add-product">
   <h1 class="page-title">Новое объявление</h1>
-  <form class="add-product__form" [formGroup]="productForm" (ngSubmit)="onSubmitProductData(productForm.value)">
+  <form class="add-product__form" [formGroup]="productForm" (ngSubmit)="handleSubmit(productForm.value)">
     <div class="form-item">
       <label for="category">Выберете категорию</label>
       <select formControlName="category" class="select--custom" id="category" name="category">

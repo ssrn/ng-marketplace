@@ -1,4 +1,4 @@
-<ngx-smart-modal #login identifier="login">
+<ngx-smart-modal identifier="login">
   <div class="login">
     <div class="login__half">
       <div class="login__social-buttons">
@@ -14,64 +14,22 @@
     <div class="login__divider">Или</div>
 
     <div class="login__half">
-      <form class="login-form form" method="post">
+      <form [formGroup]="userForm" (ngSubmit)="handleSubmit(userForm.value)" class="login-form form">
         <div class="login__form-item">
           <label>
-            <input name="login" placeholder="Телефон или электронная почта" type="text" value="">
+            <input formControlName="email" type="text" name="email" placeholder="Телефон или электронная почта">
           </label>
         </div>
         <div class="login__form-item">
           <label>
-            <input name="password" placeholder="Пароль" autocomplete="off" type="password" value="">
+            <input formControlName="password" type="password" name="password" placeholder="Пароль" autocomplete="off">
           </label>
         </div>
-        <div id="login-error"></div>
-        <button class="button button--primary action-button" type="submit">Войти</button>
+        <div id="login-error">{{errorMsg}}</div>
         <div class="login-form__lost link">Забыли пароль?</div>
+        <button type="submit" class="button button--primary button--login">Войти</button>
+<!--        <a class="button button&#45;&#45;primary button&#45;&#45;sign-up">Создать аккаунт</a>-->
       </form>
     </div>
   </div>
 </ngx-smart-modal>
-
-<!-- Use  role="dialog" aria-labelledby="dialog1Title" aria-hidden="true" tabindex="-1" -->
-<!--<div id="login" class="dialog dialog-login">-->
-<!--  <div class="dialog__inner">-->
-<!--    <button class="dialog__close" aria-label="Закрыть"></button>-->
-<!--    <div class="dialog__content">-->
-<!--      <div class="dialog__content-wrapper">-->
-<!--        <div class="login">-->
-<!--          <div class="login__half">-->
-<!--            <div class="login__social-buttons">-->
-<!--              <a href="./auth/vk" class="button button&#45;&#45;social-account button&#45;&#45;vk">-->
-<!--                Вконтакте-->
-<!--              </a>-->
-<!--              <a href="./auth/facebook" class="button button&#45;&#45;social-account button&#45;&#45;fb">-->
-<!--                Facebook-->
-<!--              </a>-->
-<!--            </div>-->
-<!--          </div>-->
-
-<!--          <div class="login__divider">Или</div>-->
-
-<!--          <div class="login__half">-->
-<!--            <form class="login-form form" method="post">-->
-<!--              <div class="login__form-item">-->
-<!--                <label>-->
-<!--                  <input name="login" placeholder="Телефон или электронная почта" type="text" value="">-->
-<!--                </label>-->
-<!--              </div>-->
-<!--              <div class="login__form-item">-->
-<!--                <label>-->
-<!--                  <input name="password" placeholder="Пароль" autocomplete="off" type="password" value="">-->
-<!--                </label>-->
-<!--              </div>-->
-<!--              <div id="login-error"></div>-->
-<!--              <button class="button button&#45;&#45;primary action-button" type="submit">Войти</button>-->
-<!--              <div class="login-form__lost link">Забыли пароль?</div>-->
-<!--            </form>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--  </div>-->
-<!--</div>-->

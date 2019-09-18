@@ -27,7 +27,7 @@
             </svg>
           </span>
             </a>
-            <a href="./messenger-channels.html" class="header-services__item header-services__messages logged-in-only" aria-label="Сообщения" title="Сообщения">
+            <a *ngIf="authService.isLoggedIn === 'true'" href="./messenger-channels.html" class="header-services__item header-services__messages" aria-label="Сообщения" title="Сообщения">
               <span class="header-services__icon">
             <svg class="icon-message">
               <use xlink:href="./assets/images/svg/message.svg#message"></use>
@@ -35,9 +35,9 @@
           </span>
               <div class="notify-number">2</div>
             </a>
-            <a href="./my-products.html" class="header-services__item header-services__products logged-in-only">Мои объявления</a>
+            <a *ngIf="authService.isLoggedIn === 'true'" href="./my-products.html" class="header-services__item header-services__products">Мои объявления</a>
 
-            <button (click)="ngxSmartModalService.getModal('login').open()" class="header-services__item header-services__login">
+            <button *ngIf="!authService.isLoggedIn === 'true'" (click)="ngxSmartModalService.getModal('login').open()" class="header-services__item header-services__login">
               <span class="header-services__icon">
                 <svg class="icon-user">
                   <use xlink:href="./assets/images/svg/user.svg#user"></use>
@@ -45,7 +45,7 @@
               </span>
             </button>
 
-            <div class="header-services__item header-services__profile logged-in-only">
+            <div *ngIf="authService.isLoggedIn === 'true'" class="header-services__item header-services__profile">
               <a href="./profile.html" class="header-services__avatar">
                 C
               </a>
@@ -53,7 +53,7 @@
           </div>
         </div>
 
-        <div *ngIf="authService.isLoggedIn; then thenBlock else elseBlock"></div>
+        <div *ngIf="authService.isLoggedIn === 'true'; then thenBlock else elseBlock"></div>
         <ng-template #thenBlock>
           <a routerLink="/add-product" class="page-header__button button button--primary">Продать урожай</a>
         </ng-template>

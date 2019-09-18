@@ -53,7 +53,7 @@ export class AddProductComponent implements OnInit {
     });
   }
 
-  onSubmitProductData(product: Product) {
+  handleSubmit(product: Product) {
     if (product.img !== null) {
       this.db.addProduct(product)
         .then(result => this.productId = result.id)
