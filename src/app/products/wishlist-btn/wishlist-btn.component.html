@@ -1,0 +1,7 @@
+<button (click)="checkProductInWishlist()? removeFromWishlist() : addToWishlist()"
+        [ngClass]="{'button': true, 'button-wishlist': true, 'active': checkProductInWishlist()}"
+        type="button" title="Добавить в избранное" aria-label="Добавить в избранное">
+  <svg>
+    <use xlink:href="./assets/images/svg/wishlist-heart.svg#wishlist-heart"></use>
+  </svg>
+</button>

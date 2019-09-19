@@ -3,7 +3,7 @@ import {
   CanActivate, CanActivateChild,
   CanLoad, Route, UrlSegment,
   ActivatedRouteSnapshot,
-  RouterStateSnapshot, UrlTree, NavigationExtras, Router
+  RouterStateSnapshot, NavigationExtras, Router
 } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AuthService } from './auth.service';

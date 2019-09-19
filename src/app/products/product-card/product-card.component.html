@@ -8,9 +8,5 @@
       <div class="product__price">{{product.price}}</div>
     </div>
   </a>
-  <button class="button button-wishlist " type="button" title="Добавить в избранное" aria-label="Добавить в избранное">
-    <svg>
-      <use xlink:href="./assets/images/svg/wishlist-heart.svg#wishlist-heart"></use>
-    </svg>
-  </button>
+  <app-wishlist-btn [productId]=product.id></app-wishlist-btn>
 </div>

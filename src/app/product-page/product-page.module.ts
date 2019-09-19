@@ -4,6 +4,7 @@ import { SellerComponent } from './seller/seller.component';
 import { ProductPageComponent } from './product-page.component';
 import { ProductPageRoutingModule } from './product-page-routing.module';
 import { NgxGalleryModule } from 'ngx-gallery';
+import { ProductsModule } from '../products/products.module';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { NgxGalleryModule } from 'ngx-gallery';
   imports: [
     CommonModule,
     ProductPageRoutingModule,
-    NgxGalleryModule
+    NgxGalleryModule,
+    ProductsModule
   ],
   bootstrap: [ProductPageComponent]
 })
