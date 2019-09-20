@@ -8,5 +8,5 @@
       <div class="product__price">{{product.price}}</div>
     </div>
   </a>
-  <app-wishlist-btn [productId]=product.id></app-wishlist-btn>
+  <app-wishlist-btn [parent]="this" [productId]=product.id></app-wishlist-btn>
 </div>

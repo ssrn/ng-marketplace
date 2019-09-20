@@ -1,4 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewContainerRef } from '@angular/core';
+import { Router } from '@angular/router';
+import { style } from '@angular/animations';
 
 @Component({
   selector: 'app-wishlist-btn',
@@ -7,13 +9,16 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class WishlistBtnComponent implements OnInit {
   wishProducts: string;
-  isProductInWishlist: boolean;
+  btnTitle: string;
+  isWishlistPage: boolean;
   @Input() productId: string;
+  @Input() parent: any;
 
-  constructor() {}
+  constructor(private router: Router, private vcr: ViewContainerRef) {}
 
   ngOnInit() {
-    // this.isProductInWishlist = this.checkProductInWishlist();
+    this.isWishlistPage = this.router.url === '/wishlist';
+    this.btnTitle = this.checkProductInWishlist() ? 'Удалить из избранного' : 'Добавить в избранное';
   }
 
   checkProductInWishlist(): boolean {
@@ -23,7 +28,6 @@ export class WishlistBtnComponent implements OnInit {
     } else {
       const parsedWishProducts = JSON.parse(this.wishProducts);
       const arr = Object.values(parsedWishProducts);
-      console.log('check', arr.includes(this.productId));
       return arr.includes(this.productId);
     }
   }
@@ -44,5 +48,9 @@ export class WishlistBtnComponent implements OnInit {
     const index = arr.indexOf(this.productId);
     arr.splice(index, 1);
     localStorage.setItem('wishProducts', JSON.stringify(arr));
+
+    if (this.isWishlistPage) {
+
+    }
   }
 }

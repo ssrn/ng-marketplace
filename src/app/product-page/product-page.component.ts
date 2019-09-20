@@ -1,17 +1,16 @@
 import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FirestoreService } from '../shared/services/firestore.service';
-import { forkJoin, Observable, Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { Product } from '../app.interfaces';
-import { NgxGalleryAnimation, NgxGalleryImage, NgxGalleryImageSize, NgxGalleryOptions } from 'ngx-gallery';
-import { AngularFireStorage } from '@angular/fire/storage';
-import { flatMap, map, mergeMap, switchMap, toArray } from 'rxjs/operators';
+import { NgxGalleryOptions } from 'ngx-gallery';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-product-page',
   templateUrl: './product-page.component.html',
   styleUrls: ['./product-page.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  // changeDetection: ChangeDetectionStrategy.OnPush
 })
 
 export class ProductPageComponent implements OnInit, OnDestroy {
@@ -38,7 +37,6 @@ export class ProductPageComponent implements OnInit, OnDestroy {
   constructor(
     private route: ActivatedRoute,
     private db: FirestoreService,
-    private storage: AngularFireStorage,
   ) { }
 
   ngOnInit() {

@@ -6,7 +6,7 @@ import {
   DocumentReference
 } from '@angular/fire/firestore';
 import { AngularFireStorage } from '@angular/fire/storage';
-import { forkJoin, Observable } from 'rxjs';
+import { combineLatest, forkJoin, Observable } from 'rxjs';
 import { Category, Menu, Product } from '../../app.interfaces';
 import { FirestoreSearchQuery } from './firestoreSearchQuery.interface';
 
@@ -19,8 +19,8 @@ export class FirestoreService {
   private menuCollection: AngularFirestoreCollection<Menu>;
 
   constructor(
-    private storage: AngularFireStorage,
-    private db: AngularFirestore
+    private db: AngularFirestore,
+    private storage: AngularFireStorage
   ) {
     this.productCollection = db.collection('products');
     this.menuCollection = db.collection('menu', ref => ref.orderBy('weight'));
@@ -57,6 +57,10 @@ export class FirestoreService {
   getProduct(id: string): Observable<Product> {
     const afd: AngularFirestoreDocument<Product> = this.productCollection.doc(id);
     return afd.valueChanges();
+  }
+
+  getProductsByIds(ids: string[]): Observable<Product[]> {
+    return combineLatest(ids.map(id => this.getProduct(id)));
   }
 
   getProductPhotos(paths: string[]): Observable<string[]> {

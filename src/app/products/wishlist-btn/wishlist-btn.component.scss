@@ -7,11 +7,16 @@
   padding: 9px 7px 7px;
   color: #2d2d2d;
   border: none;
-  background-color: rgba(255,255,255,.9);
+  background: rgba(255,255,255,.9);
   border-radius: 50%;
   cursor: default;
   outline: none;
   z-index: 2;
+
+  &.remove-from-wishlist {
+    background: rgba(255,255,255,.9) url(../../../assets/images/svg/trash.svg) no-repeat center center;
+    background-size: 20px 20px;
+  }
 
   .products--list & {
     left: 160px;

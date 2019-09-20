@@ -20,6 +20,10 @@ const routes: Routes = [
   {
     path: 'products/:id',
     loadChildren: () => import('./product-page/product-page.module').then(m => m.ProductPageModule)
+  },
+  {
+    path: 'wishlist',
+    loadChildren: () => import('./user/user.module').then(m => m.UserModule)
   }
 ];
 
