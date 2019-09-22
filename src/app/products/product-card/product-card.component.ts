@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Observable } from 'rxjs';
 import { FirestoreService } from '../../shared/services/firestore.service';
 import { Product } from '../../app.interfaces';
@@ -13,6 +13,8 @@ import { Product } from '../../app.interfaces';
 export class ProductCardComponent implements OnInit {
   photoUrl: Observable<string[]>;
   @Input() product: Product;
+  @Input() isWishlistPage: boolean;
+  @Output() remove: EventEmitter<string> = new EventEmitter();
 
   constructor( private db: FirestoreService ) { }
 
@@ -20,5 +22,9 @@ export class ProductCardComponent implements OnInit {
     if (this.product.img !== null) {
       this.photoUrl = this.db.getProductPhotos(this.product.img);
     }
+  }
+
+  handleRemoveFromWishlist($event) {
+    this.remove.emit(this.product.id);
   }
 }

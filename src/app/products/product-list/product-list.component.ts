@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input, NgIterable, TrackByFunction } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, TrackByFunction } from '@angular/core';
 import { Product } from '../../app.interfaces';
 import { FirestoreSearchQuery } from '../../shared/services/firestoreSearchQuery.interface';
 
@@ -15,4 +15,10 @@ export class ProductListComponent {
   @Input() title: string;
   @Input() titleTagClass: string;
   @Input() searchQuery: FirestoreSearchQuery;
+  @Input() isWishlistPage: boolean;
+  @Output() remove: EventEmitter<string> = new EventEmitter();
+
+  handleRemoveFromWishlist($event: string) {
+    this.remove.emit($event);
+  }
 }

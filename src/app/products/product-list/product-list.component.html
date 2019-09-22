@@ -1,4 +1,10 @@
 <h2 class="{{titleTagClass}}">{{title}}</h2>
 <div class="recommended-products__wrap">
-  <app-product-card *ngFor="let product of products; trackBy: ngForTrackBy" [product]="product"></app-product-card>
+  <app-product-card
+    *ngFor="let product of products;
+     trackBy: ngForTrackBy"
+    [product]="product"
+    [isWishlistPage]="isWishlistPage"
+    (remove)="handleRemoveFromWishlist($event)">
+  </app-product-card>
 </div>

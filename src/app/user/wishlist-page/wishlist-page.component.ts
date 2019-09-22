@@ -1,27 +1,36 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Product } from '../../app.interfaces';
 import { FirestoreService } from '../../shared/services/firestore.service';
+import { WishlistService } from '../../products/wishlist-btn/wishlist.service';
 
 @Component({
   selector: 'app-wishlist-page',
   templateUrl: './wishlist-page.component.html',
-  styleUrls: ['./wishlist-page.component.scss']
+  styleUrls: ['./wishlist-page.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class WishlistPageComponent implements OnInit {
-  products: Observable<Product[]>;
-  productIds: Array<string>;
+  wishedProducts: Observable<Product[]>;
+  wishedProductIds: Array<string>;
   msg: string;
 
-  constructor(private db: FirestoreService) { }
+  constructor(private db: FirestoreService, private wishlistService: WishlistService) { }
 
   ngOnInit() {
-    const wishProducts = localStorage.getItem('wishProducts');
-    if (wishProducts === null || wishProducts === '[]') {
+    this.wishedProductIds = this.wishlistService.getProductIds();
+    if (this.wishedProductIds.length === 0) {
       this.msg = 'Пока пусто';
     } else {
-      this.productIds = Object.values(JSON.parse(wishProducts));
-      this.products = this.db.getProductsByIds(this.productIds);
+      this.wishedProducts = this.db.getProductsByIds(this.wishedProductIds);
     }
+  }
+
+  handleRemoveFromWishlist($event: string) {
+    this.wishedProductIds = this.wishlistService.getProductIds();
+    if (this.wishedProductIds.length === 0) {
+      this.msg = 'Пока пусто';
+    }
+    this.wishedProducts = this.db.getProductsByIds(this.wishedProductIds);
   }
 }

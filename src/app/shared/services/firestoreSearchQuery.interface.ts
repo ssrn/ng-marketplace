@@ -7,6 +7,5 @@ export interface FirestoreSearchQuery {
     opStr: WhereFilterOp;
     value: any;
   }[];
-  // where?: string;
   limit?: number;
 }

@@ -1,56 +1,46 @@
-import { Component, Input, OnInit, ViewContainerRef } from '@angular/core';
-import { Router } from '@angular/router';
-import { style } from '@angular/animations';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { WishlistService } from './wishlist.service';
 
 @Component({
   selector: 'app-wishlist-btn',
   templateUrl: './wishlist-btn.component.html',
-  styleUrls: ['./wishlist-btn.component.scss']
+  styleUrls: ['./wishlist-btn.component.scss'],
 })
 export class WishlistBtnComponent implements OnInit {
-  wishProducts: string;
   btnTitle: string;
-  isWishlistPage: boolean;
   @Input() productId: string;
-  @Input() parent: any;
+  @Input() isHeartBtn: boolean;
+  isTrashBtn: boolean = !this.isHeartBtn;
+  @Output() remove: EventEmitter<any> = new EventEmitter();
 
-  constructor(private router: Router, private vcr: ViewContainerRef) {}
+  constructor(private wishlistService: WishlistService) {}
 
   ngOnInit() {
-    this.isWishlistPage = this.router.url === '/wishlist';
-    this.btnTitle = this.checkProductInWishlist() ? 'Удалить из избранного' : 'Добавить в избранное';
+    this.btnTitle = this.getBtnTitle();
+  }
+
+  handleClick() {
+    return this.checkProductInWishlist() ? this.removeFromWishlist() : this.addToWishlist();
   }
 
   checkProductInWishlist(): boolean {
-    this.wishProducts = localStorage.getItem('wishProducts');
-    if (this.wishProducts === null) {
-      return false;
-    } else {
-      const parsedWishProducts = JSON.parse(this.wishProducts);
-      const arr = Object.values(parsedWishProducts);
-      return arr.includes(this.productId);
+    return this.wishlistService.checkProduct(this.productId);
+  }
+
+  addToWishlist(): void {
+    this.btnTitle = this.getBtnTitle();
+    return this.wishlistService.addProduct(this.productId);
+  }
+
+  removeFromWishlist(): void {
+    this.wishlistService.removeProduct(this.productId);
+    this.btnTitle = this.getBtnTitle();
+    if (this.isTrashBtn) {
+      this.remove.emit(null);
     }
   }
 
-  addToWishlist() {
-    if (this.wishProducts === null) {
-      localStorage.setItem('wishProducts', JSON.stringify([this.productId]));
-    } else {
-      const parsedWishProducts = JSON.parse(this.wishProducts);
-      parsedWishProducts[parsedWishProducts.length] = this.productId;
-      localStorage.setItem('wishProducts', JSON.stringify(parsedWishProducts));
-    }
-  }
-
-  removeFromWishlist() {
-    const parsedWishProducts = JSON.parse(this.wishProducts);
-    const arr = Object.values(parsedWishProducts);
-    const index = arr.indexOf(this.productId);
-    arr.splice(index, 1);
-    localStorage.setItem('wishProducts', JSON.stringify(arr));
-
-    if (this.isWishlistPage) {
-
-    }
+  getBtnTitle(): string {
+    return this.checkProductInWishlist() ? 'Удалить из избранного' : 'Добавить в избранное';
   }
 }

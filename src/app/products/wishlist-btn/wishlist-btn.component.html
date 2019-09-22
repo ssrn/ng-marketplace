@@ -1,11 +1,11 @@
-<button (click)="checkProductInWishlist() ? removeFromWishlist() : addToWishlist()"
+<button (click)="handleClick()"
         [ngClass]="{'button': true,
          'button-wishlist': true,
          'active': checkProductInWishlist(),
-         'remove-from-wishlist': isWishlistPage
+         'button-remove': isHeartBtn
          }"
         type="button" title="{{btnTitle}}" [attr.aria-label]="btnTitle">
-  <svg *ngIf="!isWishlistPage">
+  <svg *ngIf="!isHeartBtn">
     <use xlink:href="./assets/images/svg/wishlist-heart.svg#wishlist-heart"></use>
   </svg>
 </button>
