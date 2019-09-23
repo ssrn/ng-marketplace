@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnInit, TrackByFunction } from '@angular/core';
-import { FirestoreService } from '../services/firestore.service';
+import { FirestoreService } from '../../products/firestore.service';
 import { Observable } from 'rxjs';
 import { DocumentData } from '@angular/fire/firestore';
 

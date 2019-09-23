@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Observable } from 'rxjs';
-import { FirestoreService } from '../../shared/services/firestore.service';
+import { FirestoreService } from '../firestore.service';
 import { Product } from '../../app.interfaces';
 
 @Component({

@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, TrackByFunction } from '@angular/core';
 import { Product } from '../../app.interfaces';
-import { FirestoreSearchQuery } from '../../shared/services/firestoreSearchQuery.interface';
+import { FirestoreSearchQuery } from '../firestoreSearchQuery.interface';
 
 @Component({
   selector: 'app-product-list',

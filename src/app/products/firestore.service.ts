@@ -7,7 +7,7 @@ import {
 } from '@angular/fire/firestore';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { combineLatest, forkJoin, Observable } from 'rxjs';
-import { Category, Menu, Product } from '../../app.interfaces';
+import { Category, Menu, Product } from '../app.interfaces';
 import { FirestoreSearchQuery } from './firestoreSearchQuery.interface';
 
 @Injectable({

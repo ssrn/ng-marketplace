@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { FirestoreService } from '../shared/services/firestore.service';
+import { FirestoreService } from '../products/firestore.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Category, Product } from '../app.interfaces';
 

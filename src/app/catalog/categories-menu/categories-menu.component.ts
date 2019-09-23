@@ -1,5 +1,5 @@
 import { Component, OnInit, TrackByFunction } from '@angular/core';
-import { FirestoreService } from '../../shared/services/firestore.service';
+import { FirestoreService } from '../../products/firestore.service';
 import { ActivatedRoute } from '@angular/router';
 import { Category } from '../../app.interfaces';
 

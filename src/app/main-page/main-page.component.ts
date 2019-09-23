@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Product } from '../app.interfaces';
-import { FirestoreService } from '../shared/services/firestore.service';
+import { FirestoreService } from '../products/firestore.service';
 import { map } from 'rxjs/operators';
 
 @Component({
