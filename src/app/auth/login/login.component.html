@@ -1,0 +1,40 @@
+<ngx-smart-modal identifier="login">
+  <div *ngIf="auth.uid | async as uid; else elseBlock">
+    The user logged in {{uid}}
+    <div><button (click)="logout()">Logout</button></div>
+  </div>
+
+  <ng-template #elseBlock>
+    <div class="login">
+      <!--  <div class="login__half">-->
+      <!--    <div class="login__social-buttons">-->
+      <!--      <a href="./auth/vk" class="button button&#45;&#45;social-account button&#45;&#45;vk">-->
+      <!--        Вконтакте-->
+      <!--      </a>-->
+      <!--      <a href="./auth/facebook" class="button button&#45;&#45;social-account button&#45;&#45;fb">-->
+      <!--        Facebook-->
+      <!--      </a>-->
+      <!--    </div>-->
+      <!--  </div>-->
+
+      <!--  <div class="login__divider">Или</div>-->
+      <div class="login__half">
+        <form [formGroup]="userForm" (ngSubmit)="login(userForm.value)" class="login-form form">
+          <div class="login__form-item">
+            <label>
+              <input formControlName="email" type="text" name="email" placeholder="Телефон или электронная почта">
+            </label>
+          </div>
+          <div class="login__form-item">
+            <label>
+              <input formControlName="password" type="password" name="password" placeholder="Пароль" autocomplete="off">
+            </label>
+          </div>
+          <div id="login-error">{{authError}}</div>
+<!--          <div class="login-form__lost link">Забыли пароль?</div>-->
+          <button type="submit" class="button button--primary button--action">Войти</button>
+        </form>
+      </div>
+    </div>
+  </ng-template>
+</ngx-smart-modal>

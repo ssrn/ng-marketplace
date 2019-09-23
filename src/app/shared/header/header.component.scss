@@ -135,16 +135,6 @@
     }
   }
 
-  .header-services__login {
-    background-color: transparent;
-    border: none;
-
-    .icon-user {
-      width: 19px;
-      height: 19px;
-    }
-  }
-
   .header-services__avatar {
     display: flex;
     justify-content: center;
@@ -159,6 +149,20 @@
 
     &:hover {
       color: #fff;
+    }
+
+    .icon-user {
+      width: 16px;
+      height: 16px;
+    }
+  }
+
+  .btn-group {
+    font-size: 18px;
+
+    .button--link:first-child {
+      margin-right: 15px;
+      margin-left: 15px;
     }
   }
 

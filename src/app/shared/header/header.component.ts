@@ -1,6 +1,4 @@
 import { Component } from '@angular/core';
-import { AuthService } from '../../auth/auth.service';
-import { NgxSmartModalService } from 'ngx-smart-modal';
 
 @Component({
   selector: 'app-header',
@@ -8,9 +6,5 @@ import { NgxSmartModalService } from 'ngx-smart-modal';
   styleUrls: ['./header.component.scss']
 })
 
-export class HeaderComponent {
-  constructor(
-    public authService: AuthService,
-    public ngxSmartModalService: NgxSmartModalService
-  ) { }
-}
+export class HeaderComponent { }
+

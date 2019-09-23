@@ -33,12 +33,12 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
   }
 
   checkLogin(url: string, sesId?: string): boolean {
-    if (this.authService.isLoggedIn) {
+    if (this.authService.uid) {
       return true;
     }
 
     // Store the attempted URL for redirecting
-    this.authService.redirectUrl = url;
+    // this.authService.redirectUrl = url;
 
     // Create a dummy session id
     const sessionId = 123456789;

@@ -9,8 +9,7 @@
       <app-menu></app-menu>
 
       <div class="page-header__right">
-
-<!--        <div class="page-header__search">-->
+<!--                <div class="page-header__search">-->
 <!--          <form class="search-form" action="" autocomplete="on">-->
 <!--            <label class="visually-hidden" for="header-search">Поиск</label>-->
 <!--            <input id="header-search" name="search" type="text" placeholder="Поиск...">-->
@@ -20,46 +19,33 @@
 
         <div class="header-services">
           <div class="header-services__inner">
-            <a href="./wishlist.html" class="header-services__item header-services__wishlist" title="Избранное" aria-label="Избранное">
-          <span class="header-services__icon">
-            <svg class="icon-heart">
-              <use xlink:href="./assets/images/svg/heart.svg#heart"></use>
-            </svg>
-          </span>
-            </a>
-            <a *ngIf="authService.isLoggedIn === 'true'" href="./messenger-channels.html" class="header-services__item header-services__messages" aria-label="Сообщения" title="Сообщения">
+            <a routerLink="/wishlist" class="header-services__item header-services__wishlist" title="Избранное" aria-label="Избранное">
               <span class="header-services__icon">
-            <svg class="icon-message">
-              <use xlink:href="./assets/images/svg/message.svg#message"></use>
-            </svg>
-          </span>
-              <div class="notify-number">2</div>
+                <svg class="icon-heart">
+                  <use xlink:href="./assets/images/svg/heart.svg#heart"></use>
+                </svg>
+              </span>
             </a>
-            <a *ngIf="authService.isLoggedIn === 'true'" href="./my-products.html" class="header-services__item header-services__products">Мои объявления</a>
 
-            <button *ngIf="!authService.isLoggedIn === 'true'" (click)="ngxSmartModalService.getModal('login').open()" class="header-services__item header-services__login">
-              <span class="header-services__icon">
+            <a *ngIf="authService.uid | async" routerLink="/my-products" class="header-services__item header-services__products">Мои объявления</a>
+
+            <div *ngIf="authService.uid | async" class="header-services__item header-services__profile">
+              <a routerLink="/profile" class="header-services__avatar">
                 <svg class="icon-user">
                   <use xlink:href="./assets/images/svg/user.svg#user"></use>
                 </svg>
-              </span>
-            </button>
-
-            <div *ngIf="authService.isLoggedIn === 'true'" class="header-services__item header-services__profile">
-              <a href="./profile.html" class="header-services__avatar">
-                C
               </a>
+            </div>
+            <div *ngIf="(authService.uid | async) === null" class="btn-group">
+              <button (click)="ngxSmartModalService.getModal('login').open()"
+                      class="link button--link">Вход</button>
+              <button (click)="ngxSmartModalService.getModal('registration').open()"
+                      class="link button--link">Регистрация</button>
             </div>
           </div>
         </div>
 
-        <div *ngIf="authService.isLoggedIn === 'true'; then thenBlock else elseBlock"></div>
-        <ng-template #thenBlock>
-          <a routerLink="/add-product" class="page-header__button button button--primary">Продать урожай</a>
-        </ng-template>
-        <ng-template #elseBlock>
-          <button (click)="ngxSmartModalService.getModal('login').open()" class="page-header__button button button--primary">Продать урожай</button>
-        </ng-template>
+        <a *ngIf="authService.uid | async" routerLink="/add-product" class="page-header__button button button--primary">Продать урожай</a>
       </div>
     </div>
   </div>

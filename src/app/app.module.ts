@@ -9,6 +9,9 @@ import { AngularFireModule } from '@angular/fire';
 import { environment } from '../environments/environment';
 import { AngularFireStorage, AngularFireStorageModule } from '@angular/fire/storage';
 import { NgxSmartModalModule } from 'ngx-smart-modal';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import { AuthModule } from './auth/auth.module';
+// import { Auth3Module } from './auth3/auth.module';
 
 @NgModule({
   declarations: [
@@ -19,8 +22,11 @@ import { NgxSmartModalModule } from 'ngx-smart-modal';
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireStorageModule,
+    AngularFireAuthModule,
     NgxSmartModalModule.forRoot(),
     SharedModule,
+    AuthModule,
+    // Auth3Module,
   ],
   providers: [AngularFirestore, AngularFireStorage],
   bootstrap: [AppComponent]

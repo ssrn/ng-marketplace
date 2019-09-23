@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { AuthGuard } from './auth/auth.guard';
+// import { AuthGuard } from './auth3/auth.guard';
 
 
 const routes: Routes = [
@@ -15,7 +15,7 @@ const routes: Routes = [
   {
     path: 'add-product',
     loadChildren: () => import('./add-product/add-product.module').then(m => m.AddProductModule),
-    canLoad: [AuthGuard]
+    // canLoad: [AuthGuard]
   },
   {
     path: 'products/:id',
@@ -24,7 +24,11 @@ const routes: Routes = [
   {
     path: 'wishlist',
     loadChildren: () => import('./user/user.module').then(m => m.UserModule)
-  }
+  },
+  {
+    path: 'user',
+    loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
+  },
 ];
 
 @NgModule({
