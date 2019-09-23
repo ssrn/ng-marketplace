@@ -10,7 +10,6 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class AuthService {
-  newUser: any;
   private userCollection: AngularFirestoreCollection;
   uid: Observable<string | null>;
 
@@ -25,24 +24,23 @@ export class AuthService {
     );
   }
 
-  login( email: string, password: string) {
+  login(email: string, password: string): void {
     this.afAuth.auth.signInWithEmailAndPassword(email, password)
       .catch(error => {
         console.log(error);
       })
-      .then(userRights => {
-        if (userRights) {
+      .then(credential => {
+        if (credential) {
           this.router.navigate(['']);
         }
       });
   }
 
-  logout() {
+  logout(): Promise<void> {
     return this.afAuth.auth.signOut();
   }
 
-  createUser(user) {
-    console.log(user);
+  createUser(user): void {
     this.afAuth.auth.createUserWithEmailAndPassword(user.email, user.password)
       .then((result) => {
         // this.SendVerificationMail();
@@ -55,7 +53,7 @@ export class AuthService {
     });
   }
 
-  setUserData(user): Promise<void | DocumentReference> {
+  private setUserData(user): Promise<void | DocumentReference> {
     const userData = {
       uid: user.uid,
       email: user.email,
