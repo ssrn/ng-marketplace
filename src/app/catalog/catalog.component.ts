@@ -32,9 +32,7 @@ export class CatalogComponent implements OnDestroy {
           this.searchQuery = {where: [{fieldPath: 'category.id', opStr: '==', value: this.url[this.url.length - 1]}]};
         }
 
-        this.products = this.db.getProducts(this.searchQuery).pipe(
-          map(product => product)
-        );
+        this.products = this.db.getProducts(this.searchQuery);
       }
     });
   }
