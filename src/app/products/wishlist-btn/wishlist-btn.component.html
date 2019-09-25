@@ -1,9 +1,11 @@
-<button (click)="handleClick()"
-        [class.active]=productInWishlist
-        [class.button-remove]='isTrashBtn'
-        class='button button-wishlist'
-        type="button" [title]='btnTitle' [attr.aria-label]='btnTitle'>
-  <svg *ngIf="!isTrashBtn">
+<button *ngIf="wishlistBtnMode !== wishlistBtnModeEnum.None"
+        (click)="handleClick()"
+        [class.active]="productInWishlist"
+        [class.button-remove]="wishlistBtnMode === wishlistBtnModeEnum.Trash"
+        class="button button-wishlist"
+        type="button" [title]="btnTitle" [attr.aria-label]="btnTitle">
+  <svg *ngIf="wishlistBtnMode === wishlistBtnModeEnum.Default">
     <use xlink:href="./assets/images/svg/wishlist-heart.svg#wishlist-heart"></use>
   </svg>
 </button>
+

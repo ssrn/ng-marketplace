@@ -1,18 +1,22 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { WishlistBtnModeEnum } from './wishlist-btn-mode.enum';
 
 @Component({
   selector: 'app-wishlist-btn',
   templateUrl: './wishlist-btn.component.html',
   styleUrls: ['./wishlist-btn.component.scss'],
 })
-export class WishlistBtnComponent {
+export class WishlistBtnComponent implements OnInit {
   @Input() productId: string;
   @Input() productInWishlist: string;
-  @Input() isTrashBtn = false;
+  wishlistBtnModeEnum = WishlistBtnModeEnum;
+  @Input() wishlistBtnMode: WishlistBtnModeEnum;
   @Output() add: EventEmitter<any> = new EventEmitter();
   @Output() remove: EventEmitter<any> = new EventEmitter();
 
-  constructor() {}
+  ngOnInit() {
+    console.log('this.wishlistBtnMode', this.wishlistBtnMode);
+  }
 
   get btnTitle(): string {
     return this.productInWishlist ? 'Удалить из избранного' : 'Добавить в избранное';

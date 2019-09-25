@@ -3,7 +3,7 @@
   <app-product-card
     *ngFor="let product of products; trackBy: identify"
     [product]="product"
-    [isWishlistPage]="isWishlistPage"
+    [wishlistBtnMode]="wishlistBtnMode"
     (remove)="handleRemoveFromWishlist($event)">
   </app-product-card>
 </div>

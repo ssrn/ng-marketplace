@@ -11,7 +11,7 @@
   <app-wishlist-btn
     [productId]=product.id
     [productInWishlist]="checkProductInWishlist()"
-    [isTrashBtn]="isWishlistPage"
+    [wishlistBtnMode]="wishlistBtnMode"
     (add)="handleAddToWishlist($event)"
     (remove)="handleRemoveFromWishlist($event)">
   </app-wishlist-btn>

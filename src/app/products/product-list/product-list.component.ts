@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { Product } from '../../app.interfaces';
 import { FirestoreSearchQuery } from '../firestoreSearchQuery.interface';
+import { WishlistBtnModeEnum } from '../wishlist-btn/wishlist-btn-mode.enum';
 
 @Component({
   selector: 'app-product-list',
@@ -15,7 +16,7 @@ export class ProductListComponent {
   @Input() products: Product[];
   @Input() listClass: string;
   @Input() searchQuery: FirestoreSearchQuery;
-  @Input() isWishlistPage: boolean;
+  @Input() wishlistBtnMode: WishlistBtnModeEnum = WishlistBtnModeEnum.Default;
   @Output() remove: EventEmitter<string> = new EventEmitter();
 
   handleRemoveFromWishlist($event: string) {

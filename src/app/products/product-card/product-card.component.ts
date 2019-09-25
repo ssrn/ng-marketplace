@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { FirestoreService } from '../firestore.service';
 import { Product } from '../../app.interfaces';
 import { WishlistService } from '../wishlist-btn/wishlist.service';
+import { WishlistBtnModeEnum } from '../wishlist-btn/wishlist-btn-mode.enum';
 
 @Component({
   selector: 'app-product-card',
@@ -15,7 +16,7 @@ import { WishlistService } from '../wishlist-btn/wishlist.service';
 export class ProductCardComponent implements OnInit {
   photoUrl: Observable<string[]>;
   @Input() product: Product;
-  @Input() isWishlistPage: boolean;
+  @Input() wishlistBtnMode: WishlistBtnModeEnum;
   @Output() remove: EventEmitter<string> = new EventEmitter();
 
   constructor(
@@ -39,7 +40,7 @@ export class ProductCardComponent implements OnInit {
 
   handleRemoveFromWishlist($event) {
     this.wishlistService.removeProduct(this.product.id);
-    if (this.isWishlistPage) {
+    if (this.wishlistBtnMode === WishlistBtnModeEnum.Trash) {
       this.remove.emit(null);
     }
   }

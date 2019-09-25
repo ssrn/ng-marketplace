@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { Product } from '../../app.interfaces';
 import { FirestoreService } from '../../products/firestore.service';
 import { WishlistService } from '../../products/wishlist-btn/wishlist.service';
+import { WishlistBtnModeEnum } from '../../products/wishlist-btn/wishlist-btn-mode.enum';
 
 @Component({
   selector: 'app-wishlist-page',
@@ -14,6 +15,7 @@ export class WishlistPageComponent implements OnInit {
   wishedProducts: Observable<Product[]>;
   wishedProductIds: Array<string>;
   msg: string;
+  wishlistBtnMode: WishlistBtnModeEnum = WishlistBtnModeEnum.Trash;
 
   constructor(private db: FirestoreService, private wishlistService: WishlistService) { }
 
