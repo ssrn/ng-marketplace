@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, TrackByFunction } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { Product } from '../../app.interfaces';
 import { FirestoreSearchQuery } from '../firestoreSearchQuery.interface';
 
@@ -10,15 +10,19 @@ import { FirestoreSearchQuery } from '../firestoreSearchQuery.interface';
 })
 
 export class ProductListComponent {
-  ngForTrackBy: TrackByFunction<string>;
-  @Input() products: Product[];
   @Input() title: string;
   @Input() titleTagClass: string;
+  @Input() products: Product[];
+  @Input() listClass: string;
   @Input() searchQuery: FirestoreSearchQuery;
   @Input() isWishlistPage: boolean;
   @Output() remove: EventEmitter<string> = new EventEmitter();
 
   handleRemoveFromWishlist($event: string) {
     this.remove.emit($event);
+  }
+
+  identify(index: number, item: Product): string {
+    return item.id;
   }
 }

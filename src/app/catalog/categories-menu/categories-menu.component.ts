@@ -1,4 +1,4 @@
-import { Component, OnInit, TrackByFunction } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FirestoreService } from '../../products/firestore.service';
 import { ActivatedRoute } from '@angular/router';
 import { Category } from '../../app.interfaces';
@@ -11,7 +11,6 @@ import { Category } from '../../app.interfaces';
 export class CategoriesMenuComponent implements OnInit {
   categories: Category[];
   url: string;
-  ngForTrackBy: TrackByFunction<string>;
 
   constructor(
     private db: FirestoreService,
@@ -26,5 +25,9 @@ export class CategoriesMenuComponent implements OnInit {
           this.categories = data;
         });
     });
+  }
+
+  identify(index: number, item): string {
+    return item.name;
   }
 }

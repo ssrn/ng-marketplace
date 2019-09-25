@@ -1,8 +1,7 @@
 <h2 class="{{titleTagClass}}">{{title}}</h2>
-<div class="recommended-products__wrap">
+<div class="products {{listClass ? listClass : 'products--table'}}">
   <app-product-card
-    *ngFor="let product of products;
-     trackBy: ngForTrackBy"
+    *ngFor="let product of products; trackBy: identify"
     [product]="product"
     [isWishlistPage]="isWishlistPage"
     (remove)="handleRemoveFromWishlist($event)">
