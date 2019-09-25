@@ -1,11 +1,9 @@
 <button (click)="handleClick()"
-        [ngClass]="{'button': true,
-         'button-wishlist': true,
-         'active': checkProductInWishlist(),
-         'button-remove': isHeartBtn
-         }"
-        type="button" title="{{btnTitle}}" [attr.aria-label]="btnTitle">
-  <svg *ngIf="!isHeartBtn">
+        [class.active]=productInWishlist
+        [class.button-remove]='isTrashBtn'
+        class='button button-wishlist'
+        type="button" [title]='btnTitle' [attr.aria-label]='btnTitle'>
+  <svg *ngIf="!isTrashBtn">
     <use xlink:href="./assets/images/svg/wishlist-heart.svg#wishlist-heart"></use>
   </svg>
 </button>

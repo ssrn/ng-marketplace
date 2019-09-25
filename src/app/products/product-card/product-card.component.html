@@ -8,5 +8,11 @@
       <div class="product__price">{{product.price}}</div>
     </div>
   </a>
-  <app-wishlist-btn (remove)="handleRemoveFromWishlist($event)" [productId]=product.id [isHeartBtn]="isWishlistPage"></app-wishlist-btn>
+  <app-wishlist-btn
+    [productId]=product.id
+    [productInWishlist]="checkProductInWishlist()"
+    [isTrashBtn]="isWishlistPage"
+    (add)="handleAddToWishlist($event)"
+    (remove)="handleRemoveFromWishlist($event)">
+  </app-wishlist-btn>
 </div>

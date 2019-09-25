@@ -1,46 +1,32 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { WishlistService } from './wishlist.service';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-wishlist-btn',
   templateUrl: './wishlist-btn.component.html',
   styleUrls: ['./wishlist-btn.component.scss'],
 })
-export class WishlistBtnComponent implements OnInit {
-  btnTitle: string;
+export class WishlistBtnComponent {
   @Input() productId: string;
-  @Input() isHeartBtn: boolean;
-  isTrashBtn: boolean = !this.isHeartBtn;
+  @Input() productInWishlist: string;
+  @Input() isTrashBtn = false;
+  @Output() add: EventEmitter<any> = new EventEmitter();
   @Output() remove: EventEmitter<any> = new EventEmitter();
 
-  constructor(private wishlistService: WishlistService) {}
+  constructor() {}
 
-  ngOnInit() {
-    this.btnTitle = this.getBtnTitle();
+  get btnTitle(): string {
+    return this.productInWishlist ? 'Удалить из избранного' : 'Добавить в избранное';
   }
 
   handleClick() {
-    return this.checkProductInWishlist() ? this.removeFromWishlist() : this.addToWishlist();
-  }
-
-  checkProductInWishlist(): boolean {
-    return this.wishlistService.checkProduct(this.productId);
+    return this.productInWishlist ? this.removeFromWishlist() : this.addToWishlist();
   }
 
   addToWishlist(): void {
-    this.btnTitle = this.getBtnTitle();
-    return this.wishlistService.addProduct(this.productId);
+    this.add.emit(null);
   }
 
   removeFromWishlist(): void {
-    this.wishlistService.removeProduct(this.productId);
-    this.btnTitle = this.getBtnTitle();
-    if (this.isTrashBtn) {
-      this.remove.emit(null);
-    }
-  }
-
-  getBtnTitle(): string {
-    return this.checkProductInWishlist() ? 'Удалить из избранного' : 'Добавить в избранное';
+    this.remove.emit(null);
   }
 }
