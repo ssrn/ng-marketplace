@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Category, Product } from '../../app.interfaces';
 import { Observable } from 'rxjs';
-import { flatMap, map, switchMap } from 'rxjs/operators';
+import { switchMap } from 'rxjs/operators';
 import { ActivatedRoute } from '@angular/router';
 import { FirestoreService } from '../../products/firestore.service';
+import { Category } from '../../catalog/categories-menu/category.interface';
+import { Product } from '../../products/product.interface';
 
 @Component({
   selector: 'app-edit-product',

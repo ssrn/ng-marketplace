@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { AuthService } from '../auth/auth.service';
 import { FirestoreService } from '../products/firestore.service';
-import { flatMap, map, switchMap, tap } from 'rxjs/operators';
-import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
-import { Product } from '../app.interfaces';
+import { flatMap } from 'rxjs/operators';
+import { AngularFirestore } from '@angular/fire/firestore';
 import { FirestoreSearchQuery } from '../products/firestoreSearchQuery.interface';
-import { forkJoin, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
+import { Product } from '../products/product.interface';
 
 @Injectable({
   providedIn: 'root'

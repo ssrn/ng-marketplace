@@ -3,8 +3,7 @@ import { FirestoreSearchQuery } from '../products/firestoreSearchQuery.interface
 import { NavigationEnd, Router } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
 import { FirestoreService } from '../products/firestore.service';
-import { map } from 'rxjs/operators';
-import { Product } from '../app.interfaces';
+import { Product } from '../products/product.interface';
 
 @Component({
   selector: 'app-catalog',

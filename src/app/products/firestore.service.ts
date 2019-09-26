@@ -7,8 +7,9 @@ import {
 } from '@angular/fire/firestore';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { combineLatest, forkJoin, Observable } from 'rxjs';
-import { Category, Menu, Product } from '../app.interfaces';
 import { FirestoreSearchQuery } from './firestoreSearchQuery.interface';
+import { Category } from '../catalog/categories-menu/category.interface';
+import { Product } from './product.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -16,14 +17,12 @@ import { FirestoreSearchQuery } from './firestoreSearchQuery.interface';
 
 export class FirestoreService {
   private productCollection: AngularFirestoreCollection<Product>;
-  private menuCollection: AngularFirestoreCollection<Menu>;
 
   constructor(
     private db: AngularFirestore,
     private storage: AngularFireStorage,
   ) {
     this.productCollection = db.collection('products');
-    this.menuCollection = db.collection('menu', ref => ref.orderBy('weight'));
   }
 
   addProduct(product: Product): Promise<DocumentReference> {
@@ -116,16 +115,6 @@ export class FirestoreService {
 
   getProductCategories(): Observable<Category[]> {
     const categories: AngularFirestoreCollection<Category> = this.db.collection('product_categories', ref => ref.orderBy('weight'));
-    return categories.valueChanges();
-  }
-
-  getMainMenu(): Observable<Menu[]> {
-    return this.menuCollection.valueChanges();
-  }
-
-  getSubcategoriesMenu(parentId: string): Observable<Category[]> {
-    const categories: AngularFirestoreCollection<Category> = this.db.collection('product_categories', ref =>
-      ref.where('parentId', '==', parentId).orderBy('weight'));
     return categories.valueChanges();
   }
 }

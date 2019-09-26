@@ -1,9 +1,9 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Product } from '../../app.interfaces';
 import { FirestoreService } from '../../products/firestore.service';
 import { WishlistService } from '../../products/wishlist-btn/wishlist.service';
 import { WishlistBtnModeEnum } from '../../products/wishlist-btn/wishlist-btn-mode.enum';
+import { Product } from '../../products/product.interface';
 
 @Component({
   selector: 'app-wishlist-page',

@@ -1,8 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Product } from '../app.interfaces';
 import { FirestoreService } from '../products/firestore.service';
-import { map } from 'rxjs/operators';
+import { Product } from '../products/product.interface';
 
 @Component({
   selector: 'app-main-page',

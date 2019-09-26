@@ -1,9 +1,9 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
 import { Observable } from 'rxjs';
 import { FirestoreService } from '../firestore.service';
-import { Product } from '../../app.interfaces';
 import { WishlistService } from '../wishlist-btn/wishlist.service';
 import { WishlistBtnModeEnum } from '../wishlist-btn/wishlist-btn-mode.enum';
+import { Product } from '../product.interface';
 
 @Component({
   selector: 'app-product-card',

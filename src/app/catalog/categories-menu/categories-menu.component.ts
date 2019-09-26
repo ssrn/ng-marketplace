@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FirestoreService } from '../../products/firestore.service';
 import { ActivatedRoute } from '@angular/router';
-import { Category } from '../../app.interfaces';
+
+import { CategoriesMenuService } from './categories-menu.service';
+import { Category } from './category.interface';
 
 @Component({
   selector: 'app-categories-menu',
@@ -13,14 +14,14 @@ export class CategoriesMenuComponent implements OnInit {
   url: string;
 
   constructor(
-    private db: FirestoreService,
+    private menuService: CategoriesMenuService,
     private route: ActivatedRoute,
   ) { }
 
   ngOnInit() {
     this.route.params.subscribe(routeParams => {
       this.url = routeParams.url;
-      this.db.getSubcategoriesMenu(routeParams.url)
+      this.menuService.getSubcategoriesMenu(routeParams.url)
         .subscribe(data => {
           this.categories = data;
         });

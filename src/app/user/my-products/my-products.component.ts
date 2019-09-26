@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../user.service';
 import { Observable } from 'rxjs';
-import { Product } from '../../app.interfaces';
 import { WishlistBtnModeEnum } from '../../products/wishlist-btn/wishlist-btn-mode.enum';
 import { FirestoreService } from '../../products/firestore.service';
+import { Product } from '../../products/product.interface';
 
 @Component({
   selector: 'app-my-products',

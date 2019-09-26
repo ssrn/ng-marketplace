@@ -1,22 +1,22 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { FirestoreService } from '../../products/firestore.service';
 import { Observable } from 'rxjs';
 import { DocumentData } from '@angular/fire/firestore';
+import { MainMenuService } from './main-menu.service';
 
 @Component({
   selector: 'app-menu',
-  templateUrl: './menu.component.html',
-  styleUrls: ['./menu.component.scss'],
+  templateUrl: './main-menu.component.html',
+  styleUrls: ['./main-menu.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 
-export class MenuComponent implements OnInit {
+export class MainMenuComponent implements OnInit {
   menu: Observable<DocumentData[]>;
 
-  constructor(private db: FirestoreService) { }
+  constructor(private menuService: MainMenuService) { }
 
   ngOnInit() {
-    this.menu = this.db.getMainMenu();
+    this.menu = this.menuService.getMainMenu();
   }
 
   identify(index: number, item): string {

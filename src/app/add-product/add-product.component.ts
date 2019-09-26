@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FirestoreService } from '../products/firestore.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Category, Product } from '../app.interfaces';
+import { Category } from '../catalog/categories-menu/category.interface';
+import { Product } from '../products/product.interface';
 
 @Component({
   selector: 'app-add-product',

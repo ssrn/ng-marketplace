@@ -2,10 +2,10 @@ import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/cor
 import { ActivatedRoute } from '@angular/router';
 import { FirestoreService } from '../products/firestore.service';
 import { Observable, Subscription } from 'rxjs';
-import { Product } from '../app.interfaces';
 import { NgxGalleryImage, NgxGalleryOptions } from 'ngx-gallery';
 import { switchMap } from 'rxjs/operators';
 import { WishlistService } from '../products/wishlist-btn/wishlist.service';
+import { Product } from '../products/product.interface';
 
 @Component({
   selector: 'app-product-page',
