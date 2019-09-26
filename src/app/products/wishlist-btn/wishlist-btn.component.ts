@@ -10,7 +10,7 @@ import { WishlistBtnModeEnum } from './wishlist-btn-mode.enum';
 export class WishlistBtnComponent {
   @Input() productInWishlist: boolean;
   wishlistBtnModeEnum = WishlistBtnModeEnum;
-  @Input() wishlistBtnMode: WishlistBtnModeEnum;
+  @Input() wishlistBtnMode: WishlistBtnModeEnum = this.wishlistBtnModeEnum.Default;
   @Output() add: EventEmitter<any> = new EventEmitter();
   @Output() remove: EventEmitter<any> = new EventEmitter();
 

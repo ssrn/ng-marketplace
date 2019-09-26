@@ -1,18 +1,21 @@
 <div class="full-product">
-  <div class="full-product__top">
-    <h1 class="full-product__title">{{(product | async)?.name}}</h1>
-    <div class="full-product__price">{{(product | async)?.price}}</div>
+  <div *ngIf="product$ | async as product" class="full-product__top">
+    <h1 class="full-product__title">{{product.name}}</h1>
+    <div class="full-product__price">{{product.price}}</div>
   </div>
-  <div class="full-product__main">
+  <div *ngIf="product$ | async as product" class="full-product__main">
     <div class="full-product__left">
       <ngx-gallery [options]="galleryOptions" [images]="galleryImages">
       </ngx-gallery>
-
-      <app-wishlist-btn [productId]="(product | async)?.id"></app-wishlist-btn>
+      <app-wishlist-btn
+        [productInWishlist]="checkProductInWishlist(product.id)"
+        (add)="handleAddToWishlist($event, product.id)"
+        (remove)="handleRemoveFromWishlist($event, product.id)">
+      </app-wishlist-btn>
     </div>
     <div class="full-product__about">
       <div class="full-product__desc">
-        <p>{{(product | async)?.description}}</p>
+        <p>{{product.description}}</p>
       </div>
     </div>
   </div>

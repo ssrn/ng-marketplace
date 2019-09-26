@@ -1,25 +1,31 @@
-import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FirestoreService } from '../products/firestore.service';
 import { Observable, Subscription } from 'rxjs';
 import { Product } from '../app.interfaces';
-import { NgxGalleryOptions } from 'ngx-gallery';
-import { map } from 'rxjs/operators';
+import { NgxGalleryImage, NgxGalleryOptions } from 'ngx-gallery';
+import { switchMap } from 'rxjs/operators';
+import { WishlistService } from '../products/wishlist-btn/wishlist.service';
 
 @Component({
   selector: 'app-product-page',
   templateUrl: './product-page.component.html',
   styleUrls: ['./product-page.component.scss'],
-  // changeDetection: ChangeDetectionStrategy.OnPush
 })
 
 export class ProductPageComponent implements OnInit, OnDestroy {
-  product: Observable<Product>;
+  product$: Observable<Product> = this.route.params.pipe(
+    switchMap((param) => this.db.getProduct(param.id))
+  );
+  photoUrl: Observable<string[]> = this.product$.pipe(
+    switchMap((product) => this.db.getProductPhotos(product.img))
+  );
+  @Output() remove: EventEmitter<string> = new EventEmitter();
   subscription: Subscription;
-  galleryImages: Array<{} | null> = [];
+  galleryImages: NgxGalleryImage[] = [];
   galleryOptions: NgxGalleryOptions[] = [
     {
-      width: '400px',
+      width: '100%',
       lazyLoading: false,
       imagePercent: 100,
       thumbnailsPercent: 20,
@@ -37,36 +43,35 @@ export class ProductPageComponent implements OnInit, OnDestroy {
   constructor(
     private route: ActivatedRoute,
     private db: FirestoreService,
+    private wishlistService: WishlistService
   ) { }
 
   ngOnInit() {
-    this.subscription = this.route.params.pipe(
-      map(param => this.db.getProduct(param.id))
-    ).subscribe(data => {
-      this.product = data;
-      this.product.subscribe(product => {
-        if (product.img !== null) {
-          this.createGalleryImages(product.img);
-        }
+    // NgxGalleryImage does not accept Observable
+    this.subscription = this.photoUrl.subscribe(urls => {
+      this.galleryImages = urls.map((url) => {
+        return {
+          small: url,
+          medium: url,
+          big: url
+        };
       });
     });
+  }
+
+  checkProductInWishlist(id: string) {
+    return this.wishlistService.checkProduct(id);
+  }
+
+  handleAddToWishlist($event, id: string) {
+    return this.wishlistService.addProduct(id);
+  }
+
+  handleRemoveFromWishlist($event, id: string) {
+    this.wishlistService.removeProduct(id);
   }
 
   ngOnDestroy() {
     this.subscription.unsubscribe();
-  }
-
-  createGalleryImages(paths: string[]): Subscription {
-    const observable = this.db.getProductPhotos(paths);
-    return observable.subscribe(urls => {
-      this.galleryImages.splice(0, this.galleryImages.length);
-      urls.forEach((url) => {
-        this.galleryImages.push({
-          small: url,
-          medium: url,
-          big: url
-        });
-      });
-    });
   }
 }
