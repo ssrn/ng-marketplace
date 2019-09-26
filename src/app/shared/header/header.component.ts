@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../../auth/auth.service';
+import { NgxSmartModalService } from 'ngx-smart-modal';
 
 @Component({
   selector: 'app-header',
@@ -10,5 +11,6 @@ import { AuthService } from '../../auth/auth.service';
 export class HeaderComponent {
   constructor(
     public authService: AuthService,
-  ) {}
+    public ngxSmartModalService: NgxSmartModalService
+  ) { }
 }

@@ -1,5 +1,6 @@
+aaaaa
 <ngx-smart-modal identifier="login">
-  <div *ngIf="auth.uid | async as uid; else elseBlock">
+  <div *ngIf="auth.uid as uid; else elseBlock">
     The user logged in {{uid}}
     <div><button (click)="logout()">Logout</button></div>
   </div>
