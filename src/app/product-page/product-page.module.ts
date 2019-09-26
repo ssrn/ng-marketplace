@@ -5,20 +5,24 @@ import { ProductPageComponent } from './product-page.component';
 import { ProductPageRoutingModule } from './product-page-routing.module';
 import { NgxGalleryModule } from 'ngx-gallery';
 import { ProductsModule } from '../products/products.module';
+import { EditProductComponent } from './edit-product/edit-product.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
   declarations: [
     ProductPageComponent,
-    SellerComponent
+    SellerComponent,
+    EditProductComponent
   ],
   imports: [
     CommonModule,
     ProductPageRoutingModule,
     NgxGalleryModule,
-    ProductsModule
+    ProductsModule,
+    ReactiveFormsModule,
   ],
-  bootstrap: [ProductPageComponent]
+  // bootstrap: [ProductPageComponent]
 })
 
 export class ProductPageModule { }

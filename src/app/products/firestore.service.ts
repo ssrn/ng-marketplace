@@ -38,16 +38,17 @@ export class FirestoreService {
     });
   }
 
-  getProducts(searchQuery: FirestoreSearchQuery): Observable<Product[]> {
+  getPublishedProducts(searchQuery: FirestoreSearchQuery): Observable<Product[]> {
     const products: AngularFirestoreCollection<Product> = this.db.collection('products', ref => {
       if (searchQuery.where !== undefined) {
-        return ref.where(searchQuery.where[0].fieldPath, searchQuery.where[0].opStr, searchQuery.where[0].value);
+        return ref.where(searchQuery.where[0].fieldPath, searchQuery.where[0].opStr, searchQuery.where[0].value)
+          .where('published', '==', true);
         // searchQuery.where.forEach(obj => {
         //   return ref.where(obj.fieldPath, obj.opStr, obj.value);
         // });
       }
       if (searchQuery.limit !== undefined) {
-        return ref.limit(searchQuery.limit);
+        return ref.limit(searchQuery.limit).where('published', '==', true);
       }
       return ref;
     });
@@ -61,15 +62,6 @@ export class FirestoreService {
 
   getProductsByIds(ids: string[]): Observable<Product[]> {
     return combineLatest(ids.map(id => this.getProduct(id)));
-  }
-
-  getUserProducts(uid: string) {
-    // const searchQuery = {where: [{fieldPath: 'category.parentId', opStr: '==', value: this.url[this.url.length - 1]}]};
-    // this.getProducts()
-    // const products: AngularFirestoreCollection<any> = this.db.collection('users', ref => {
-    //   return ref.where('products', '==', value: this.url[this.url.length - 1]);
-    // });
-    // return products.valueChanges();
   }
 
   getProductPhotos(paths: string[]): Observable<string[]> {

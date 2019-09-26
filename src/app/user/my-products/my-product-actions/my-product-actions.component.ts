@@ -9,9 +9,8 @@ export class MyProductActionsComponent {
   @Output() remove: EventEmitter<any> = new EventEmitter();
   @Output() publish: EventEmitter<any> = new EventEmitter();
   @Output() unpublish: EventEmitter<any> = new EventEmitter();
+  @Input() productId: string;
   @Input() isPublished: boolean;
-
-  constructor() { }
 
   get publishBtnText(): string {
     return this.isPublished ? 'Снять с публикации' : 'Опубликовать';

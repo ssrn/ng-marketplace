@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FirestoreService } from '../products/firestore.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Category, Product } from '../app.interfaces';
@@ -41,7 +41,7 @@ export class AddProductComponent implements OnInit {
     this.productForm = this.fb.group({
       id: '',
       category: {},
-      img: null,
+      img: this.fb.array([]),
       name: ['', [
           Validators.required,
           // Validators.pattern(/[А-я]/)
@@ -49,11 +49,12 @@ export class AddProductComponent implements OnInit {
       ],
       price: [0, Validators.required],
       description: '',
+      published: true
     });
   }
 
   handleSubmit(product: Product) {
-    if (product.img !== null) {
+    if (product.img.length > 0) {
       this.db.addProduct(product)
         .then(result => this.productId = result.id)
         .then(() => this.db.uploadProductPhotos(this.filesToUpload))

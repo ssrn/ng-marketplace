@@ -5,6 +5,7 @@
 <div class="products products--list">
   <div *ngFor="let product of userProducts | async; trackBy: identify" class="my-product">
     <app-my-product-actions
+      [productId]="product.id"
       [isPublished]="product.published"
       (remove)="handleRemove($event, product.id)"
       (unpublish)="handleUnpublish($event, product.id)"

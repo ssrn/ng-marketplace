@@ -1,0 +1,41 @@
+<div class="add-product">
+  <h1 class="page-title">{{(product | async).name}}</h1>
+  <form class="add-product__form" [formGroup]="productForm" (ngSubmit)="handleSubmit(productForm.value)">
+<!--    <div class="form-item">-->
+<!--      <label for="category">Выберете категорию</label>-->
+<!--      <select formControlName="category" class="select&#45;&#45;custom" id="category" name="category">-->
+<!--        <optgroup *ngFor="let category of productMainCategories; let i = index;" label="{{category.name}}">-->
+<!--          <option *ngFor="let category of productSubcategories[i]" [ngValue]="{id: category.id, parentId: (category | async).parentId}">-->
+<!--            {{category.name}}-->
+<!--          </option>-->
+<!--        </optgroup>-->
+<!--      </select>-->
+<!--    </div>-->
+    <div class="form-item">
+      <label for="fld-product-name">Название объявления</label>
+      <input type="text" id="fld-product-name" formControlName="name" maxlength="50"
+             [value]="(product | async).name">
+    </div>
+    <div class="form-item">
+      <label for="fld-product-desc">Описание объявления</label>
+      <textarea id="fld-product-desc" formControlName="description" rows="6" maxlength="3000"
+                [value]="(product | async).description"></textarea>
+    </div>
+    <div class="form-item">
+      <label for="fld-product-price">Цена</label>
+      <input type="text" id="fld-product-price" formControlName="price" maxlength="16"
+             [value]="(product | async).price">
+      <span class="number-format-currency"> ₽</span>
+    </div>
+<!--    <div class="form-item">-->
+<!--      <label for="fld-product-img">Фотографии</label>-->
+<!--      <input type="file"-->
+<!--             id="fld-product-img"-->
+<!--             formControlName="img"-->
+<!--             accept="image/gif,image/png,image/jpeg,image/pjpeg"-->
+<!--             multiple="">-->
+<!--    </div>-->
+    <button type="submit" class="button button--primary button--l">Изменить</button>
+  </form>
+</div>
+

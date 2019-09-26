@@ -29,7 +29,7 @@ export class UserService {
   getUserProducts(): Observable<Product[]> {
     const func = (uid) => {
       const searchQuery: FirestoreSearchQuery = {where: [{fieldPath: 'uid', opStr: '==', value: uid}]};
-      return this.firestoreService.getProducts(searchQuery);
+      return this.firestoreService.getPublishedProducts(searchQuery);
     };
     return this.checkUidAndDo(func);
   }
