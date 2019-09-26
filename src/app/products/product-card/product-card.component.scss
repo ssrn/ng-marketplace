@@ -1,8 +1,11 @@
 @import "../../../../src/styles/init";
 
-
   .product {
     position: relative;
+
+    &--unpublished {
+      opacity: 0.5;
+    }
   }
 
   .product__img-wrap {
@@ -33,10 +36,6 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-
-    .product__link:hover & {
-      color: $brand-contrast;
-    }
   }
 
   .product__price {

@@ -1,4 +1,4 @@
-<div class="product">
+<div [class.product--unpublished]="!product.published" class="product">
   <a [title]="product.name" [routerLink]="['/products', product.id]" class="product__link">
     <div class="product__img-wrap">
       <img class="product__img cropped-image" src="{{photoUrl | async}}" alt="" loading="lazy">
@@ -9,7 +9,6 @@
     </div>
   </a>
   <app-wishlist-btn
-    [productId]=product.id
     [productInWishlist]="checkProductInWishlist()"
     [wishlistBtnMode]="wishlistBtnMode"
     (add)="handleAddToWishlist($event)"

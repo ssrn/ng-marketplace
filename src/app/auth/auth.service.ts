@@ -16,8 +16,8 @@ export class AuthService {
   constructor(
     private afAuth: AngularFireAuth,
     private db: AngularFirestore,
-    private router: Router) {
-
+    private router: Router
+  ) {
     this.userCollection = db.collection('users');
     this.uid = this.afAuth.authState.pipe(
       map(authState => authState ? authState.uid  : null)

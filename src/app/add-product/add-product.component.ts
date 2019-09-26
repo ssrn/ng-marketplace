@@ -49,7 +49,6 @@ export class AddProductComponent implements OnInit {
       ],
       price: [0, Validators.required],
       description: '',
-      metro: ''
     });
   }
 

@@ -1,0 +1,23 @@
+:host {
+  .add-product-button {
+    margin-bottom: 8px;
+
+    &:hover {
+      color: #fff;
+    }
+  }
+
+  .my-products .products {
+    grid-gap: 0;
+  }
+
+  .my-product {
+    padding-bottom: 32px;
+    padding-top: 16px;
+    border-bottom: 1px solid #ccc;
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+}

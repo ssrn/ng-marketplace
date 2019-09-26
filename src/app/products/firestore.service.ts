@@ -20,7 +20,7 @@ export class FirestoreService {
 
   constructor(
     private db: AngularFirestore,
-    private storage: AngularFireStorage
+    private storage: AngularFireStorage,
   ) {
     this.productCollection = db.collection('products');
     this.menuCollection = db.collection('menu', ref => ref.orderBy('weight'));
@@ -63,6 +63,15 @@ export class FirestoreService {
     return combineLatest(ids.map(id => this.getProduct(id)));
   }
 
+  getUserProducts(uid: string) {
+    // const searchQuery = {where: [{fieldPath: 'category.parentId', opStr: '==', value: this.url[this.url.length - 1]}]};
+    // this.getProducts()
+    // const products: AngularFirestoreCollection<any> = this.db.collection('users', ref => {
+    //   return ref.where('products', '==', value: this.url[this.url.length - 1]);
+    // });
+    // return products.valueChanges();
+  }
+
   getProductPhotos(paths: string[]): Observable<string[]> {
     return forkJoin(paths.map(path => {
       const ref = this.storage.ref(path);
@@ -83,6 +92,34 @@ export class FirestoreService {
       })
         .catch(error => console.log(error));
     }
+  }
+
+  removeProduct(id: string) {
+    this.productCollection.doc(id).delete().then(() => {
+      console.log('Document successfully deleted!');
+    }).catch((error) => {
+      console.error('Error removing document: ', error);
+    });
+  }
+
+  unpublishProduct(id: string) {
+    this.productCollection.doc(id).update({
+      published: false
+    }).then(() => {
+      console.log('Document successfully unpublished!');
+    }).catch((error) => {
+      console.error('Error unpublishing document: ', error);
+    });
+  }
+
+  publishProduct(id: string) {
+    this.productCollection.doc(id).update({
+      published: true
+    }).then(() => {
+      console.log('Document successfully published!');
+    }).catch((error) => {
+      console.error('Error publishing document: ', error);
+    });
   }
 
   getProductCategories(): Observable<Category[]> {

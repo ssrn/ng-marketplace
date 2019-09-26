@@ -1,0 +1,15 @@
+:host {
+  .my-product__actions {
+    margin: 0 -8px 10px;
+  }
+
+  .my-product__actions-item {
+    display: inline-block;
+    padding: 4px 8px;
+    text-align: left;
+    background: transparent;
+    border: none;
+    white-space: nowrap;
+    cursor: pointer;
+  }
+}
