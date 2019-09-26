@@ -5,7 +5,7 @@
   </div>
   <ul class="catalog-categories__list">
     <li class="catalog-category" *ngFor="let category of categories; trackBy: identify">
-      <a [routerLink]="['/catalog', url, category.url]" routerLinkActive="active" class="button is-active">{{category.name}}</a>
+      <a [routerLink]="['/catalog', url, category.url]" routerLinkActive="active" class="button">{{category.name}}</a>
     </li>
   </ul>
 </div>

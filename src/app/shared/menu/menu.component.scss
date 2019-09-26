@@ -36,7 +36,7 @@
     font-size: 21px;
     text-decoration: none;
 
-    &.is-active,
+    &.active,
     &:hover {
       color: $brand-contrast;
     }
@@ -85,7 +85,7 @@
       top: 28px;
     }
 
-    .main-nav-trigger.is-active & {
+    .main-nav-trigger.active & {
       &:nth-child(1) {
         top: 18px;
         left: 50%;

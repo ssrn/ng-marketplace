@@ -19,7 +19,7 @@
       background-color: #fff;
     }
 
-    &.is-active {
+    &.active {
       display: block;
     }
   }
@@ -55,7 +55,7 @@
       transition: none;
 
       &:hover,
-      &.is-active {
+      &.active {
         color: #fff;
         background: $brand-primary;
       }
