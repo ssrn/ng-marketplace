@@ -1,3 +1,5 @@
+@import "../../../../styles/init";
+
 :host {
   .my-product__actions {
     margin: 0 -8px 10px;
@@ -7,9 +9,13 @@
     display: inline-block;
     padding: 4px 8px;
     text-align: left;
-    background: transparent;
+    background: none;
     border: none;
     white-space: nowrap;
     cursor: pointer;
+
+    &:hover {
+      @extend .gradient-letters;
+    }
   }
 }

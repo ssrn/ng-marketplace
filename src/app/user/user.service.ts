@@ -16,7 +16,6 @@ export class UserService {
   constructor(
     private auth: AuthService,
     private db: AngularFirestore,
-    private firestoreService: FirestoreService,
   ) {}
 
   getUser(): Observable<User> {
@@ -29,8 +28,8 @@ export class UserService {
 
   getUserProducts(): Observable<Product[]> {
     const func = (uid) => {
-      const searchQuery: FirestoreSearchQuery = {where: [{fieldPath: 'uid', opStr: '==', value: uid}]};
-      return this.firestoreService.getPublishedProducts(searchQuery);
+      return this.db.collection('products', ref =>
+        ref.where('uid', '==', uid)).valueChanges();
     };
     return this.checkUidAndDo(func);
   }
@@ -38,7 +37,6 @@ export class UserService {
   private checkUidAndDo(func): Observable<any> {
     return this.auth.uid.pipe(
       flatMap(uid => {
-        console.log('uid', uid);
         if (uid === null) {
           return null;
         }

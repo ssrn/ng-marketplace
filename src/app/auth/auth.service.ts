@@ -10,8 +10,9 @@ import { map, switchMap } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class AuthService {
-  uid: Observable<string | null>;
+  uid: Observable<string>;
   private userCollection: AngularFirestoreCollection;
+  user;
 
   constructor(
     private afAuth: AngularFireAuth,
@@ -24,10 +25,10 @@ export class AuthService {
       map(authState => authState ? authState.uid  : null)
     );
   }
-  // TODO Fix always true -- Observable !== null
-  get authenticated(): boolean {
-    console.log('this.uid', this.uid);
-    return this.uid !== null;
+  get authenticated() {
+    return this.afAuth.authState.pipe(
+      map(authState => authState ? authState.uid  : null)
+    );
   }
 
   login(email: string, password: string): void {
