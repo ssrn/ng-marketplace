@@ -6,6 +6,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { FirestoreSearchQuery } from '../products/firestoreSearchQuery.interface';
 import { Observable } from 'rxjs';
 import { Product } from '../products/product.interface';
+import { User } from './user.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +19,7 @@ export class UserService {
     private firestoreService: FirestoreService,
   ) {}
 
-  getUser() {
+  getUser(): Observable<User> {
     const func = (uid) => {
       return this.db.collection('users', ref =>
         ref.where('uid', '==', uid)).valueChanges();
@@ -37,6 +38,7 @@ export class UserService {
   private checkUidAndDo(func): Observable<any> {
     return this.auth.uid.pipe(
       flatMap(uid => {
+        console.log('uid', uid);
         if (uid === null) {
           return null;
         }

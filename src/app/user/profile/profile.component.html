@@ -1,1 +1,24 @@
-<p>profile works!</p>
+<div *ngIf="user | async as user" class="edit-user">
+  {{user | json}}
+  <h1 class="page-title">{{user.name}}</h1>
+  <form class="add-product__form" [formGroup]="userForm" (ngSubmit)="handleSubmit(userForm.value)">
+    <div class="form-item">
+      <label for="fld-product-name">Название объявления</label>
+      <input type="text" id="fld-product-name" formControlName="name" maxlength="50"
+             [value]="user.name">
+    </div>
+    <div class="form-item">
+      <label for="fld-product-desc">Описание объявления</label>
+      <textarea id="fld-product-desc" formControlName="description" rows="6" maxlength="3000"
+                [value]="user.uid"></textarea>
+    </div>
+    <div class="form-item">
+      <label for="fld-product-price">Цена</label>
+      <input type="text" id="fld-product-price" formControlName="price" maxlength="16"
+             [value]="user.email">
+      <span class="number-format-currency"> ₽</span>
+    </div>
+    <button type="submit" class="button button--primary button--l">Изменить</button>
+  </form>
+</div> 
+

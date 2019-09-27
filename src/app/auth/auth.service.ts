@@ -24,8 +24,9 @@ export class AuthService {
       map(authState => authState ? authState.uid  : null)
     );
   }
-
+  // TODO Fix always true -- Observable !== null
   get authenticated(): boolean {
+    console.log('this.uid', this.uid);
     return this.uid !== null;
   }
 

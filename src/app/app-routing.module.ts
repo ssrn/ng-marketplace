@@ -24,12 +24,11 @@ const routes: Routes = [
   {
     path: 'user',
     loadChildren: () => import('./user/user.module').then(m => m.UserModule),
-    // canActivate: [AuthGuard]
   },
-  // {
-  //   path: 'user',
-  //   loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
-  // },
+  {
+    path: 'wishlist',
+    loadChildren: () => import('./wishlist-page/wishlist-page.module').then(m => m.WishlistPageModule)
+  },
 ];
 
 @NgModule({

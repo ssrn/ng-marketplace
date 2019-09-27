@@ -1,14 +1,13 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { FirestoreService } from '../../products/firestore.service';
-import { WishlistService } from '../../products/wishlist-btn/wishlist.service';
-import { WishlistBtnModeEnum } from '../../products/wishlist-btn/wishlist-btn-mode.enum';
-import { Product } from '../../products/product.interface';
+import { WishlistBtnModeEnum } from '../products/wishlist-btn/wishlist-btn-mode.enum';
+import { FirestoreService } from '../products/firestore.service';
+import { Product } from '../products/product.interface';
+import { WishlistService } from '../products/wishlist-btn/wishlist.service';
 
 @Component({
   selector: 'app-wishlist-page',
   templateUrl: './wishlist-page.component.html',
-  styleUrls: ['./wishlist-page.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class WishlistPageComponent implements OnInit {

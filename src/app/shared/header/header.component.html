@@ -27,10 +27,10 @@
               </span>
             </a>
 
-            <a *ngIf="auth.uid | async" routerLink="/my-products" class="header-services__item header-services__products">Мои объявления</a>
+            <a *ngIf="auth.uid | async" routerLink="/user/my-products" class="header-services__item header-services__products">Мои объявления</a>
 
             <div *ngIf="auth.uid | async" class="header-services__item header-services__profile">
-              <a routerLink="/profile" class="header-services__avatar">
+              <a routerLink="/user" class="header-services__avatar">
                 <svg class="icon-user">
                   <use xlink:href="./assets/images/svg/user.svg#user"></use>
                 </svg>
