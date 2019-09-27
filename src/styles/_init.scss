@@ -1,3 +1,10 @@
 @import 'init/colors';
 @import 'init/variables';
 @import 'init/mixins';
+
+.gradient-letters {
+  background: linear-gradient(to right, $brand-contrast, $fnb-extra);
+  background-color: $fnb-extra;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

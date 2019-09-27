@@ -3,8 +3,8 @@ a,
   color: $link-color;
   text-decoration: none;
   transition: color .2s linear;
+}
 
-  &:hover {
-    color: $brand-contrast;
-  }
+.link:hover {
+  @extend .gradient-letters;
 }

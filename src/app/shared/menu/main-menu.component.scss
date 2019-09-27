@@ -38,7 +38,7 @@
 
     &.active,
     &:hover {
-      color: $brand-contrast;
+      @extend .gradient-letters;
     }
   }
 

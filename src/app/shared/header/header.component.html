@@ -27,7 +27,7 @@
               </span>
             </a>
 
-            <a *ngIf="auth.uid | async" routerLink="/user/my-products" class="header-services__item header-services__products">Мои объявления</a>
+            <a *ngIf="auth.uid | async" routerLink="/user/my-products" class="link header-services__item header-services__products">Мои объявления</a>
 
             <div *ngIf="auth.uid | async" class="header-services__item header-services__profile">
               <a routerLink="/user" class="header-services__avatar">
