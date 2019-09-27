@@ -40,19 +40,19 @@
       margin-right: 8px;
     }
 
-    &.is-active {
+    &.active {
       background: $brand-primary;
+
+      .i-catalog-view {
+        opacity: 1;
+      }
     }
   }
 
   .i-catalog-view {
     display: inline-block;
     background: url("../../../assets/images/svg/catalog-view.svg") 0 0 no-repeat;
-    opacity: .5;
-
-    .is-active & {
-      opacity: 1;
-    }
+    opacity: .6;
   }
 
   .i-catalog-view--gallery {
