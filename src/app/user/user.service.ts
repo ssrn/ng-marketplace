@@ -34,7 +34,14 @@ export class UserService {
     return this.checkUidAndDo(func);
   }
 
-  private checkUidAndDo(func): Observable<Product[]> | null {
-    return this.auth.uid ? func(this.auth.uid) : null;
+  private checkUidAndDo(func): Observable<any> {
+    return this.auth.uid.pipe(
+      flatMap(uid => {
+        if (uid === null) {
+          return null;
+        }
+        return func(uid);
+      })
+    );
   }
 }

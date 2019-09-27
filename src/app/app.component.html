@@ -2,5 +2,10 @@
 <main class="page-content container">
   <router-outlet></router-outlet>
 </main>
-<app-login></app-login>
-<app-registration></app-registration>
+
+<ngx-smart-modal identifier="login">
+  <app-login></app-login>
+</ngx-smart-modal>
+<ngx-smart-modal identifier="registration">
+  <app-registration></app-registration>
+</ngx-smart-modal>

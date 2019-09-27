@@ -1,18 +1,15 @@
-bbb
-<ngx-smart-modal identifier="registration">
-  <div class="registration">
-    <form [formGroup]="userForm" (ngSubmit)="createUser(userForm.value)" class="login-form form">
-      <div class="login__form-item">
-        <label>
-          <input formControlName="email" type="text" name="email" placeholder="Телефон или электронная почта">
-        </label>
-      </div>
-      <div class="login__form-item">
-        <label>
-          <input formControlName="password" type="password" name="password" placeholder="Пароль" autocomplete="off">
-        </label>
-      </div>
-      <button type="submit" class="button button--primary button--action">Создать аккаунт</button>
-    </form>
-  </div>
-</ngx-smart-modal>
+<div class="registration">
+  <form [formGroup]="userForm" (ngSubmit)="createUser(userForm.value)" class="login-form form">
+    <div class="login__form-item">
+      <label>
+        <input formControlName="email" type="text" name="email" placeholder="Телефон или электронная почта">
+      </label>
+    </div>
+    <div class="login__form-item">
+      <label>
+        <input formControlName="password" type="password" name="password" placeholder="Пароль" autocomplete="off">
+      </label>
+    </div>
+    <button type="submit" class="button button--primary button--action">Создать аккаунт</button>
+  </form>
+</div>

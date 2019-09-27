@@ -10,7 +10,7 @@ import { NgxSmartModalService } from 'ngx-smart-modal';
 
 export class HeaderComponent {
   constructor(
-    public authService: AuthService,
+    public auth: AuthService,
     public ngxSmartModalService: NgxSmartModalService
   ) { }
 }

@@ -22,13 +22,14 @@ const routes: Routes = [
     loadChildren: () => import('./product-page/product-page.module').then(m => m.ProductPageModule)
   },
   {
-    path: 'my-products',
-    loadChildren: () => import('./user/user.module').then(m => m.UserModule)
-  },
-  {
     path: 'user',
-    loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
+    loadChildren: () => import('./user/user.module').then(m => m.UserModule),
+    // canActivate: [AuthGuard]
   },
+  // {
+  //   path: 'user',
+  //   loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
+  // },
 ];
 
 @NgModule({
