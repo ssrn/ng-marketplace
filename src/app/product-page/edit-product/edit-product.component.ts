@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
+import { map, switchMap } from 'rxjs/operators';
 import { ActivatedRoute } from '@angular/router';
 import { FirestoreService } from '../../products/firestore.service';
 import { Category } from '../../catalog/categories-menu/category.interface';
@@ -13,10 +13,12 @@ import { Product } from '../../products/product.interface';
   styleUrls: ['./edit-product.component.scss']
 })
 export class EditProductComponent implements OnInit {
-  product: Observable<Product> = this.route.params.pipe(
+  product$: Observable<Product> = this.route.params.pipe(
     switchMap((param) => this.db.getProduct(param.id))
   );
   productForm: FormGroup;
+  filesToUpload: FileList;
+  productPhotoPaths: string[] = [];
   productMainCategories: Category[];
   productSubcategories: Category[];
 
@@ -27,9 +29,6 @@ export class EditProductComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    // Observable Observable
-    // this.product = this.db.getProduct('p1xQNB7nVhBLqzw55ypT');
-
     this.db.getProductCategories().subscribe(
       categories => {
         this.productMainCategories = categories.filter(category => category.parentId === '');
@@ -58,7 +57,15 @@ export class EditProductComponent implements OnInit {
       description: '',
       published: true
     });
+
+    // this.product$.subscribe(
+    //   data => {
+    //     this.productForm.controls['category'].setValue(data.id);
+    //   }
+    // );
   }
 
-  handleSubmit(product: Product) {}
+  handleSubmit(product: Product) {
+
+  }
 }
