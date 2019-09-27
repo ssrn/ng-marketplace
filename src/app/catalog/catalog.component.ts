@@ -8,7 +8,6 @@ import { Product } from '../products/product.interface';
 @Component({
   selector: 'app-catalog',
   templateUrl: './catalog.component.html',
-  styleUrls: ['./catalog.component.scss'],
 })
 
 export class CatalogComponent implements OnDestroy {
@@ -38,5 +37,17 @@ export class CatalogComponent implements OnDestroy {
 
   ngOnDestroy() {
     this.subscription.unsubscribe();
+  }
+
+  handleSortByPopularity($event) {
+    console.log($event);
+  }
+
+  handleSortFromLowToHigh($event) {
+    console.log($event);
+  }
+
+  handleSortFromHighToLow($event) {
+    console.log($event);
   }
 }

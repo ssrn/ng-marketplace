@@ -1,0 +1,24 @@
+<div class="catalog-top">
+  <div class="catalog-top__item sort-by-relevance">
+    <select aria-label="Сортировать по">
+      <option (click)="handleSortByPopularity()" value="popularity">Популярные</option>
+      <option (click)="handleSortFromLowToHigh()" value="low">Цена: По возрастанию</option>
+      <option (click)="handleSortFromHighToLow()" value="high">Цена: По убыванию</option>
+    </select>
+  </div>
+  <div class="catalog-top__item catalog-filters-photo button-group">
+    <label class="check subscribe__checkbox">
+      только с фото
+      <input type="checkbox" name="agreement" class="check__input visually-hidden">
+      <span class="check__box"></span>
+    </label>
+  </div>
+  <div class="catalog-top__item catalog-filters-views button-group">
+    <button class="catalog-filters-views__item catalog-filters-views__item--gallery button is-active" type="button" aria-label="Вид каталога - галерея">
+      <i class="i-catalog-view i-catalog-view--gallery"></i>
+    </button>
+    <button class="catalog-filters-views__item catalog-filters-views__item--list button" type="button" aria-label="Вид каталога - список">
+      <i class="i-catalog-view i-catalog-view--list"></i>
+    </button>
+  </div>
+</div>
