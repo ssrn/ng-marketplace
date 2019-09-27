@@ -13,8 +13,7 @@ import { CatalogTopComponent } from './catalog-filters/catalog-top.component';
     CommonModule,
     CatalogRoutingModule,
     ProductsModule
-  ],
-  bootstrap: [CatalogComponent]
+  ]
 })
 
 export class CatalogModule {}

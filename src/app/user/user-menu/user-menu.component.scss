@@ -1,0 +1,37 @@
+@import "../../../styles/init";
+
+:host {
+  .cabinet-sidebar {
+    @include media(ms, max) {
+      display: none;
+    }
+
+    .page-orders & {
+      @include media(sm, max) {
+        display: none;
+      }
+    }
+  }
+
+  .cabinet-menu__item {
+    &:first-child .cabinet-menu__link {
+      padding-top: 3px;
+    }
+  }
+
+  .cabinet-menu__link {
+    display: block;
+    padding: 6px 0;
+    color: #767676;
+    font-size: 18px;
+
+    &:hover,
+    &.active {
+      color: $text-primary;
+    }
+
+    &.active {
+      font-weight: bold;
+    }
+  }
+}

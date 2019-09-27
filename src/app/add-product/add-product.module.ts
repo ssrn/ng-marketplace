@@ -11,8 +11,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     CommonModule,
     AddProductRoutingModule,
     ReactiveFormsModule,
-  ],
-  bootstrap: [AddProductComponent],
+  ]
 })
 
 export class AddProductModule {}

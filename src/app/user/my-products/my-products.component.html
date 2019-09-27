@@ -1,19 +1,24 @@
-<a routerLink="./add-product" class="add-product-button button button--primary">
-  Подать объявление
-</a>
+<app-user-menu></app-user-menu>
 
-<div class="products products--list">
-  <div *ngFor="let product of userProducts | async; trackBy: identify" class="my-product">
-    <app-my-product-actions
-      [productId]="product.id"
-      [isPublished]="product.published"
-      (remove)="handleRemove($event, product.id)"
-      (unpublish)="handleUnpublish($event, product.id)"
-      (publish)="handlePublish($event, product.id)">
-    </app-my-product-actions>
-    <app-product-card
-      [product]="product"
-      [wishlistBtnMode]="wishlistBtnMode">
-    </app-product-card>
+<div class="my-products">
+  <a routerLink="./add-product" class="add-product-button button button--primary">
+    Подать объявление
+  </a>
+
+  <div class="products products--list">
+    <div *ngFor="let product of userProducts | async; trackBy: identify" class="my-product">
+      <app-my-product-actions
+        [productId]="product.id"
+        [isPublished]="product.published"
+        (remove)="handleRemove($event, product.id)"
+        (unpublish)="handleUnpublish($event, product.id)"
+        (publish)="handlePublish($event, product.id)">
+      </app-my-product-actions>
+      <app-product-card
+        [product]="product"
+        [wishlistBtnMode]="wishlistBtnMode">
+      </app-product-card>
+    </div>
   </div>
 </div>
+

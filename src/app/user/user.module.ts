@@ -7,6 +7,8 @@ import { MyProductActionsComponent } from './my-products/my-product-actions/my-p
 import { ProfileComponent } from './profile/profile.component';
 import { AuthModule } from '../auth/auth.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { UserMenuComponent } from './user-menu/user-menu.component';
+import { UserComponent } from './user.component';
 
 
 @NgModule({
@@ -14,6 +16,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     MyProductsComponent,
     MyProductActionsComponent,
     ProfileComponent,
+    UserMenuComponent,
+    UserComponent,
   ],
   imports: [
     CommonModule,
@@ -21,6 +25,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     ProductsModule,
     AuthModule,
     ReactiveFormsModule
-  ]
+  ],
+  bootstrap: [UserComponent]
 })
 export class UserModule { }

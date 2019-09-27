@@ -21,8 +21,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     NgxGalleryModule,
     ProductsModule,
     ReactiveFormsModule,
-  ],
-  // bootstrap: [ProductPageComponent]
+  ]
 })
 
 export class ProductPageModule { }

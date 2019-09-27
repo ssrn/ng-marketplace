@@ -23,17 +23,4 @@ body.is-fixed {
   }
 }
 
-.navigation {
-  margin-bottom: 16px;
-
-  @include media(sm) {
-    margin-bottom: 20px;
-  }
-
-  .messenger & {
-    @include media(ms, max) {
-      padding: 0 15px;
-    }
-  }
-}
 

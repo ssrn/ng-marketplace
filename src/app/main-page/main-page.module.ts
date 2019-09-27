@@ -16,8 +16,7 @@ import { ProductsModule } from '../products/products.module';
     CommonModule,
     MainPageRoutingModule,
     ProductsModule
-  ],
-  bootstrap: [MainPageComponent]
+  ]
 })
 
 export class MainPageModule { }
