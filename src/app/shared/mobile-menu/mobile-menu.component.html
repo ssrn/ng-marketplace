@@ -1,0 +1,19 @@
+<div [class.active]="isMenuOpen" class="mobile-menu">
+  <nav class="mobile-main-nav">
+    <ul class="mobile-main-nav__list">
+      <li class="mobile-main-nav__item" *ngFor="let menuItem of menu | async; trackBy: identify">
+        <a [routerLink]="['/catalog', menuItem.url]" routerLinkActive="active"
+           class="mobile-main-nav__link link">{{menuItem.name}}</a>
+      </li>
+    </ul>
+  </nav>
+
+  <div class="mobile-menu__services">
+    <a  *ngIf="auth.uid | async" routerLink="/user" class="mobile-menu__services-item mobile-menu__login">Личный кабинет</a>
+    <a routerLink="/wishlist" class="mobile-menu__services-item mobile-menu__wishlist">Избранное</a>
+<!--    <a href="/messenger-channels" class="mobile-menu__services-item mobile-menu__messages">-->
+<!--      Сообщения-->
+<!--    </a>-->
+  </div>
+  <a routerLink="/add-product" class="mobile-menu__button">Продать урожай</a>
+</div>

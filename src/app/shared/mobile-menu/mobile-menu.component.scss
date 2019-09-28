@@ -1,0 +1,77 @@
+@import "../../../styles/init";
+
+:host {
+  .mobile-menu {
+    position: fixed;
+    top: 76px;
+    display: none;
+    width: 100%;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    background: #fff;
+    box-shadow: 0 3px 4px rgba(0,0,0,.5);
+    z-index: 100;
+
+    &.active {
+      display: block;
+
+      @media screen and (min-width: 940px) {
+        display: none;
+      }
+    }
+
+    body.with-switch & {
+      top: 126px;
+    }
+  }
+
+  .mobile-main-nav {
+    padding-top: 14px;
+    padding-bottom: 16px;
+  }
+
+  .mobile-main-nav__link {
+    display: block;
+    padding: 8px 15px;
+    color: $text-primary;
+    font-size: 18px;
+  }
+
+  .mobile-menu__services {
+    padding: 12px 0;
+    background-color: $brand-primary;
+
+    a {
+      color: #fff;
+    }
+  }
+
+  .mobile-menu__services-item {
+    display: block;
+    padding: 12px 15px 12px 50px;
+  }
+
+  .mobile-menu__login {
+    color: #fff;
+    background: url("../../../assets/images/svg/user-mobile.svg") no-repeat 15px center;
+    background-size: 20px;
+  }
+
+  .mobile-menu__wishlist {
+    background: url("../../../assets/images/svg/bg-heart.svg") no-repeat 15px center;
+    background-size: 20px;
+  }
+
+  .mobile-menu__messages {
+    background: url("../../../assets/images/svg/bg-message.svg") no-repeat 15px center;
+    background-size: 20px;
+  }
+
+  .mobile-menu__button {
+    display: block;
+    padding: 24px 15px 24px 50px;
+    color: $brand-primary;
+    background: url("../../../assets/images/svg/plus-in-circle.svg") no-repeat 15px center;
+    background-size: 20px;
+  }
+}

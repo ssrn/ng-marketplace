@@ -1,0 +1,71 @@
+@import "../../../styles/init";
+
+:host {
+  .main-nav-trigger {
+    position: relative;
+    display: block;
+    width: 42px;
+    height: 36px;
+    margin-left: 7px;
+    padding: 8px;
+    background: none;
+    border: none;
+    transform: rotate(0deg);
+    transition: all .3s ease-in-out 0s;
+    cursor: pointer;
+
+    &.active {
+      .main-nav-trigger__line {
+        &:nth-child(1) {
+          top: 18px;
+          left: 50%;
+          width: 0;
+        }
+
+        &:nth-child(2) {
+          transform: rotate(45deg);
+        }
+
+        &:nth-child(3) {
+          transform: rotate(-45deg);
+        }
+
+        &:nth-child(4) {
+          top: 18px;
+          left: 50%;
+          width: 0;
+        }
+      }
+    }
+
+    @media screen and (min-width: 940px) {
+      display: none;
+    }
+  }
+
+  .main-nav-trigger__line {
+    position: absolute;
+    left: 8px;
+    display: block;
+    height: 2px;
+    width: 26px;
+    background: $brand-primary;
+    border-radius: $border-radius;
+    transform: rotate(0deg);
+    transition: all .25s ease-in-out 0s;
+    opacity: 1;
+
+    &:nth-child(1) {
+      top: 8px;
+    }
+
+    &:nth-child(2),
+    &:nth-child(3) {
+      top: 18px;
+    }
+
+    &:nth-child(4) {
+      top: 28px;
+    }
+  }
+}

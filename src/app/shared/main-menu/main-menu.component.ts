@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Observable } from 'rxjs';
 import { DocumentData } from '@angular/fire/firestore';
 import { MainMenuService } from './main-menu.service';
@@ -10,14 +10,10 @@ import { MainMenuService } from './main-menu.service';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 
-export class MainMenuComponent implements OnInit {
-  menu: Observable<DocumentData[]>;
+export class MainMenuComponent {
+  menu: Observable<DocumentData[]> = this.menuService.getMainMenu();
 
   constructor(private menuService: MainMenuService) { }
-
-  ngOnInit() {
-    this.menu = this.menuService.getMainMenu();
-  }
 
   identify(index: number, item): string {
     return item.name;

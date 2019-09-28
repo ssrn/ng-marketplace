@@ -46,6 +46,8 @@
         </div>
 
         <a *ngIf="auth.uid | async" routerLink="/add-product" class="page-header__button button button--primary">Продать урожай</a>
+
+        <app-main-menu-trigger></app-main-menu-trigger>
       </div>
     </div>
   </div>

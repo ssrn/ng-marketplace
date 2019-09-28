@@ -1,0 +1,37 @@
+@import "../../../../src/styles/init";
+
+:host {
+  .main-nav {
+    @media screen and (max-width: 940px) {
+      display: none;
+    }
+  }
+
+  .main-nav__list {
+    display: inline-flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    min-width: 50%;
+  }
+
+  .main-nav__item {
+    display: inline-block;
+    margin-right: 30px;
+
+    &:last-child {
+      margin-right: 16px;
+    }
+  }
+
+  .main-nav__link {
+    display: block;
+    color: $text-primary;
+    font-size: 21px;
+    text-decoration: none;
+
+    &.active,
+    &:hover {
+      @extend .gradient-letters;
+    }
+  }
+}
