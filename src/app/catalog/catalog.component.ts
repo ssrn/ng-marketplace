@@ -1,5 +1,4 @@
 import { Component, NgIterable, OnDestroy } from '@angular/core';
-import { FirestoreSearchQuery } from '../products/firestoreSearchQuery.interface';
 import { NavigationEnd, Router } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
 import { FirestoreService } from '../products/firestore.service';
@@ -12,7 +11,6 @@ import { Product } from '../products/product.interface';
 
 export class CatalogComponent implements OnDestroy {
   products: Observable<Product[]>;
-  searchQuery: FirestoreSearchQuery;
   url: string[];
   subscription: Subscription;
 
@@ -25,12 +23,10 @@ export class CatalogComponent implements OnDestroy {
         this.url = this.router.url.split('/');
 
         if (this.url.length < 4) {
-          this.searchQuery = {where: [{fieldPath: 'category.parentId', opStr: '==', value: this.url[this.url.length - 1]}]};
+          this.products = this.db.getPublishedProductsByMainCategory(this.url[this.url.length - 1]);
         } else {
-          this.searchQuery = {where: [{fieldPath: 'category.id', opStr: '==', value: this.url[this.url.length - 1]}]};
+          this.products = this.db.getPublishedProductsBySubCategory(this.url[this.url.length - 1]);
         }
-
-        this.products = this.db.getPublishedProducts(this.searchQuery);
       }
     });
   }

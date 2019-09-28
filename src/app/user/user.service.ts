@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AuthService } from '../auth/auth.service';
-import { FirestoreService } from '../products/firestore.service';
 import { flatMap } from 'rxjs/operators';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { FirestoreSearchQuery } from '../products/firestoreSearchQuery.interface';
 import { Observable } from 'rxjs';
 import { Product } from '../products/product.interface';
 import { User } from './user.interface';

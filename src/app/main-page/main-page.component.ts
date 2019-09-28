@@ -15,6 +15,6 @@ export class MainPageComponent {
   constructor(
     private db: FirestoreService,
   ) {
-    this.products = this.db.getPublishedProducts({limit: 4});
+    this.products = this.db.getPublishedProducts(4);
   }
 }

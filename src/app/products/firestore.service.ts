@@ -7,7 +7,6 @@ import {
 } from '@angular/fire/firestore';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { combineLatest, forkJoin, Observable } from 'rxjs';
-import { FirestoreSearchQuery } from './firestoreSearchQuery.interface';
 import { Category } from '../catalog/categories-menu/category.interface';
 import { Product } from './product.interface';
 
@@ -37,22 +36,51 @@ export class FirestoreService {
     });
   }
 
-  getPublishedProducts(searchQuery: FirestoreSearchQuery): Observable<Product[]> {
+  getPublishedProducts(limit?: number, orderBy?): Observable<Product[]> {
     const products: AngularFirestoreCollection<Product> = this.db.collection('products', ref => {
-      if (searchQuery.where !== undefined) {
-        return ref.where(searchQuery.where[0].fieldPath, searchQuery.where[0].opStr, searchQuery.where[0].value)
-          .where('published', '==', true);
-        // searchQuery.where.forEach(obj => {
-        //   return ref.where(obj.fieldPath, obj.opStr, obj.value);
-        // });
+      let query = ref.where('published', '==', true);
+      if (limit) {
+        query = query.limit(limit);
       }
-      if (searchQuery.limit !== undefined) {
-        return ref.limit(searchQuery.limit).where('published', '==', true);
+      if (orderBy) {
+        query = query.orderBy(orderBy);
       }
-      return ref;
+      return query;
     });
     return products.valueChanges();
   }
+
+
+  getPublishedProductsByMainCategory(value, limit?: number, orderBy?): Observable<Product[]> {
+    const products: AngularFirestoreCollection<Product> = this.db.collection('products', ref => {
+      let query = ref.where('category.parentId', '==', value)
+        .where('published', '==', true);
+      if (limit) {
+        query = query.limit(limit);
+      }
+      if (orderBy) {
+        query = query.orderBy(orderBy);
+      }
+      return query;
+    });
+    return products.valueChanges();
+  }
+
+  getPublishedProductsBySubCategory(value, orderBy?, limit?): Observable<Product[]> {
+    const products: AngularFirestoreCollection<Product> = this.db.collection('products', ref => {
+      let query = ref.where('category.id', '==', value)
+        .where('published', '==', true);
+      if (orderBy) {
+        query = query.orderBy(orderBy);
+      }
+      if (limit) {
+        query = query.limit(limit);
+      }
+      return query;
+    });
+    return products.valueChanges();
+  }
+
 
   getProduct(id: string): Observable<Product> {
     const afd: AngularFirestoreDocument<Product> = this.productCollection.doc(id);
