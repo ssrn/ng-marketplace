@@ -9,7 +9,7 @@
   </nav>
 
   <div class="mobile-menu__services">
-    <a  *ngIf="auth.uid | async" routerLink="/user" class="mobile-menu__services-item mobile-menu__login">Личный кабинет</a>
+    <a *ngIf="auth.uid$ | async" routerLink="/user" class="mobile-menu__services-item mobile-menu__login">Личный кабинет</a>
     <a routerLink="/wishlist" class="mobile-menu__services-item mobile-menu__wishlist">Избранное</a>
 <!--    <a href="/messenger-channels" class="mobile-menu__services-item mobile-menu__messages">-->
 <!--      Сообщения-->

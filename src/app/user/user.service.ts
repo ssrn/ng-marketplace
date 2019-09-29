@@ -33,7 +33,7 @@ export class UserService {
   }
 
   private checkUidAndDo(func): Observable<any> {
-    return this.auth.uid.pipe(
+    return this.auth.uid$.pipe(
       flatMap(uid => {
         if (uid === null) {
           return null;

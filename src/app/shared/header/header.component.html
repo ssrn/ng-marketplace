@@ -27,16 +27,16 @@
               </span>
             </a>
 
-            <a *ngIf="auth.uid | async" routerLink="/user/my-products" class="link header-services__item header-services__products">Мои объявления</a>
+            <a *ngIf="auth.uid$ | async" routerLink="/user/my-products" class="link header-services__item header-services__products">Мои объявления</a>
 
-            <div *ngIf="auth.uid | async" class="header-services__item header-services__profile">
+            <div *ngIf="auth.uid$ | async" class="header-services__item header-services__profile">
               <a routerLink="/user" class="header-services__avatar">
                 <svg class="icon-user">
                   <use xlink:href="./assets/images/svg/user.svg#user"></use>
                 </svg>
               </a>
             </div>
-            <div *ngIf="(auth.uid | async) === null" class="btn-group">
+            <div *ngIf="(auth.uid$ | async) === null" class="btn-group">
               <button (click)="ngxSmartModalService.getModal('login').open()"
                       class="link button--link">Вход</button>
               <button (click)="ngxSmartModalService.getModal('registration').open()"
@@ -45,7 +45,7 @@
           </div>
         </div>
 
-        <a *ngIf="auth.uid | async" routerLink="/add-product" class="page-header__button button button--primary">Продать урожай</a>
+        <a *ngIf="auth.uid$ | async" routerLink="/add-product" class="page-header__button button button--primary">Продать урожай</a>
 
         <app-main-menu-trigger></app-main-menu-trigger>
       </div>

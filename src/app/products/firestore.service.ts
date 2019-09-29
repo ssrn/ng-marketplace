@@ -93,12 +93,12 @@ export class FirestoreService {
       data = {
         id,
         hasPhotos: true,
-        photos: photoUrls
+        photos: photoUrls,
       };
     } else {
       data = {
         id,
-        hasPhotos: false
+        hasPhotos: false,
       };
     }
 

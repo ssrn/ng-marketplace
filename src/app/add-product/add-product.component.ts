@@ -3,6 +3,8 @@ import { FirestoreService } from '../products/firestore.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Category } from '../catalog/categories-menu/category.interface';
 import { Product } from '../products/product.interface';
+import { AuthService } from '../auth/auth.service';
+import { Observable, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-add-product',
@@ -17,10 +19,12 @@ export class AddProductComponent implements OnInit {
   productId: string;
   productMainCategories: Category[];
   productSubcategories: Category[];
+  uid = this.auth.uid;
 
   constructor(
     private db: FirestoreService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private auth: AuthService,
   ) { }
 
   ngOnInit() {
@@ -42,7 +46,7 @@ export class AddProductComponent implements OnInit {
     this.productForm = this.fb.group({
       id: '',
       category: {},
-      photos: this.fb.array([]),
+      photos: null,
       name: ['', [
           Validators.required,
           // Validators.pattern(/[А-я]/)
@@ -50,12 +54,13 @@ export class AddProductComponent implements OnInit {
       ],
       price: [0, Validators.required],
       description: '',
-      published: true
+      published: true,
+      uid: this.auth.uid
     });
   }
 
   handleSubmit(product: Product) {
-    if (product.photos.length > 0) {
+    if (product.photos) {
       this.db.addProduct(product)
         .then(result => this.productId = result.id)
         .then(() => this.db.uploadProductPhotos(this.filesToUpload))
@@ -69,6 +74,9 @@ export class AddProductComponent implements OnInit {
         .then(() => alert('success'))
         .catch(error => console.log(error));
     }
+    // this.auth.uid$.pipe(uid => {
+    //   this.db.updateProduct(uid))
+    // });
   }
 
   handlePhotosInput(files: FileList) {

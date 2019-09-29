@@ -3,16 +3,16 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore, AngularFirestoreCollection, DocumentReference } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { map, switchMap } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  uid: Observable<string>;
+  uid$: Observable<string>;
+  uid: string | null;
   private userCollection: AngularFirestoreCollection;
-  user;
 
   constructor(
     private afAuth: AngularFireAuth,
@@ -21,8 +21,15 @@ export class AuthService {
   ) {
     this.userCollection = db.collection('users');
 
-    this.uid = this.afAuth.authState.pipe(
-      map(authState => authState ? authState.uid  : null)
+    this.uid$ = this.afAuth.authState.pipe(
+      map(authState => {
+        if (authState) {
+          this.uid = authState.uid;
+          return authState.uid;
+        }
+        this.uid = null;
+        return null;
+      })
     );
   }
   get authenticated() {
