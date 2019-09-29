@@ -9,7 +9,12 @@
   <div class="catalog-top__item catalog-filters-photo button-group">
     <label class="check subscribe__checkbox">
       только с фото
-      <input type="checkbox" name="agreement" class="check__input visually-hidden">
+      <input
+        type="checkbox"
+        [(ngModel)]="isPhotosChecked"
+        name="agreement"
+        class="check__input visually-hidden"
+        (change)="handleSortPhotos()">
       <span class="check__box"></span>
     </label>
   </div>

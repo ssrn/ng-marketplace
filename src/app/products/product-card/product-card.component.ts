@@ -25,8 +25,8 @@ export class ProductCardComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    if (this.product.img.length > 0) {
-      this.photoUrl = this.db.getProductPhotos(this.product.img);
+    if (this.product.photos.length > 0) {
+      this.photoUrl = this.db.getProductPhotos(this.product.photos);
     }
   }
 

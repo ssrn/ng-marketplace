@@ -18,7 +18,7 @@ export class ProductPageComponent implements OnInit, OnDestroy {
     switchMap((param) => this.db.getProduct(param.id))
   );
   photoUrl: Observable<string[]> = this.product$.pipe(
-    switchMap((product) => this.db.getProductPhotos(product.img))
+    switchMap((product) => this.db.getProductPhotos(product.photos))
   );
   @Output() remove: EventEmitter<string> = new EventEmitter();
   subscription: Subscription;

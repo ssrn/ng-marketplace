@@ -42,7 +42,7 @@ export class AddProductComponent implements OnInit {
     this.productForm = this.fb.group({
       id: '',
       category: {},
-      img: this.fb.array([]),
+      photos: this.fb.array([]),
       name: ['', [
           Validators.required,
           // Validators.pattern(/[А-я]/)
@@ -55,7 +55,7 @@ export class AddProductComponent implements OnInit {
   }
 
   handleSubmit(product: Product) {
-    if (product.img.length > 0) {
+    if (product.photos.length > 0) {
       this.db.addProduct(product)
         .then(result => this.productId = result.id)
         .then(() => this.db.uploadProductPhotos(this.filesToUpload))

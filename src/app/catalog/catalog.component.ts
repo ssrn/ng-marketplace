@@ -3,47 +3,60 @@ import { NavigationEnd, Router } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
 import { FirestoreService } from '../products/firestore.service';
 import { Product } from '../products/product.interface';
+import { filter, map, switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-catalog',
   templateUrl: './catalog.component.html',
 })
 
-export class CatalogComponent implements OnDestroy {
+export class CatalogComponent {
   products: Observable<Product[]>;
   url: string[];
-  subscription: Subscription;
+  isMainCategory: boolean;
+  category: string;
+  isPhotosChecked = false;
+  isPriceSorted: false | 'asc' | 'desc';
 
   constructor(
     private router: Router,
     private db: FirestoreService,
   ) {
-    this.subscription = router.events.subscribe((val) => {
-      if (val instanceof NavigationEnd) {
-        this.url = this.router.url.split('/');
-
-        if (this.url.length < 4) {
-          this.products = this.db.getPublishedProductsByMainCategory(this.url[this.url.length - 1]);
-        } else {
-          this.products = this.db.getPublishedProductsBySubCategory(this.url[this.url.length - 1]);
-        }
-      }
+    router.events.pipe(
+      filter(e => e instanceof NavigationEnd)
+    ).subscribe(e => {
+      this.url = this.router.url.split('/');
+      this.isMainCategory = this.url.length < 4;
+      this.category = this.url[this.url.length - 1];
+      this.handleSortingAndFiltering();
     });
   }
 
-  ngOnDestroy() {
-    this.subscription.unsubscribe();
+  handleSortByPopularity() {
+    this.handleSortingAndFiltering();
   }
 
-  handleSortByPopularity($event) {
-    console.log($event);
+  handleSortFromLowToHigh() {
+    this.isPriceSorted = 'asc';
+    this.handleSortingAndFiltering();
   }
 
-  handleSortFromLowToHigh($event) {
-    console.log($event);
+  handleSortFromHighToLow() {
+    this.isPriceSorted = 'desc';
+    this.handleSortingAndFiltering();
   }
 
-  handleSortFromHighToLow($event) {
-    console.log($event);
+  handleSortPhotos($event) {
+    this.isPhotosChecked = !this.isPhotosChecked;
+    this.handleSortingAndFiltering();
+  }
+
+  handleSortingAndFiltering() {
+    this.products = this.db.getPublishedProductsByCategory(
+      this.isMainCategory,
+      this.category,
+      this.isPhotosChecked,
+      this.isPriceSorted
+    );
   }
 }

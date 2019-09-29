@@ -1,8 +1,10 @@
 <h1>Каталог</h1>
 <app-categories-menu></app-categories-menu>
 <app-catalog-top
-  (sortByPopularity)="handleSortByPopularity($event)"
-  (sortFromLowToHigh)="handleSortFromLowToHigh($event)"
-  (sortFromHighToLow)="handleSortFromHighToLow($event)"
+  (sortByPopularity)="handleSortByPopularity()"
+  (sortFromLowToHigh)="handleSortFromLowToHigh()"
+  (sortFromHighToLow)="handleSortFromHighToLow()"
+  (sortPhotos)="handleSortPhotos($event)"
+  [isPhotosChecked]="isPhotosChecked"
 ></app-catalog-top>
 <app-product-list [products]="products | async"></app-product-list>

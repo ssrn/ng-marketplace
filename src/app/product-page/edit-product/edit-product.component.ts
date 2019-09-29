@@ -47,7 +47,7 @@ export class EditProductComponent implements OnInit {
     this.productForm = this.fb.group({
       id: '',
       category: {},
-      img: this.fb.array([]),
+      photos: this.fb.array([]),
       name: ['', [
         Validators.required,
         // Validators.pattern(/[А-я]/)
