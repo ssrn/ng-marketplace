@@ -2,24 +2,35 @@
 
 <div class="user-settings">
   <div *ngIf="user$ | async as user" class="edit-user">
-    {{user | json}}
-    <h1 class="page-title">{{user[0].name}}</h1>
-    <form class="add-product__form" [formGroup]="userForm" (ngSubmit)="handleSubmit(userForm.value)">
+    {{user[0].photo}}
+    <form class="user-settings__form" [formGroup]="userForm" (ngSubmit)="handleSubmit(userForm.value)">
+      <div class="user-settings__photo">
+        <div class="user-picture">
+          <img class="cropped-image" src="./assets/images/user-pictures/user.jpg" [alt]="user[0].name">
+        </div>
+        <div class="form-item form-type-file form-item__files-picture-upload">
+          <label for="edit-picture-upload" class="visually-hidden">Файл</label>
+          <input id="edit-picture-upload" type="file" name="files[picture_upload]" size="48" class="form-file">
+        </div>
+      </div>
+
       <div class="form-item">
-        <label for="fld-product-name">Название объявления</label>
-        <input type="text" id="fld-product-name" formControlName="name" maxlength="50"
-               [value]="user[0].name">
+        <label for="fld-user-name">Имя</label>
+        <h1 class="user-settings__title">
+          <span class="visually-hidden">{{user[0].name}}</span>
+          <input type="text" id="fld-user-name" formControlName="name" maxlength="50"
+                 [value]="user[0].name">
+        </h1>
       </div>
       <div class="form-item">
-        <label for="fld-product-desc">Описание объявления</label>
-        <textarea id="fld-product-desc" formControlName="description" rows="6" maxlength="3000"
-                  [value]="user[0].uid"></textarea>
-      </div>
-      <div class="form-item">
-        <label for="fld-product-price">Цена</label>
-        <input type="text" id="fld-product-price" formControlName="price" maxlength="16"
+        <label for="fld-user-email">Email</label>
+        <input type="text" id="fld-user-email" formControlName="name" maxlength="50"
                [value]="user[0].email">
-        <span class="number-format-currency"> ₽</span>
+      </div>
+      <div class="form-item">
+        <label for="fld-user-phone">Телефон</label>
+        <input type="text" id="fld-user-phone" formControlName="name" maxlength="50"
+               [value]="user[0].phone">
       </div>
       <button type="submit" class="button button--primary button--l">Изменить</button>
     </form>

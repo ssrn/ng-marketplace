@@ -1,5 +1,40 @@
+@import "../../../styles/init";
+
 :host {
   display: grid;
   grid-template-columns: 170px auto;
   grid-column-gap: 30px;
+
+  .user-settings {
+    margin-top: 6px;
+  }
+
+  .user-settings__form {
+    width: 100%;
+
+    @include media(ms) {
+      max-width: 360px;
+    }
+  }
+
+  .user-settings__title {
+    margin: 0;
+    font-size: 16px;
+  }
+
+  .form-item__files-picture-upload input {
+    padding-left: 0;
+  }
+
+  .user-picture {
+    height: 128px;
+    width: 128px;
+    margin-bottom: 16px;
+    border: 1px solid #ececec;
+    box-shadow: $box-shadow;
+  }
+
+  .avatar img {
+    border-radius: 50%;
+  }
 }
