@@ -17,7 +17,9 @@ export class MyProductActionsComponent {
   }
 
   handleRemove() {
-    this.remove.emit(null);
+    if (confirm('Вы уверены, что хотите удалить товар?')) {
+      this.remove.emit(null);
+    }
   }
 
   unpublishHandle() {

@@ -9,6 +9,7 @@ import { map } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
+
 export class AuthService {
   uid$: Observable<string>;
   uid: string;
