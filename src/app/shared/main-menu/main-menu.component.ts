@@ -11,7 +11,7 @@ import { MainMenuService } from './main-menu.service';
 })
 
 export class MainMenuComponent {
-  menu: Observable<DocumentData[]> = this.menuService.getMainMenu();
+  menu$: Observable<DocumentData[]> = this.menuService.getMainMenu();
 
   constructor(private menuService: MainMenuService) { }
 

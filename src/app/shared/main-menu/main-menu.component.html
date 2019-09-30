@@ -1,6 +1,6 @@
 <nav class="main-nav">
     <ul class="main-nav__list">
-      <li class="main-nav__item" *ngFor="let menuItem of menu | async; trackBy: identify">
+      <li class="main-nav__item" *ngFor="let menuItem of menu$ | async; trackBy: identify">
         <a [routerLink]="['/catalog', menuItem.url]" routerLinkActive="active"
            class="main-nav__link link">{{menuItem.name}}</a>
       </li>

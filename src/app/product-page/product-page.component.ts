@@ -17,7 +17,7 @@ export class ProductPageComponent implements OnInit, OnDestroy {
   product$: Observable<Product> = this.route.params.pipe(
     switchMap((param) => this.productsService.getProduct(param.id))
   );
-  photoUrl: Observable<string[]> = this.product$.pipe(
+  photoUrl$: Observable<string[]> = this.product$.pipe(
     switchMap((product) => this.productsService.getProductPhotos(product.photos))
   );
   @Output() remove: EventEmitter<string> = new EventEmitter();
@@ -48,7 +48,7 @@ export class ProductPageComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     // NgxGalleryImage does not accept Observable
-    this.subscription = this.photoUrl.subscribe(urls => {
+    this.subscription = this.photoUrl$.subscribe(urls => {
       this.galleryImages = urls.map((url) => {
         return {
           small: url,
