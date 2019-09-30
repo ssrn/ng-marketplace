@@ -5,6 +5,7 @@ import { Category } from '../catalog/categories-menu/category.interface';
 import { Product } from '../products/product.interface';
 import { AuthService } from '../auth/auth.service';
 import { Observable, Subscription } from 'rxjs';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-add-product',
@@ -24,6 +25,7 @@ export class AddProductComponent implements OnInit {
     private products: ProductsService,
     private fb: FormBuilder,
     private auth: AuthService,
+    private toastr: ToastrService
   ) { }
 
   ngOnInit() {
@@ -54,7 +56,7 @@ export class AddProductComponent implements OnInit {
       price: [0, Validators.required],
       description: '',
       published: true,
-      uid: this.auth.uid$
+      uid: this.auth.uid
     });
   }
 
@@ -65,13 +67,18 @@ export class AddProductComponent implements OnInit {
         .then(() => this.products.uploadProductPhotos(this.filesToUpload))
         .then(() => this.products.updateProduct(this.productId, this.productPhotoPaths))
         .then(() => alert('success'))
-        .catch(error => console.log(error));
+        .then(() => this.toastr.success('Товар успешно добавлен!', null,{
+          timeOut: 3000
+        }))
+        .catch(error => this.toastr.error(error));
     } else {
       this.products.addProduct(product)
         .then(result => this.productId = result.id)
         .then(() => this.products.updateProduct(this.productId))
-        .then(() => alert('success'))
-        .catch(error => console.log(error));
+        .then(() => this.toastr.success('Товар успешно добавлен!', null, {
+          timeOut: 3000
+        }))
+        .catch(error => this.toastr.error(error));
     }
   }
 

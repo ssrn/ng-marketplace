@@ -11,6 +11,8 @@ import { AngularFireStorage, AngularFireStorageModule } from '@angular/fire/stor
 import { NgxSmartModalModule } from 'ngx-smart-modal';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AuthModule } from './auth/auth.module';
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -26,6 +28,8 @@ import { AuthModule } from './auth/auth.module';
     NgxSmartModalModule.forRoot(),
     SharedModule,
     AuthModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot()
   ],
   providers: [AngularFirestore, AngularFireStorage],
   bootstrap: [AppComponent]

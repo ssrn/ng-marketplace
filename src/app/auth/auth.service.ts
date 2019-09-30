@@ -11,6 +11,7 @@ import { map } from 'rxjs/operators';
 })
 export class AuthService {
   uid$: Observable<string>;
+  uid: string;
   private userCollection: AngularFirestoreCollection;
 
   constructor(
@@ -23,6 +24,7 @@ export class AuthService {
     this.uid$ = this.auth.authState.pipe(
       map(authState => {
         if (authState) {
+          this.uid = authState.uid;
           return authState.uid;
         }
         return null;
