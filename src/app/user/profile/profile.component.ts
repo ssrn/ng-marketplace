@@ -12,7 +12,7 @@ import { AuthService } from '../../auth/auth.service';
 })
 export class ProfileComponent implements OnInit {
   // uid = this.auth.uid;
-  user$: Observable<User[]> = this.userService.getUser();
+  user$: Observable<User[]> = this.userService.getCurrentUser();
   userForm: FormGroup;
   constructor(
     private userService: UserService,

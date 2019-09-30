@@ -11,7 +11,6 @@ import { map } from 'rxjs/operators';
 })
 export class AuthService {
   uid$: Observable<string>;
-  uid: string | null;
   private userCollection: AngularFirestoreCollection;
 
   constructor(
@@ -24,18 +23,10 @@ export class AuthService {
     this.uid$ = this.auth.authState.pipe(
       map(authState => {
         if (authState) {
-          this.uid = authState.uid;
           return authState.uid;
         }
-        this.uid = null;
         return null;
       })
-    );
-  }
-
-  get authenticated() {
-    return this.auth.authState.pipe(
-      map(authState => authState ? authState.uid  : null)
     );
   }
 
@@ -51,8 +42,9 @@ export class AuthService {
       });
   }
 
-  logout(): Promise<void> {
-    return this.auth.auth.signOut();
+  logout() {
+    this.auth.auth.signOut();
+    this.router.navigate(['/']);
   }
 
   createUser(user): void {

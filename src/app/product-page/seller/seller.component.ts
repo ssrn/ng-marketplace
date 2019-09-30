@@ -12,7 +12,7 @@ import { UserService } from '../../user/user.service';
 export class SellerComponent implements OnInit {
   @Input() uid: string;
   seller$: Observable<User[]>;
-  isPhoneShown: false;
+  isPhoneShown = false;
 
   constructor(private userService: UserService) {}
 

@@ -19,7 +19,6 @@ export class AddProductComponent implements OnInit {
   productId: string;
   productMainCategories: Category[];
   productSubcategories: Category[];
-  uid = this.auth.uid;
 
   constructor(
     private db: FirestoreService,
@@ -55,7 +54,7 @@ export class AddProductComponent implements OnInit {
       price: [0, Validators.required],
       description: '',
       published: true,
-      uid: this.auth.uid
+      uid: this.auth.uid$
     });
   }
 

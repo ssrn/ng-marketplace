@@ -12,16 +12,16 @@ import { Product } from '../../products/product.interface';
 })
 
 export class MyProductsComponent implements OnInit {
-  userProducts: Observable<Product[]>;
+  userProducts$: Observable<Product[]>; // = this.user.getUserProducts();
   wishlistBtnMode: WishlistBtnModeEnum = WishlistBtnModeEnum.None;
 
   constructor(
-    private userService: UserService,
+    private user: UserService,
     private db: FirestoreService
   ) { }
 
   ngOnInit() {
-    this.userProducts = this.userService.getUserProducts();
+    this.userProducts$ = this.user.getUserProducts();
   }
 
   identify(index: number, item: Product): string {
