@@ -5,10 +5,12 @@ import { ProfileComponent } from './profile/profile.component';
 import { LoginComponent } from '../auth/login/login.component';
 import { RegistrationComponent } from '../auth/registration/registration.component';
 import { AuthGuard } from '../auth/auth.guard';
+import { OrdersComponent } from './orders/orders.component';
 
 const routes: Routes = [
   { path: '', component: ProfileComponent },
   { path: 'my-products', component: MyProductsComponent, canActivate: [AuthGuard] },
+  { path: 'orders', component: OrdersComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegistrationComponent }
 ];

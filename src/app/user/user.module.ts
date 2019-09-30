@@ -8,7 +8,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { AuthModule } from '../auth/auth.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { UserMenuComponent } from './user-menu/user-menu.component';
-import { UserComponent } from './user.component';
+import { OrdersComponent } from './orders/orders.component';
 
 
 @NgModule({
@@ -17,7 +17,7 @@ import { UserComponent } from './user.component';
     MyProductActionsComponent,
     ProfileComponent,
     UserMenuComponent,
-    UserComponent,
+    OrdersComponent,
   ],
   imports: [
     CommonModule,
@@ -26,6 +26,5 @@ import { UserComponent } from './user.component';
     AuthModule,
     ReactiveFormsModule
   ],
-  bootstrap: [UserComponent]
 })
 export class UserModule { }

@@ -1,7 +1,11 @@
+@import "../../../styles/init";
+
 :host {
-  display: grid;
-  grid-template-columns: 170px auto;
-  grid-column-gap: 30px;
+  @include media(sm) {
+    display: grid;
+    grid-template-columns: 170px auto;
+    grid-column-gap: 30px;
+  }
 
   .add-product-button {
     margin-bottom: 8px;
