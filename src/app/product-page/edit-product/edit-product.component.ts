@@ -14,22 +14,20 @@ import { Product } from '../../products/product.interface';
 })
 export class EditProductComponent implements OnInit {
   product$: Observable<Product> = this.route.params.pipe(
-    switchMap((param) => this.db.getProduct(param.id))
+    switchMap((param) => this.productsService.getProduct(param.id))
   );
   productForm: FormGroup;
-  filesToUpload: FileList;
-  productPhotoPaths: string[] = [];
   productMainCategories: Category[];
   productSubcategories: Category[];
 
   constructor(
     private route: ActivatedRoute,
-    private db: ProductsService,
+    private productsService: ProductsService,
     private fb: FormBuilder
   ) { }
 
   ngOnInit() {
-    this.db.getProductCategories().subscribe(
+    this.productsService.getProductCategories().subscribe(
       categories => {
         this.productMainCategories = categories.filter(category => category.parentId === '');
         const subCategoriesArr = [];

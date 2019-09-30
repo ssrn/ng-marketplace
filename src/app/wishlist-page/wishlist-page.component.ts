@@ -11,19 +11,22 @@ import { WishlistService } from '../products/wishlist-btn/wishlist.service';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class WishlistPageComponent implements OnInit {
-  wishedProducts: Observable<Product[]>;
+  wishedProducts$: Observable<Product[]>;
   wishedProductIds: Array<string>;
   msg: string;
   wishlistBtnMode: WishlistBtnModeEnum = WishlistBtnModeEnum.Trash;
 
-  constructor(private db: ProductsService, private wishlistService: WishlistService) { }
+  constructor(
+    private productsService: ProductsService,
+    private wishlistService: WishlistService
+  ) { }
 
   ngOnInit() {
     this.wishedProductIds = this.wishlistService.getProductIds();
     if (this.wishedProductIds.length === 0) {
       this.msg = 'Пока пусто';
     } else {
-      this.wishedProducts = this.db.getProductsByIds(this.wishedProductIds);
+      this.wishedProducts$ = this.productsService.getProductsByIds(this.wishedProductIds);
     }
   }
 
@@ -32,6 +35,6 @@ export class WishlistPageComponent implements OnInit {
     if (this.wishedProductIds.length === 0) {
       this.msg = 'Пока пусто';
     }
-    this.wishedProducts = this.db.getProductsByIds(this.wishedProductIds);
+    this.wishedProducts$ = this.productsService.getProductsByIds(this.wishedProductIds);
   }
 }

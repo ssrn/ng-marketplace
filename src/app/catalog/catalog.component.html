@@ -7,4 +7,4 @@
   (sortPhotos)="handleSortPhotos($event)"
   [isPhotosChecked]="isPhotosChecked"
 ></app-catalog-top>
-<app-product-list [products]="products | async"></app-product-list>
+<app-product-list [products]="products$ | async"></app-product-list>

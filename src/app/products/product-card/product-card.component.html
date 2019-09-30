@@ -1,8 +1,8 @@
 <div [class.product--unpublished]="!product.published" class="product">
   <a [title]="product.name" [routerLink]="['/products', product.id]" class="product__link">
     <div class="product__img-wrap">
-      <img *ngIf="photoUrl | async; else noPhotos"
-           class="product__img cropped-image" src="{{photoUrl | async}}" [alt]="product.name" loading="lazy">
+      <img *ngIf="photoUrl$ | async; else noPhotos"
+           class="product__img cropped-image" src="{{photoUrl$ | async}}" [alt]="product.name" loading="lazy">
       <ng-template #noPhotos>
         <img class="product__img cropped-image" src="../../../assets/images/svg/no-product-photo.svg" [alt]="product.name">
       </ng-template>

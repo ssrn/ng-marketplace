@@ -21,13 +21,13 @@ export class AddProductComponent implements OnInit {
   productSubcategories: Category[];
 
   constructor(
-    private db: ProductsService,
+    private products: ProductsService,
     private fb: FormBuilder,
     private auth: AuthService,
   ) { }
 
   ngOnInit() {
-    this.db.getProductCategories().subscribe(
+    this.products.getProductCategories().subscribe(
       categories => {
         this.productMainCategories = categories.filter(category => category.parentId === '');
         const subCategoriesArr = [];
@@ -60,16 +60,16 @@ export class AddProductComponent implements OnInit {
 
   handleSubmit(product: Product) {
     if (product.photos) {
-      this.db.addProduct(product)
+      this.products.addProduct(product)
         .then(result => this.productId = result.id)
-        .then(() => this.db.uploadProductPhotos(this.filesToUpload))
-        .then(() => this.db.updateProduct(this.productId, this.productPhotoPaths))
+        .then(() => this.products.uploadProductPhotos(this.filesToUpload))
+        .then(() => this.products.updateProduct(this.productId, this.productPhotoPaths))
         .then(() => alert('success'))
         .catch(error => console.log(error));
     } else {
-      this.db.addProduct(product)
+      this.products.addProduct(product)
         .then(result => this.productId = result.id)
-        .then(() => this.db.updateProduct(this.productId))
+        .then(() => this.products.updateProduct(this.productId))
         .then(() => alert('success'))
         .catch(error => console.log(error));
     }

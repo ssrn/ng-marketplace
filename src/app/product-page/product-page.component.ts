@@ -15,10 +15,10 @@ import { Product } from '../products/product.interface';
 
 export class ProductPageComponent implements OnInit, OnDestroy {
   product$: Observable<Product> = this.route.params.pipe(
-    switchMap((param) => this.db.getProduct(param.id))
+    switchMap((param) => this.productsService.getProduct(param.id))
   );
   photoUrl: Observable<string[]> = this.product$.pipe(
-    switchMap((product) => this.db.getProductPhotos(product.photos))
+    switchMap((product) => this.productsService.getProductPhotos(product.photos))
   );
   @Output() remove: EventEmitter<string> = new EventEmitter();
   subscription: Subscription;
@@ -42,7 +42,7 @@ export class ProductPageComponent implements OnInit, OnDestroy {
 
   constructor(
     private route: ActivatedRoute,
-    private db: ProductsService,
+    private productsService: ProductsService,
     private wishlistService: WishlistService
   ) { }
 

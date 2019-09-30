@@ -11,7 +11,7 @@ import { filter, map, switchMap } from 'rxjs/operators';
 })
 
 export class CatalogComponent {
-  products: Observable<Product[]>;
+  products$: Observable<Product[]>;
   url: string[];
   isMainCategory: boolean;
   category: string;
@@ -20,7 +20,7 @@ export class CatalogComponent {
 
   constructor(
     private router: Router,
-    private db: ProductsService,
+    private productsService: ProductsService,
   ) {
     router.events.pipe(
       filter(e => e instanceof NavigationEnd)
@@ -52,7 +52,7 @@ export class CatalogComponent {
   }
 
   handleSortingAndFiltering() {
-    this.products = this.db.getPublishedProductsByCategory(
+    this.products$ = this.productsService.getPublishedProductsByCategory(
       this.isMainCategory,
       this.category,
       this.isPhotosChecked,

@@ -10,11 +10,11 @@ import { Product } from '../products/product.interface';
 })
 
 export class MainPageComponent {
-  products: Observable<Product[]>;
+  products$: Observable<Product[]>;
 
   constructor(
-    private db: ProductsService,
+    private productsService: ProductsService,
   ) {
-    this.products = this.db.getPublishedProducts(4);
+    this.products$ = this.productsService.getPublishedProducts(4);
   }
 }

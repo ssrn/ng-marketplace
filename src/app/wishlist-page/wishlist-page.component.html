@@ -1,4 +1,4 @@
 <h1>Избранное</h1>
 <p *ngIf="this.msg">{{msg}}</p>
-<app-product-list [products]="wishedProducts | async" [wishlistBtnMode]="wishlistBtnMode"
+<app-product-list [products]="wishedProducts$ | async" [wishlistBtnMode]="wishlistBtnMode"
                   (remove)="handleRemoveFromWishlist($event)"></app-product-list>

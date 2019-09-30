@@ -14,19 +14,19 @@ import { Product } from '../product.interface';
 })
 
 export class ProductCardComponent implements OnInit {
-  photoUrl: Observable<string[]>;
+  photoUrl$: Observable<string[]>;
   @Input() product: Product;
   @Input() wishlistBtnMode: WishlistBtnModeEnum;
   @Output() remove: EventEmitter<string> = new EventEmitter();
 
   constructor(
-    private db: ProductsService,
+    private productsService: ProductsService,
     private wishlistService: WishlistService
   ) { }
 
   ngOnInit() {
     if (this.product.photos) {
-      this.photoUrl = this.db.getProductPhotos(this.product.photos);
+      this.photoUrl$ = this.productsService.getProductPhotos(this.product.photos);
     }
   }
 
