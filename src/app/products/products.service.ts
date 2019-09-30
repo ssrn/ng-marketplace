@@ -59,7 +59,7 @@ export class ProductsService {
 
   getPublishedProductsByCategory(
     isMainCategory: boolean,
-    value,
+    value: any,
     withPhoto?: boolean,
     orderByDirection?: false | OrderByDirection
   ): Observable<Product[]> {
@@ -90,6 +90,12 @@ export class ProductsService {
           .valueChanges()
       )
     );
+  }
+
+  getSellerProducts(uid: string): Observable<Product[]> {
+    return this.db.collection<Product>('products', ref =>
+      ref.where('uid', '==', uid))
+      .valueChanges();
   }
 
   getProductPhotos(paths: string[]): Observable<string[]> {
