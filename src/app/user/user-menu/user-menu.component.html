@@ -13,6 +13,8 @@
       <a class="cabinet-menu__link" routerLink="/user" routerLinkActive="active"
          [routerLinkActiveOptions]="{exact: true}">Настройки</a>
     </li>
-
+    <li class="cabinet-menu__item">
+      <button (click)="handleLogout()" class="cabinet-menu__link cabinet-menu__button">Выход</button>
+    </li>
   </ul>
 </aside>
