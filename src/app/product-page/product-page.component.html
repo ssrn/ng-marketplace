@@ -1,9 +1,9 @@
-<div class="full-product">
-  <div *ngIf="product$ | async as product" class="full-product__top">
+<div *ngIf="product$ | async as product" class="full-product">
+  <div class="full-product__top">
     <h1 class="full-product__title">{{product.name}}</h1>
     <div class="full-product__price">{{product.price}}</div>
   </div>
-  <div *ngIf="product$ | async as product" class="full-product__main">
+  <div class="full-product__main">
     <div class="full-product__left">
       <ngx-gallery [options]="galleryOptions" [images]="galleryImages">
       </ngx-gallery>
@@ -20,7 +20,7 @@
     </div>
   </div>
   <div class="full-product__right">
-    <app-seller></app-seller>
+    <app-seller [uid]="product.uid"></app-seller>
   </div>
 </div>
 

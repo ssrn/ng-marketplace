@@ -13,8 +13,9 @@
     @media screen and (min-width: 640px) {
       grid-column-gap: 30px;
       grid-template-areas:
-        "a a a a a"
-        "b b b b c";
+        "a a a a"
+        "b b b c";
+      grid-template-columns: repeat(4, 1fr);;
     }
   }
 

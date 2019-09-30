@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AuthService } from '../auth/auth.service';
 import { flatMap } from 'rxjs/operators';
-import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { Product } from '../products/product.interface';
 import { User } from './user.interface';
@@ -16,30 +16,21 @@ export class UserService {
     private db: AngularFirestore,
   ) {}
 
-  getUser(): Observable<User> {
-    const func = (uid) => {
-      return this.db.collection('users', ref =>
-        ref.where('uid', '==', uid)).valueChanges();
-    };
-    return this.checkUidAndDo(func);
+  getUser(): Observable<User[]> {
+    return this.db.collection<User>('users', ref =>
+      ref.where('uid', '==', this.auth.uid))
+      .valueChanges();
   }
 
   getUserProducts(): Observable<Product[]> {
-    const func = (uid) => {
-      return this.db.collection('products', ref =>
-        ref.where('uid', '==', uid)).valueChanges();
-    };
-    return this.checkUidAndDo(func);
+    return this.db.collection<Product>('products', ref =>
+      ref.where('uid', '==', this.auth.uid))
+      .valueChanges();
   }
 
-  private checkUidAndDo(func): Observable<any> {
-    return this.auth.uid$.pipe(
-      flatMap(uid => {
-        if (uid === null) {
-          return null;
-        }
-        return func(uid);
-      })
-    );
+  getSeller(uid): Observable<User[]> {
+    return this.db.collection<User>('users', ref =>
+      ref.where('uid', '==', uid))
+      .valueChanges();
   }
 }

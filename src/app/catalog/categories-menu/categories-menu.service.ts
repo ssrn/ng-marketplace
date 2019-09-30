@@ -11,8 +11,8 @@ export class CategoriesMenuService {
   constructor(private db: AngularFirestore) { }
 
   getSubcategoriesMenu(parentId: string): Observable<Category[]> {
-    const categories: AngularFirestoreCollection<Category> = this.db.collection('product_categories', ref =>
-      ref.where('parentId', '==', parentId).orderBy('weight'));
-    return categories.valueChanges();
+    return this.db.collection<Category>('product_categories', ref =>
+      ref.where('parentId', '==', parentId).orderBy('weight'))
+      .valueChanges();
   }
 }

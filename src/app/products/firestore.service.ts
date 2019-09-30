@@ -40,14 +40,14 @@ export class FirestoreService {
   getPublishedProducts(
     limit?: number,
   ): Observable<Product[]> {
-    const products: AngularFirestoreCollection<Product> = this.db.collection('products', ref => {
+    return this.db.collection<Product>('products', ref => {
       let query = ref.where('published', '==', true);
       if (limit) {
         query = query.limit(limit);
       }
       return query;
-    });
-    return products.valueChanges();
+    })
+      .valueChanges();
   }
 
   getPublishedProductsByCategory(
@@ -56,7 +56,7 @@ export class FirestoreService {
     withPhoto?: boolean,
     orderByDirection?: false | OrderByDirection
   ): Observable<Product[]> {
-    const products: AngularFirestoreCollection<Product> = this.db.collection('products', ref => {
+    return this.db.collection<Product>('products', ref => {
       const fieldPath = isMainCategory ? 'category.parentId' : 'category.id';
       let query = ref.where(fieldPath, '==', value)
         .where('published', '==', true);
@@ -67,13 +67,12 @@ export class FirestoreService {
         query = query.orderBy('price', orderByDirection);
       }
       return query;
-    });
-    return products.valueChanges();
+    })
+      .valueChanges();
   }
 
   getProduct(id: string): Observable<Product> {
-    const afd: AngularFirestoreDocument<Product> = this.productCollection.doc(id);
-    return afd.valueChanges();
+    return this.productCollection.doc<Product>(id).valueChanges();
   }
 
   getProductsByIds(ids: string[]): Observable<Product[]> {
@@ -102,20 +101,20 @@ export class FirestoreService {
       };
     }
 
-    this.productCollection.doc(id).update(data)
+    this.productCollection.doc<Product>(id).update(data)
       .catch(error => console.log(error));
   }
 
-  removeProduct(id: string) {
-    this.productCollection.doc(id).delete().then(() => {
+  removeProduct(id: string): void {
+    this.productCollection.doc<Product>(id).delete().then(() => {
       console.log('Document successfully deleted!');
     }).catch((error) => {
       console.error('Error removing document: ', error);
     });
   }
 
-  unpublishProduct(id: string) {
-    this.productCollection.doc(id).update({
+  unpublishProduct(id: string): void {
+    this.productCollection.doc<Product>(id).update({
       published: false
     }).then(() => {
       console.log('Document successfully unpublished!');
@@ -124,8 +123,8 @@ export class FirestoreService {
     });
   }
 
-  publishProduct(id: string) {
-    this.productCollection.doc(id).update({
+  publishProduct(id: string): void {
+    this.productCollection.doc<Product>(id).update({
       published: true
     }).then(() => {
       console.log('Document successfully published!');
@@ -135,7 +134,7 @@ export class FirestoreService {
   }
 
   getProductCategories(): Observable<Category[]> {
-    const categories: AngularFirestoreCollection<Category> = this.db.collection('product_categories', ref => ref.orderBy('weight'));
-    return categories.valueChanges();
+    return this.db.collection<Category>('product_categories', ref => ref.orderBy('weight'))
+    .valueChanges();
   }
 }

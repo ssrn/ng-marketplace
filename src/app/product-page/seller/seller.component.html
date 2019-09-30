@@ -1,14 +1,14 @@
-<div class="full-product__actions">
+<div *ngIf="seller$ | async as seller" class="full-product__actions">
 <!--  <button class="full-product__buy full-product__button button button&#45;&#45;primary" type="submit">Оплатить</button>-->
-  <button class="full-product__button button button--primary button--show-phone">
-    Показать телефон
-    <span>8 921 XXX-XX-XX</span>
+  <button (click)="handlePhone()" class="full-product__button button button--primary button--show-phone">
+    <span *ngIf="!isPhoneShown">Показать телефон</span>
+    <span *ngIf="isPhoneShown">{{seller[0].phone}}</span>
   </button>
 <!--  <button class="full-product__button button">Написать сообщение</button>-->
 </div>
-<div class="full-product__seller-info">
+<div *ngIf="seller$ | async as seller" class="full-product__seller-info">
   <div class="seller-info__right">
-    <a href="" class="seller-info__name">Василий</a>
+    <a href="" class="seller-info__name">{{seller[0].name}}</a>
     <div>С нами c апреля 2019</div>
     <div>Завершено 2 объявления</div>
   </div>
@@ -16,4 +16,4 @@
     <img class="cropped-image" src="./assets/images/user-pictures/user.jpg" alt="">
   </a>
 </div>
-<a href="" class="seller-products button">2 объявления пользователя</a>
+<a href="" class="seller-products button">4 объявления пользователя</a>

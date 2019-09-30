@@ -45,7 +45,7 @@ export class AddProductComponent implements OnInit {
   initProductForm() {
     this.productForm = this.fb.group({
       id: '',
-      category: {},
+      category: [{}, Validators.required],
       photos: null,
       name: ['', [
           Validators.required,
@@ -74,9 +74,6 @@ export class AddProductComponent implements OnInit {
         .then(() => alert('success'))
         .catch(error => console.log(error));
     }
-    // this.auth.uid$.pipe(uid => {
-    //   this.db.updateProduct(uid))
-    // });
   }
 
   handlePhotosInput(files: FileList) {

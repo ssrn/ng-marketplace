@@ -10,7 +10,7 @@ export class MainMenuService {
   private menuCollection: AngularFirestoreCollection<Menu>;
 
   constructor(private db: AngularFirestore) {
-    this.menuCollection = db.collection('menu', ref => ref.orderBy('weight'));
+    this.menuCollection = db.collection<Menu>('menu', ref => ref.orderBy('weight'));
   }
 
   getMainMenu(): Observable<Menu[]> {

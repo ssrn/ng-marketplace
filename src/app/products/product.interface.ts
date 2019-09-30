@@ -9,4 +9,5 @@ export interface Product {
   photos: string[];
   description: string;
   published: boolean;
+  uid: string;
 }
