@@ -15,13 +15,13 @@ export class AuthService {
   private userCollection: AngularFirestoreCollection;
 
   constructor(
-    private afAuth: AngularFireAuth,
+    private auth: AngularFireAuth,
     private db: AngularFirestore,
     private router: Router
   ) {
     this.userCollection = db.collection('users');
 
-    this.uid$ = this.afAuth.authState.pipe(
+    this.uid$ = this.auth.authState.pipe(
       map(authState => {
         if (authState) {
           this.uid = authState.uid;
@@ -32,14 +32,15 @@ export class AuthService {
       })
     );
   }
+
   get authenticated() {
-    return this.afAuth.authState.pipe(
+    return this.auth.authState.pipe(
       map(authState => authState ? authState.uid  : null)
     );
   }
 
   login(email: string, password: string): void {
-    this.afAuth.auth.signInWithEmailAndPassword(email, password)
+    this.auth.auth.signInWithEmailAndPassword(email, password)
       .catch(error => {
         console.log(error);
       })
@@ -51,13 +52,13 @@ export class AuthService {
   }
 
   logout(): Promise<void> {
-    return this.afAuth.auth.signOut();
+    return this.auth.auth.signOut();
   }
 
   createUser(user): void {
-    this.afAuth.auth.createUserWithEmailAndPassword(user.email, user.password)
+    this.auth.auth.createUserWithEmailAndPassword(user.email, user.password)
       .then((result) => {
-        // this.SendVerificationMail();
+        // this.sendVerificationMail();
         this.setUserData(result.user)
           .catch((error) => {
             window.alert(error.message);
@@ -65,6 +66,10 @@ export class AuthService {
       }).catch((error) => {
       window.alert(error.message);
     });
+  }
+
+  private sendVerificationMail() {
+    return this.auth.auth.currentUser.sendEmailVerification();
   }
 
   private setUserData(user): Promise<void | DocumentReference> {
