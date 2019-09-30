@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../user.service';
 import { Observable } from 'rxjs';
 import { WishlistBtnModeEnum } from '../../products/wishlist-btn/wishlist-btn-mode.enum';
 import { ProductsService } from '../../products/products.service';
@@ -12,7 +11,7 @@ import { Product } from '../../products/product.interface';
 })
 
 export class MyProductsComponent implements OnInit {
-  userProducts$: Observable<Product[]>; // = this.user.getUserProducts();
+  userProducts$: Observable<Product[]>;
   wishlistBtnMode: WishlistBtnModeEnum = WishlistBtnModeEnum.None;
 
   constructor(
@@ -27,6 +26,7 @@ export class MyProductsComponent implements OnInit {
     return item.id;
   }
 
+  // TODO remove from wishlist
   handleRemove($event: string, id: string) {
     return this.products.removeProduct(id);
   }
