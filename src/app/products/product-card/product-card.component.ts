@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
 import { Observable } from 'rxjs';
-import { FirestoreService } from '../firestore.service';
+import { ProductsService } from '../products.service';
 import { WishlistService } from '../wishlist-btn/wishlist.service';
 import { WishlistBtnModeEnum } from '../wishlist-btn/wishlist-btn-mode.enum';
 import { Product } from '../product.interface';
@@ -20,7 +20,7 @@ export class ProductCardComponent implements OnInit {
   @Output() remove: EventEmitter<string> = new EventEmitter();
 
   constructor(
-    private db: FirestoreService,
+    private db: ProductsService,
     private wishlistService: WishlistService
   ) { }
 

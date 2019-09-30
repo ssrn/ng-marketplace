@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from '../user.service';
 import { Observable } from 'rxjs';
 import { WishlistBtnModeEnum } from '../../products/wishlist-btn/wishlist-btn-mode.enum';
-import { FirestoreService } from '../../products/firestore.service';
+import { ProductsService } from '../../products/products.service';
 import { Product } from '../../products/product.interface';
 
 @Component({
@@ -16,12 +16,11 @@ export class MyProductsComponent implements OnInit {
   wishlistBtnMode: WishlistBtnModeEnum = WishlistBtnModeEnum.None;
 
   constructor(
-    private user: UserService,
-    private db: FirestoreService
+    private products: ProductsService
   ) { }
 
   ngOnInit() {
-    this.userProducts$ = this.user.getUserProducts();
+    this.userProducts$ = this.products.getCurrentUserProducts();
   }
 
   identify(index: number, item: Product): string {
@@ -29,14 +28,14 @@ export class MyProductsComponent implements OnInit {
   }
 
   handleRemove($event: string, id: string) {
-    return this.db.removeProduct(id);
+    return this.products.removeProduct(id);
   }
 
   handleUnpublish($event: string, id: string) {
-    return this.db.unpublishProduct(id);
+    return this.products.unpublishProduct(id);
   }
 
   handlePublish($event: string, id: string) {
-    return this.db.publishProduct(id);
+    return this.products.publishProduct(id);
   }
 }

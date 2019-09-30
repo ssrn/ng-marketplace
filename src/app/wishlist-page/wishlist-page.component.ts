@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { WishlistBtnModeEnum } from '../products/wishlist-btn/wishlist-btn-mode.enum';
-import { FirestoreService } from '../products/firestore.service';
+import { ProductsService } from '../products/products.service';
 import { Product } from '../products/product.interface';
 import { WishlistService } from '../products/wishlist-btn/wishlist.service';
 
@@ -16,7 +16,7 @@ export class WishlistPageComponent implements OnInit {
   msg: string;
   wishlistBtnMode: WishlistBtnModeEnum = WishlistBtnModeEnum.Trash;
 
-  constructor(private db: FirestoreService, private wishlistService: WishlistService) { }
+  constructor(private db: ProductsService, private wishlistService: WishlistService) { }
 
   ngOnInit() {
     this.wishedProductIds = this.wishlistService.getProductIds();

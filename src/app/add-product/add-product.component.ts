@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FirestoreService } from '../products/firestore.service';
+import { ProductsService } from '../products/products.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Category } from '../catalog/categories-menu/category.interface';
 import { Product } from '../products/product.interface';
@@ -21,7 +21,7 @@ export class AddProductComponent implements OnInit {
   productSubcategories: Category[];
 
   constructor(
-    private db: FirestoreService,
+    private db: ProductsService,
     private fb: FormBuilder,
     private auth: AuthService,
   ) { }

@@ -6,6 +6,7 @@ import { switchMap } from 'rxjs/operators';
 import { User } from '../../user/user.interface';
 import { UserService } from '../../user/user.service';
 import { Product } from '../../products/product.interface';
+import { ProductsService } from '../../products/products.service';
 
 @Component({
   selector: 'app-header',
@@ -14,11 +15,11 @@ import { Product } from '../../products/product.interface';
 })
 
 export class HeaderComponent {
-  products$: Observable<Product[]> = this.user.getUserProducts();
+  products$: Observable<Product[]> = this.productService.getCurrentUserProducts();
 
   constructor(
     public auth: AuthService,
-    private user: UserService,
+    private productService: ProductsService,
     public ngxSmartModalService: NgxSmartModalService
   ) { }
 }

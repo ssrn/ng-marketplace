@@ -1,7 +1,7 @@
 import { Component, NgIterable, OnDestroy } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
-import { FirestoreService } from '../products/firestore.service';
+import { ProductsService } from '../products/products.service';
 import { Product } from '../products/product.interface';
 import { filter, map, switchMap } from 'rxjs/operators';
 
@@ -20,7 +20,7 @@ export class CatalogComponent {
 
   constructor(
     private router: Router,
-    private db: FirestoreService,
+    private db: ProductsService,
   ) {
     router.events.pipe(
       filter(e => e instanceof NavigationEnd)

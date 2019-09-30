@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import {
   AngularFirestore,
   AngularFirestoreCollection,
-  AngularFirestoreDocument,
   DocumentReference
 } from '@angular/fire/firestore';
 import { AngularFireStorage } from '@angular/fire/storage';
@@ -10,17 +9,21 @@ import { combineLatest, forkJoin, Observable } from 'rxjs';
 import { Category } from '../catalog/categories-menu/category.interface';
 import { Product } from './product.interface';
 import OrderByDirection = firebase.firestore.OrderByDirection;
+import { flatMap } from 'rxjs/operators';
+import { AuthService } from '../auth/auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 
-export class FirestoreService {
+export class ProductsService {
   private productCollection: AngularFirestoreCollection<Product>;
+  uid$: Observable<string> = this.auth.uid$;
 
   constructor(
     private db: AngularFirestore,
     private storage: AngularFireStorage,
+    private auth: AuthService,
   ) {
     this.productCollection = db.collection('products');
   }
@@ -35,6 +38,10 @@ export class FirestoreService {
       this.storage.ref(filePath).put(file)
         .catch(error => console.log(error));
     });
+  }
+
+  getProduct(id: string): Observable<Product> {
+    return this.productCollection.doc<Product>(id).valueChanges();
   }
 
   getPublishedProducts(
@@ -71,12 +78,18 @@ export class FirestoreService {
       .valueChanges();
   }
 
-  getProduct(id: string): Observable<Product> {
-    return this.productCollection.doc<Product>(id).valueChanges();
-  }
-
   getProductsByIds(ids: string[]): Observable<Product[]> {
     return combineLatest(ids.map(id => this.getProduct(id)));
+  }
+
+  getCurrentUserProducts(): Observable<Product[]> {
+    return this.uid$.pipe(
+      flatMap( (uid) =>
+        this.db.collection<Product>('products', ref =>
+          ref.where('uid', '==', uid))
+          .valueChanges()
+      )
+    );
   }
 
   getProductPhotos(paths: string[]): Observable<string[]> {
@@ -113,16 +126,6 @@ export class FirestoreService {
     });
   }
 
-  unpublishProduct(id: string): void {
-    this.productCollection.doc<Product>(id).update({
-      published: false
-    }).then(() => {
-      console.log('Document successfully unpublished!');
-    }).catch((error) => {
-      console.error('Error unpublishing document: ', error);
-    });
-  }
-
   publishProduct(id: string): void {
     this.productCollection.doc<Product>(id).update({
       published: true
@@ -130,6 +133,16 @@ export class FirestoreService {
       console.log('Document successfully published!');
     }).catch((error) => {
       console.error('Error publishing document: ', error);
+    });
+  }
+
+  unpublishProduct(id: string): void {
+    this.productCollection.doc<Product>(id).update({
+      published: false
+    }).then(() => {
+      console.log('Document successfully unpublished!');
+    }).catch((error) => {
+      console.error('Error unpublishing document: ', error);
     });
   }
 

@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Observable } from 'rxjs';
-import { FirestoreService } from '../products/firestore.service';
+import { ProductsService } from '../products/products.service';
 import { Product } from '../products/product.interface';
 
 @Component({
@@ -13,7 +13,7 @@ export class MainPageComponent {
   products: Observable<Product[]>;
 
   constructor(
-    private db: FirestoreService,
+    private db: ProductsService,
   ) {
     this.products = this.db.getPublishedProducts(4);
   }

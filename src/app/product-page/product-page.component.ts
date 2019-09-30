@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { FirestoreService } from '../products/firestore.service';
+import { ProductsService } from '../products/products.service';
 import { Observable, Subscription } from 'rxjs';
 import { NgxGalleryImage, NgxGalleryOptions } from 'ngx-gallery';
 import { switchMap } from 'rxjs/operators';
@@ -42,7 +42,7 @@ export class ProductPageComponent implements OnInit, OnDestroy {
 
   constructor(
     private route: ActivatedRoute,
-    private db: FirestoreService,
+    private db: ProductsService,
     private wishlistService: WishlistService
   ) { }
 

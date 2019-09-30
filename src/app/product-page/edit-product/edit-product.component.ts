@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 import { ActivatedRoute } from '@angular/router';
-import { FirestoreService } from '../../products/firestore.service';
+import { ProductsService } from '../../products/products.service';
 import { Category } from '../../catalog/categories-menu/category.interface';
 import { Product } from '../../products/product.interface';
 
@@ -24,7 +24,7 @@ export class EditProductComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private db: FirestoreService,
+    private db: ProductsService,
     private fb: FormBuilder
   ) { }
 

@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { Product } from '../../products/product.interface';
 import { UserService } from '../user.service';
 import { AuthService } from '../../auth/auth.service';
+import { ProductsService } from '../../products/products.service';
 
 @Component({
   selector: 'app-user-menu',
@@ -10,10 +11,10 @@ import { AuthService } from '../../auth/auth.service';
   styleUrls: ['./user-menu.component.scss']
 })
 export class UserMenuComponent {
-  products$: Observable<Product[]> = this.user.getUserProducts();
+  products$: Observable<Product[]> = this.products.getCurrentUserProducts();
 
   constructor(
-    private user: UserService,
+    private products: ProductsService,
     private auth: AuthService,
   ) { }
 
