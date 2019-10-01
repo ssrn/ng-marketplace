@@ -2,7 +2,7 @@
   <form [formGroup]="userForm" (ngSubmit)="createUser(userForm.value)" class="login-form form">
     <div class="login-form__item">
       <label>
-        <input formControlName="email" type="text" name="email" placeholder="Телефон или электронная почта">
+        <input formControlName="email" type="text" name="email" placeholder="Email">
       </label>
     </div>
     <div class="login-form__item">
@@ -10,6 +10,6 @@
         <input formControlName="password" type="password" name="password" placeholder="Пароль" autocomplete="off">
       </label>
     </div>
-    <button type="submit" class="button button--primary button--action">Создать аккаунт</button>
+    <button type="submit" class="button button--primary button--action" [disabled]="userForm.invalid">Создать аккаунт</button>
   </form>
 </div>
