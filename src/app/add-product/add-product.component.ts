@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductsService } from '../products/products.service';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Category } from '../catalog/categories-menu/category.interface';
 import { Product } from '../products/product.interface';
 import { AuthService } from '../auth/auth.service';
@@ -46,14 +46,20 @@ export class AddProductComponent implements OnInit {
   initProductForm() {
     this.productForm = this.fb.group({
       id: '',
-      category: [{}, Validators.required],
+      category: new FormControl({}, [
+        Validators.required,
+      ]),
+      name: new FormControl('', [
+        Validators.required,
+        Validators.minLength(4),
+        Validators.maxLength(40),
+        Validators.pattern(/[А-я]/)
+      ]),
+      price: new FormControl(0, [
+        Validators.required,
+        Validators.maxLength(7),
+      ]),
       photos: null,
-      name: ['', [
-          Validators.required,
-          // Validators.pattern(/[А-я]/)
-        ]
-      ],
-      price: [0, Validators.required],
       description: '',
       published: true,
       uid: this.auth.uid

@@ -14,15 +14,15 @@
     </div>
     <div class="form-item">
       <label for="fld-product-name">Название объявления</label>
-      <input type="text" id="fld-product-name" formControlName="name" maxlength="50">
+      <input type="text" id="fld-product-name" formControlName="name">
     </div>
     <div class="form-item">
       <label for="fld-product-desc">Описание объявления</label>
-      <textarea id="fld-product-desc" formControlName="description" rows="6" maxlength="3000"></textarea>
+      <textarea id="fld-product-desc" formControlName="description" rows="6"></textarea>
     </div>
     <div class="form-item">
       <label for="fld-product-price">Цена</label>
-      <input type="text" id="fld-product-price" formControlName="price" maxlength="16">
+      <input type="number" id="fld-product-price" formControlName="price">
       <span class="number-format-currency"> ₽</span>
     </div>
     <div class="form-item">
@@ -34,6 +34,6 @@
              accept="image/gif,image/png,image/jpeg,image/pjpeg"
              multiple="">
     </div>
-    <button type="submit" class="button button--primary button--l">Опубликовать</button>
+    <button type="submit" class="button button--primary button--l" [disabled]="productForm.invalid">Опубликовать</button>
   </form>
 </div>
