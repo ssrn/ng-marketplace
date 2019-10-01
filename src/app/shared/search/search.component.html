@@ -1,8 +1,11 @@
 <ais-instantsearch [config]="config">
-  <ais-search-box (change)="searchChanged($event)" placeholder="Поиск"></ais-search-box>
-  <ais-hits *ngIf="showResults">
+  <ais-search-box placeholder="Поиск"></ais-search-box>
+  <ais-hits>
     <ng-template let-results="results" let-hits="hits">
-      <ul class="ais-Hits-list">
+      <div *ngIf="hits.length === 0" class="ais-Hits-list">
+        Мы ничего не нашли.
+      </div>
+      <ul *ngIf="results.query" class="ais-Hits-list">
         <li *ngFor="let hit of hits" class="ais-Hits-item">
           <a [title]="hit.name" [routerLink]="['/products', hit.id]" class="link">
             {{hit.name}}
