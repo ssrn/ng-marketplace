@@ -44,6 +44,10 @@ export class ProductsService {
     return this.productCollection.doc<Product>(id).valueChanges();
   }
 
+  getProducts(): Observable<Product[]> {
+    return this.db.collection<Product>('products').valueChanges();
+  }
+
   getPromotedProducts(
     limit?: number,
   ): Observable<Product[]> {

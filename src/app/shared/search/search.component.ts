@@ -20,8 +20,11 @@ const searchClient = algoliasearch(
 export class SearchComponent implements OnInit {
   config = {
     indexName: 'products',
-    searchClient
+    searchClient,
+    routing: true
   };
+
+  showResults = false;
 
   constructor(private db: AngularFirestore) {}
 
@@ -29,24 +32,9 @@ export class SearchComponent implements OnInit {
 
   }
 
-  handle(): void {
-
-    const index = searchClient.initIndex('products');
-
-    console.log('index', index);
-
-    this.db.collection('products').valueChanges()
-      .subscribe(objects => {
-        console.log('objects', objects);
-        index.addObjects(objects, (err, content) => {
-          console.log('content', content);
-        });
-      });
+  searchChanged(query) {
+    this.showResults = !!query.length;
   }
-
-  // searchChanged(query) {
-  //   this.showResults = !!query.length;
-  // }
 
   // searchForm: FormGroup;
   // searchValue = '';

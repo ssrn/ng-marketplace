@@ -1,9 +1,9 @@
-import { Component, NgIterable, OnDestroy } from '@angular/core';
+import { Component } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
-import { Observable, Subscription } from 'rxjs';
+import { Observable } from 'rxjs';
 import { ProductsService } from '../products/products.service';
 import { Product } from '../products/product.interface';
-import { filter, map, switchMap } from 'rxjs/operators';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-catalog',
@@ -30,6 +30,9 @@ export class CatalogComponent {
       this.category = this.url[this.url.length - 1];
       this.handleSortingAndFiltering();
     });
+
+    // For Algolia search
+    // this.productsService.getProducts().subscribe(x => console.log('x', JSON.stringify(x)));
   }
 
   handleSortByPopularity() {
