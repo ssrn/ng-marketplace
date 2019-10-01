@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-my-product-actions',
@@ -12,13 +13,18 @@ export class MyProductActionsComponent {
   @Input() productId: string;
   @Input() isPublished: boolean;
 
+  constructor(private toastr: ToastrService) {}
+
   get publishBtnText(): string {
     return this.isPublished ? 'Снять с публикации' : 'Опубликовать';
   }
 
   handleRemove() {
     if (confirm('Вы уверены, что хотите удалить товар?')) {
-      this.remove.emit(null);
+      this.toastr.error('This feature is disabled.', null, {
+        timeOut: 3000
+      });
+      // this.remove.emit(null);
     }
   }
 
