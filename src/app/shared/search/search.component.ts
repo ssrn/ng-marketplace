@@ -36,26 +36,7 @@ export class SearchComponent implements OnInit {
     this.showResults = !!query.length;
   }
 
-  // searchForm: FormGroup;
-  // searchValue = '';
-  // results: any;
-  //
-  // constructor(
-  //   private db: SearchService,
-  //   private fb: FormBuilder,
-  //   private router: Router
-  // ) { }
-  //
-  // ngOnInit() {
-  //   this.initSearchForm();
-  // }
-  //
-  // initSearchForm() {
-  //   this.searchForm = this.fb.group({
-  //     input: '',
-  //   });
-  // }
-  //
+
   // handleLiveSearch(value) {
   //   console.log('value', value);
   //   this.results = this.db.searchProducts(value);
