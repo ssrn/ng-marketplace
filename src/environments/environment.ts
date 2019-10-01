@@ -11,6 +11,10 @@ export const environment = {
     projectId: 'veggie-marketplace',
     storageBucket: 'veggie-marketplace.appspot.com',
     messagingSenderId: '534691830480',
+  },
+  algolia: {
+    appId: 'HTROV64V59',
+    apiKey: 'd587a0fa44ce4d022005271aeb1eb058'
   }
 };
 

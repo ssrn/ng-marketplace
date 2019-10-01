@@ -1,0 +1,63 @@
+//@import "../../../styles/init";
+//
+//:host {
+//  flex-grow: 1;
+//  position: relative;
+//  height: 40px;
+//  margin-right: auto;
+//
+//  input[type="text"] {
+//    width: 0;
+//    position: absolute;
+//    top: 0;
+//    left: 0;
+//    padding-top: 10px;
+//    padding-bottom: 10px;
+//    padding-left: 40px;
+//    background: none;
+//    border: 0;
+//    z-index: 3;
+//    transition: width .4s cubic-bezier(0.000, 0.795, 0.000, 1.000);
+//    cursor: pointer;
+//  }
+//
+//  input[type="text"]:focus:hover {
+//    background: #fff;
+//    border: 1px solid #ccc;
+//  }
+//
+//  input[type="text"]:focus {
+//    width: 100%;
+//    z-index: 1;
+//    background: #fff;
+//    border: 1px solid #ccc;
+//    cursor: text;
+//  }
+//
+//  input[type="submit"] {
+//    background: url(../../../assets/images/svg/search.svg) 12px 48% no-repeat;
+//    background-size: 20px;
+//    text-indent: -10000px;
+//    border: none;
+//    position: absolute;
+//    top: 0;
+//    right: 0;
+//    z-index: 2;
+//    cursor: pointer;
+//    opacity: 0.9;
+//    transition: opacity .4s ease;
+//  }
+//
+//  input[type="submit"]:hover {
+//    opacity: 1;
+//  }
+//  //
+//  //.search-results {
+//  //  position: absolute;
+//  //  top: 100%;
+//  //  width: 100%;
+//  //  padding: 8px 16px 8px 40px;
+//  //  background: #fff;
+//  //  border: 1px solid #ccc;
+//  //}
+//}

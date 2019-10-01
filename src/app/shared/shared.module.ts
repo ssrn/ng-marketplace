@@ -8,19 +8,25 @@ import { NgxSmartModalModule } from 'ngx-smart-modal';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MobileMenuComponent } from './mobile-menu/mobile-menu.component';
 import { MainMenuTriggerComponent } from './main-menu-trigger/main-menu-trigger.component';
+import { SearchComponent } from './search/search.component';
+import { NgAisHitsModule, NgAisInstantSearchModule, NgAisSearchBoxModule } from 'angular-instantsearch';
 
 @NgModule({
   declarations: [
     HeaderComponent,
     MainMenuComponent,
     MobileMenuComponent,
-    MainMenuTriggerComponent
+    MainMenuTriggerComponent,
+    SearchComponent
   ],
   imports: [
     CommonModule,
     AppRoutingModule,
     NgxSmartModalModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgAisInstantSearchModule,
+    NgAisSearchBoxModule,
+    NgAisHitsModule
   ],
   exports: [
     HeaderComponent,
