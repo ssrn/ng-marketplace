@@ -36,7 +36,6 @@ export class SearchComponent implements OnInit {
     this.showResults = !!query.length;
   }
 
-
   // handleLiveSearch(value) {
   //   console.log('value', value);
   //   this.results = this.db.searchProducts(value);

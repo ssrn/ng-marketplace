@@ -4,10 +4,11 @@
     <ng-template let-results="results" let-hits="hits">
       <ul class="ais-Hits-list">
         <li *ngFor="let hit of hits" class="ais-Hits-item">
-          {{hit.name}}
+          <a [title]="hit.name" [routerLink]="['/products', hit.id]" class="link">
+            {{hit.name}}
+          </a>
         </li>
       </ul>
     </ng-template>
   </ais-hits>
 </ais-instantsearch>
-
