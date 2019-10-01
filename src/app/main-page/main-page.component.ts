@@ -15,6 +15,6 @@ export class MainPageComponent {
   constructor(
     private productsService: ProductsService,
   ) {
-    this.products$ = this.productsService.getPublishedProducts(4);
+    this.products$ = this.productsService.getPromotedProducts(4);
   }
 }

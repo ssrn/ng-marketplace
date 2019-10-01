@@ -4,7 +4,6 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { Category } from '../catalog/categories-menu/category.interface';
 import { Product } from '../products/product.interface';
 import { AuthService } from '../auth/auth.service';
-import { Observable, Subscription } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -62,7 +61,9 @@ export class AddProductComponent implements OnInit {
       photos: null,
       description: '',
       published: true,
-      uid: this.auth.uid
+      uid: this.auth.uid,
+      date: Date.now(),
+      promoted: false
     });
   }
 
@@ -72,8 +73,7 @@ export class AddProductComponent implements OnInit {
         .then(result => this.productId = result.id)
         .then(() => this.products.uploadProductPhotos(this.filesToUpload))
         .then(() => this.products.updateProduct(this.productId, this.productPhotoPaths))
-        .then(() => alert('success'))
-        .then(() => this.toastr.success('Товар успешно добавлен!', null,{
+        .then(() => this.toastr.success('Товар успешно добавлен!', null, {
           timeOut: 3000
         }))
         .catch(error => this.toastr.error(error));

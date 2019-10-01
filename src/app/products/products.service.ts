@@ -44,11 +44,11 @@ export class ProductsService {
     return this.productCollection.doc<Product>(id).valueChanges();
   }
 
-  getPublishedProducts(
+  getPromotedProducts(
     limit?: number,
   ): Observable<Product[]> {
     return this.db.collection<Product>('products', ref => {
-      let query = ref.where('published', '==', true);
+      let query = ref.where('promoted', '==', true);
       if (limit) {
         query = query.limit(limit);
       }
