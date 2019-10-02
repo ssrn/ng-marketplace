@@ -1,19 +1,25 @@
 <div class="add-product">
   <h1 class="page-title">Новое объявление</h1>
-  <form class="add-product__form" [formGroup]="productForm" (ngSubmit)="handleSubmit(productForm.value)">
+  <form [class.submitted]=submitted class="add-product__form" [formGroup]="productForm" (ngSubmit)="handleSubmit(productForm.value)">
     <div class="form-item">
       <label for="category">Выберете категорию</label>
-      <select formControlName="category" class="select--custom" id="category" name="category">
+      <select formControlName="category" class="select--custom" id="category" name="category" required>
         <optgroup *ngFor="let category of productMainCategories; let i = index;" label="{{category.name}}">
           <option *ngFor="let category of productSubcategories[i]" [ngValue]="{id: category.id, parentId: category.parentId}">
             {{category.name}}
           </option>
         </optgroup>
       </select>
+      <div *ngIf="submitted && productForm.controls['category'].errors?.required" class="form-alert--danger">
+        Это обязательное поле
+      </div>
     </div>
     <div class="form-item">
       <label for="fld-product-name">Название объявления</label>
       <input type="text" id="fld-product-name" formControlName="name">
+        <div *ngIf="submitted && productForm.controls['name'].errors?.required" class="form-alert--danger">
+          Это обязательное поле
+        </div>
     </div>
     <div class="form-item">
       <label for="fld-product-desc">Описание объявления</label>
@@ -33,6 +39,6 @@
              accept="image/gif,image/png,image/jpeg,image/pjpeg"
              multiple="">
     </div>
-    <button type="submit" class="button button--primary button--l" [disabled]="productForm.invalid">Опубликовать</button>
+    <button type="submit" class="button button--primary button--l">Опубликовать</button>
   </form>
 </div>

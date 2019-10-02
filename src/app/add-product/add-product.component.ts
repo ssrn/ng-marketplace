@@ -19,6 +19,7 @@ export class AddProductComponent implements OnInit {
   productId: string;
   productMainCategories: Category[];
   productSubcategories: Category[];
+  submitted = false;
 
   constructor(
     private products: ProductsService,
@@ -45,9 +46,7 @@ export class AddProductComponent implements OnInit {
   initProductForm() {
     this.productForm = this.fb.group({
       id: '',
-      category: new FormControl({}, [
-        Validators.required,
-      ]),
+      category: new FormControl({}, Validators.required),
       name: new FormControl('', [
         Validators.required,
         Validators.minLength(4),
@@ -55,7 +54,6 @@ export class AddProductComponent implements OnInit {
         Validators.pattern(/[А-я]/)
       ]),
       price: new FormControl(0, [
-        Validators.required,
         Validators.maxLength(7),
       ]),
       photos: null,
@@ -68,6 +66,10 @@ export class AddProductComponent implements OnInit {
   }
 
   handleSubmit(product: Product) {
+    this.submitted = true;
+    if (this.productForm.invalid) {
+      return;
+    }
     if (product.photos) {
       this.products.addProduct(product)
         .then(result => this.productId = result.id)
