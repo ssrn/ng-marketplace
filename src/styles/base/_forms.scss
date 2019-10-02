@@ -10,16 +10,25 @@ input {
   margin-bottom: 24px;
 }
 
-.form-alert--danger {
-  color: #dc3545;
-}
-
 label {
   display: block;
   font-family: 'Roboto', Arial, sans-serif;
   font-weight: 500;
   color: $text-black;
 }
+
+form.submitted {
+  input.ng-invalid,
+  .ng-untouched[required] {
+    background-color: rgba(220, 53, 69, .1);
+    border-color: #dc3545;
+  }
+}
+
+.form-alert--danger {
+  color: #dc3545;
+}
+
 
 #edit-picture-upload {
   border: none;

@@ -10,6 +10,7 @@ import { NgxSmartModalService } from 'ngx-smart-modal';
 })
 export class RegistrationComponent implements OnInit {
   userForm: FormGroup;
+  submitted = false;
 
   constructor(
     private fb: FormBuilder,
@@ -19,11 +20,6 @@ export class RegistrationComponent implements OnInit {
 
   ngOnInit() {
     this.initUserForm();
-  }
-
-  createUser(value) {
-    this.auth.createUser(value);
-    this.ngxSmartModalService.getModal('registration').close();
   }
 
   initUserForm() {
@@ -43,5 +39,14 @@ export class RegistrationComponent implements OnInit {
         Validators.maxLength(40),
       ]),
     });
+  }
+
+  createUser(value) {
+    this.submitted = true;
+    if (this.userForm.invalid) {
+      return;
+    }
+    this.auth.createUser(value);
+    this.ngxSmartModalService.getModal('registration').close();
   }
 }
