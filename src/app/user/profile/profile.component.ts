@@ -4,6 +4,7 @@ import { User } from '../user.interface';
 import { UserService } from '../user.service';
 import { Observable } from 'rxjs';
 import { AuthService } from '../../auth/auth.service';
+import { switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-profile',
@@ -11,9 +12,10 @@ import { AuthService } from '../../auth/auth.service';
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
-  // uid = this.auth.uid;
   user$: Observable<User[]> = this.userService.getCurrentUser();
   userForm: FormGroup;
+  userPhoto$;
+
   constructor(
     private userService: UserService,
     private auth: AuthService,
@@ -22,6 +24,9 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit() {
     this.initUserForm();
+    this.userPhoto$ = this.user$.pipe(
+      switchMap((user) => this.userService.getUserPhoto(user[0].photo))
+    );
   }
 
   initUserForm() {

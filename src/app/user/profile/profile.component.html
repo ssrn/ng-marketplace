@@ -2,11 +2,10 @@
 
 <div class="user-settings">
   <div *ngIf="user$ | async as user" class="edit-user">
-    {{user[0].photo}}
     <form class="user-settings__form" [formGroup]="userForm" (ngSubmit)="handleSubmit(userForm.value)">
       <div class="user-settings__photo">
-        <div class="user-picture">
-          <img class="cropped-image" src="./assets/images/user-pictures/dasha.jpg" [alt]="user[0].name">
+        <div *ngIf="userPhoto$ | async as userPhoto" class="user-picture">
+          <img class="cropped-image" src="{{userPhoto}}" [alt]="user[0].name">
         </div>
         <div class="form-item form-type-file form-item__files-picture-upload">
           <label for="edit-picture-upload" class="visually-hidden">Файл</label>
