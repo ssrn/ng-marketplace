@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductsService } from '../products/products.service';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Category } from '../catalog/categories-menu/category.interface';
 import { Product } from '../products/product.interface';
 import { AuthService } from '../auth/auth.service';
 import { ToastrService } from 'ngx-toastr';
+import { Validators } from 'angular-reactive-validation';
 
 @Component({
   selector: 'app-add-product',
@@ -46,15 +47,14 @@ export class AddProductComponent implements OnInit {
   initProductForm() {
     this.productForm = this.fb.group({
       id: '',
-      category: new FormControl({}, Validators.required),
+      category: new FormControl({}, Validators.required('Категория обязательна')),
       name: new FormControl('', [
-        Validators.required,
-        Validators.minLength(4),
-        Validators.maxLength(40),
-        Validators.pattern(/[А-я]/)
+        Validators.required('Название обязательно'),
+        Validators.minLength(4, minLength => `Минимальная длина ${minLength} знаков`),
+        Validators.maxLength(40, maxLength => `Максимальная длина ${maxLength} знаков`)
       ]),
       price: new FormControl(0, [
-        Validators.maxLength(7),
+        Validators.max(9999999, max => `Максимальная цена ${max}`),
       ]),
       photos: null,
       description: '',

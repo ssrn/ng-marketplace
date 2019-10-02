@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { AddProductComponent } from './add-product.component';
 import { AddProductRoutingModule } from './add-product-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveValidationModule } from 'angular-reactive-validation';
 
 
 @NgModule({
@@ -11,6 +12,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     CommonModule,
     AddProductRoutingModule,
     ReactiveFormsModule,
+    ReactiveValidationModule,
   ]
 })
 

@@ -4,22 +4,20 @@
     <div class="form-item">
       <label for="category">Выберете категорию</label>
       <select formControlName="category" class="select--custom" id="category" name="category" required>
-        <optgroup *ngFor="let category of productMainCategories; let i = index;" label="{{category.name}}">
-          <option *ngFor="let category of productSubcategories[i]" [ngValue]="{id: category.id, parentId: category.parentId}">
+        <optgroup *ngFor="let category of productMainCategories; let i = index;"
+                  label="{{category.name}}">
+          <option *ngFor="let category of productSubcategories[i]"
+                  [value]="{id: category.id, parentId: category.parentId}">
             {{category.name}}
           </option>
         </optgroup>
       </select>
-      <div *ngIf="submitted && productForm.controls['category'].errors?.required" class="form-alert--danger">
-        Это обязательное поле
-      </div>
+      <arv-validation-messages for="category"></arv-validation-messages>
     </div>
     <div class="form-item">
       <label for="fld-product-name">Название объявления</label>
       <input type="text" id="fld-product-name" formControlName="name">
-        <div *ngIf="submitted && productForm.controls['name'].errors?.required" class="form-alert--danger">
-          Это обязательное поле
-        </div>
+      <arv-validation-messages for="name"></arv-validation-messages>
     </div>
     <div class="form-item">
       <label for="fld-product-desc">Описание объявления</label>
@@ -29,6 +27,7 @@
       <label for="fld-product-price">Цена</label>
       <input type="number" id="fld-product-price" formControlName="price">
       <span class="number-format-currency"> ₽</span>
+      <arv-validation-messages for="price"></arv-validation-messages>
     </div>
     <div class="form-item">
       <label for="fld-product-img">Фотографии</label>

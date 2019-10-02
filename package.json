@@ -22,6 +22,7 @@
     "@angular/router": "~8.2.0",
     "algoliasearch": "^3.35.0",
     "angular-instantsearch": "^3.0.0-beta.4",
+    "angular-reactive-validation": "^3.0.0",
     "firebase": "^6.6.2",
     "font-awesome": "^4.7.0",
     "instantsearch.css": "^7.3.1",

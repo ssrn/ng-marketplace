@@ -14,6 +14,7 @@ import { NgxSmartModalModule } from 'ngx-smart-modal';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
+import { ReactiveValidationModule } from 'angular-reactive-validation';
 
 
 @NgModule({
@@ -31,7 +32,12 @@ import { AppComponent } from './app.component';
     NgxSmartModalModule.forRoot(),
     SharedModule,
     BrowserAnimationsModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    ReactiveValidationModule.forRoot({
+      displayValidationMessageWhen: (control, formSubmitted) => {
+        return formSubmitted;
+      }
+    })
   ],
   providers: [AngularFirestore, AngularFireStorage],
   bootstrap: [AppComponent]
