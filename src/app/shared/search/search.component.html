@@ -2,8 +2,8 @@
   <ais-search-box placeholder="Поиск"></ais-search-box>
   <ais-hits>
     <ng-template let-results="results" let-hits="hits">
-      <div *ngIf="hits.length === 0" class="ais-Hits-list">
-        Мы ничего не нашли.
+      <div *ngIf="results.query && hits.length === 0" class="ais-Hits-list">
+        Мы ничего не нашли
       </div>
       <ul *ngIf="results.query" class="ais-Hits-list">
         <li *ngFor="let hit of hits" class="ais-Hits-item">
