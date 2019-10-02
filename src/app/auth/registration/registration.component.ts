@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { NgxSmartModalService } from 'ngx-smart-modal';
+import { Validators } from 'angular-reactive-validation';
 
 @Component({
   selector: 'app-registration',
@@ -25,18 +26,18 @@ export class RegistrationComponent implements OnInit {
   initUserForm() {
     this.userForm = this.fb.group({
       name: new FormControl('', [
-        Validators.required,
-        Validators.minLength(3),
-        Validators.maxLength(20),
+        Validators.required('Имя обязательно'),
+        Validators.minLength(3, 'Минимум 3 символа'),
+        Validators.maxLength(20, 'Максимум  20 символов'),
       ]),
       email: new FormControl('', [
-        Validators.required,
-        Validators.email
+        Validators.required('Email обязателен'),
+        Validators.email('Неправильный формат')
       ]),
       password: new FormControl('', [
-        Validators.required,
-        Validators.minLength(6),
-        Validators.maxLength(40),
+        Validators.required('Пароль обязателен'),
+        Validators.minLength(6, 'Минимум 6 символов'),
+        Validators.maxLength(40, 'Максимум 40 символов'),
       ]),
     });
   }

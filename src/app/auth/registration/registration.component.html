@@ -2,19 +2,21 @@
   <form [class.submitted]=submitted [formGroup]="userForm" (ngSubmit)="createUser(userForm.value)" class="login-form form">
     <div class="login-form__item">
       <label>
+        <input formControlName="name" type="text" name="name" placeholder="Имя">
+      </label>
+      <arv-validation-messages for="name"></arv-validation-messages>
+    </div>
+    <div class="login-form__item">
+      <label>
         <input formControlName="email" type="text" name="email" placeholder="Email">
       </label>
-      <div *ngIf="submitted && userForm.controls['email'].errors?.required" class="form-alert--danger">
-        Это обязательное поле
-      </div>
+      <arv-validation-messages for="email"></arv-validation-messages>
     </div>
     <div class="login-form__item">
       <label>
         <input formControlName="password" type="password" name="password" placeholder="Пароль минимум 6 символов" autocomplete="off">
       </label>
-      <div *ngIf="submitted && userForm.controls['password'].errors?.required" class="form-alert--danger">
-        Это обязательное поле
-      </div>
+      <arv-validation-messages for="password"></arv-validation-messages>
     </div>
     <button type="submit" class="button button--primary button--action">Создать аккаунт</button>
   </form>

@@ -4,6 +4,7 @@ import { LoginComponent } from './login/login.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgxSmartModalModule } from 'ngx-smart-modal';
+import { ReactiveValidationModule } from 'angular-reactive-validation';
 
 
 @NgModule({
@@ -19,6 +20,7 @@ import { NgxSmartModalModule } from 'ngx-smart-modal';
     CommonModule,
     ReactiveFormsModule,
     NgxSmartModalModule,
+    ReactiveValidationModule,
   ]
 })
 export class AuthModule { }

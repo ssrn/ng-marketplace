@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { NgxSmartModalService } from 'ngx-smart-modal';
+import { Validators } from 'angular-reactive-validation';
 
 @Component({
   selector: 'app-login',
@@ -11,6 +12,7 @@ import { NgxSmartModalService } from 'ngx-smart-modal';
 export class LoginComponent implements OnInit {
   userForm: FormGroup;
   authError: any;
+  submitted = false;
 
   constructor(
     private fb: FormBuilder,
@@ -24,12 +26,20 @@ export class LoginComponent implements OnInit {
 
   initUserForm() {
     this.userForm = this.fb.group({
-      email: '',
-      password: ''
+      email: new FormControl('', [
+      Validators.required('Заполните поле'),
+    ]),
+      password: new FormControl('', [
+        Validators.required('Заполните поле'),
+      ])
     });
   }
 
   login(value) {
+    this.submitted = true;
+    if (this.userForm.invalid) {
+      return;
+    }
     this.auth.login(value.email, value.password);
     this.ngxSmartModalService.getModal('login').close();
   }
