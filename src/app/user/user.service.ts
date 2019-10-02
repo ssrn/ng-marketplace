@@ -4,6 +4,7 @@ import { switchMap } from 'rxjs/operators';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { User } from './user.interface';
+import { AngularFireStorage } from '@angular/fire/storage';
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +16,7 @@ export class UserService {
   constructor(
     private auth: AuthService,
     private products: AngularFirestore,
+    private storage: AngularFireStorage,
   ) {}
 
   getCurrentUser(): Observable<User[]> {
@@ -31,5 +33,10 @@ export class UserService {
     return this.products.collection<User>('users', ref =>
       ref.where('uid', '==', uid))
       .valueChanges();
+  }
+
+  getUserPhoto(path: string): Observable<string> {
+    const ref = this.storage.ref(path);
+    return ref.getDownloadURL();
   }
 }

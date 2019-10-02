@@ -16,6 +16,7 @@ export class SellerComponent implements OnInit {
   seller$: Observable<User[]>;
   isPhoneShown = false;
   sellerProducts$: Observable<Product[]>;
+  sellerPhoto$;
 
   constructor(
     private userService: UserService,
@@ -25,6 +26,15 @@ export class SellerComponent implements OnInit {
   ngOnInit() {
     this.seller$ = this.userService.getSeller(this.uid);
     this.sellerProducts$ = this.productsService.getSellerProducts(this.uid);
+    // this.sellerPhoto$ = this.seller$.pipe(
+    //   concatMap((seller) => {
+    //     // console.log('x', seller);
+    //     return this.userService.getUserPhoto(seller[0].photo);
+    //   })
+    // );
+    this.seller$.subscribe((seller) => {
+      this.sellerPhoto$ = this.userService.getUserPhoto(seller[0].photo);
+    });
   }
 
   handlePhone() {
