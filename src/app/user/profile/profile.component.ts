@@ -26,8 +26,10 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit() {
     this.user$.subscribe((user) => {
+      if (user[0].photo) {
         this.userPhoto$ = this.userService.getUserPhoto(user[0].photo);
-        this.initUserForm(user[0]);
+      }
+      this.initUserForm(user[0]);
     }
       // switchMap((user) => this.userPhoto$ = this.userService.getUserPhoto(user[0].photo))
     );
@@ -48,5 +50,6 @@ export class ProfileComponent implements OnInit {
     if (this.userForm.invalid) {
       return;
     }
+
   }
 }

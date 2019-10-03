@@ -4,6 +4,8 @@ import { AngularFirestore, AngularFirestoreCollection, DocumentReference } from 
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { User } from '../user/user.interface';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Injectable({
@@ -18,7 +20,8 @@ export class AuthService {
   constructor(
     private auth: AngularFireAuth,
     private db: AngularFirestore,
-    private router: Router
+    private router: Router,
+    private toastr: ToastrService
   ) {
     this.userCollection = db.collection('users');
 
@@ -52,9 +55,12 @@ export class AuthService {
 
   createUser(user): void {
     this.auth.auth.createUserWithEmailAndPassword(user.email, user.password)
-      .then((result) => {
+      .then((resp) => {
         // this.sendVerificationMail();
-        this.setUserData(result.user)
+        this.setUserData(resp.user, user)
+          .then(() => this.toastr.success('Вы усепшно зарегистрированы!', null, {
+            timeOut: 3000
+          }))
           .catch((error) => {
             window.alert(error.message);
           });
@@ -67,12 +73,20 @@ export class AuthService {
     return this.auth.auth.currentUser.sendEmailVerification();
   }
 
-  private setUserData(user): Promise<void | DocumentReference> {
+  private setUserData(respUser, user): Promise<void | DocumentReference> {
     const userData = {
-      uid: user.uid,
+      name: user.name,
       email: user.email,
+      phone: '',
+      photo: null,
+      uid: respUser.uid,
     };
+
     return this.userCollection.add(userData)
+      .then((resp) => {
+        this.userCollection.doc<User>(resp.id).update({id: resp.id})
+          .catch(error => console.log(error));
+      })
       .catch((error) => {
         window.alert(error.message);
       });
