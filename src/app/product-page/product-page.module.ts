@@ -7,6 +7,7 @@ import { NgxGalleryModule } from 'ngx-gallery';
 import { ProductsModule } from '../products/products.module';
 import { EditProductComponent } from './edit-product/edit-product.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveValidationModule } from 'angular-reactive-validation';
 
 
 @NgModule({
@@ -21,6 +22,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     NgxGalleryModule,
     ProductsModule,
     ReactiveFormsModule,
+    ReactiveValidationModule,
   ]
 })
 

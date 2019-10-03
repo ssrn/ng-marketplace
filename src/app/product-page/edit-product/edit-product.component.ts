@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
-import { map, switchMap } from 'rxjs/operators';
+import { switchMap } from 'rxjs/operators';
 import { ActivatedRoute } from '@angular/router';
 import { ProductsService } from '../../products/products.service';
 import { Category } from '../../catalog/categories-menu/category.interface';
 import { Product } from '../../products/product.interface';
+import { Validators } from 'angular-reactive-validation';
 
 @Component({
   selector: 'app-edit-product',
@@ -19,6 +20,8 @@ export class EditProductComponent implements OnInit {
   productForm: FormGroup;
   productMainCategories: Category[];
   productSubcategories: Category[];
+  photoUrl$: Observable<string[]>;
+  submitted = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -38,32 +41,32 @@ export class EditProductComponent implements OnInit {
         this.productSubcategories = subCategoriesArr;
       }
     );
-    this.initProductForm();
+    this.product$.subscribe((product) => {
+      this.photoUrl$ = this.productsService.getProductPhotos(product.photos);
+      this.initProductForm(product);
+    });
   }
 
-  initProductForm() {
+  initProductForm(product) {
     this.productForm = this.fb.group({
-      id: '',
-      category: {},
-      photos: this.fb.array([]),
-      name: ['', [
-        Validators.required,
-        // Validators.pattern(/[А-я]/)
-      ]
-      ],
-      price: [0, Validators.required],
-      description: '',
-      published: true
+      id: new FormControl(product.id),
+      category: new FormControl(product.category),
+      photos: new FormControl(product.photos),
+      name: new FormControl(product.name, [
+        Validators.required('Название обязательно')
+      ]),
+      price: new FormControl(product.price, [
+        Validators.max(9999999, max => `Максимальная цена ${max}`),
+      ]),
+      description: new FormControl(product.description),
+      published:  new FormControl(product.published)
     });
-
-    // this.product$.subscribe(
-    //   data => {
-    //     this.productForm.controls['category'].setValue(data.id);
-    //   }
-    // );
   }
 
   handleSubmit(product: Product) {
-
+    this.submitted = true;
+    if (this.productForm.invalid) {
+      return;
+    }
   }
 }

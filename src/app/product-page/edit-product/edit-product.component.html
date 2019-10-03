@@ -1,6 +1,16 @@
 <div *ngIf="product$ | async as product" class="edit-product">
   <h1 class="page-title">{{product.name}}</h1>
-  <form class="add-product__form" [formGroup]="productForm" (ngSubmit)="handleSubmit(productForm.value)">
+  <form [formGroup]="productForm"
+        (ngSubmit)="handleSubmit(productForm.value)"
+        [class.submitted]="submitted" class="add-product__form">
+    <div *ngIf="photoUrl$ | async as productPhoto" class="product-picture">
+      <img class="cropped-image" src="{{productPhoto}}" [alt]="product.name">
+    </div>
+    <div class="form-item form-type-file form-item__files-picture-upload">
+      <label for="edit-picture-upload" class="visually-hidden">Файл</label>
+      <input id="edit-picture-upload" type="file" name="files[picture_upload]" size="48" class="form-file">
+    </div>
+
     <div class="form-item">
       <label for="category">Выберете категорию</label>
       <select formControlName="category" class="select--custom" id="category" name="category">
@@ -14,28 +24,18 @@
     </div>
     <div class="form-item">
       <label for="fld-product-name">Название объявления</label>
-      <input type="text" id="fld-product-name" formControlName="name" maxlength="50"
-             [value]="product.name">
+      <input type="text" id="fld-product-name" formControlName="name" maxlength="50">
+      <arv-validation-messages for="name"></arv-validation-messages>
     </div>
     <div class="form-item">
       <label for="fld-product-desc">Описание объявления</label>
-      <textarea id="fld-product-desc" formControlName="description" rows="6" maxlength="3000"
-                [value]="product.description"></textarea>
+      <textarea id="fld-product-desc" formControlName="description" rows="6" maxlength="3000"></textarea>
     </div>
     <div class="form-item">
       <label for="fld-product-price">Цена</label>
-      <input type="text" id="fld-product-price" formControlName="price" maxlength="16"
-             [value]="product.price">
+      <input type="text" id="fld-product-price" formControlName="price" maxlength="16">
       <span class="number-format-currency"> ₽</span>
     </div>
-<!--    <div class="form-item">-->
-<!--      <label for="fld-product-img">Фотографии</label>-->
-<!--      <input type="file"-->
-<!--             id="fld-product-img"-->
-<!--             formControlName="img"-->
-<!--             accept="image/gif,image/png,image/jpeg,image/pjpeg"-->
-<!--             multiple="">-->
-<!--    </div>-->
     <button type="submit" class="button button--primary button--l">Изменить</button>
   </form>
 </div>

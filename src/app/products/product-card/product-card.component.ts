@@ -14,10 +14,10 @@ import { Product } from '../product.interface';
 })
 
 export class ProductCardComponent implements OnInit {
-  photoUrl$: Observable<string[]>;
   @Input() product: Product;
   @Input() wishlistBtnMode: WishlistBtnModeEnum;
   @Output() remove: EventEmitter<string> = new EventEmitter();
+  photoUrl$: Observable<string[]>;
 
   constructor(
     private productsService: ProductsService,

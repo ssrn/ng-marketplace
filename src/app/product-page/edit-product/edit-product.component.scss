@@ -1,0 +1,11 @@
+@import "../../../styles/init";
+
+:host {
+  .product-picture {
+    height: 128px;
+    width: 128px;
+    margin-bottom: 16px;
+    border: 1px solid #ececec;
+    box-shadow: $box-shadow;
+  }
+}
