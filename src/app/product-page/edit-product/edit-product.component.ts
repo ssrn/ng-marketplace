@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ProductsService } from '../../products/products.service';
 import { Category } from '../../catalog/categories-menu/category.interface';
 import { Product } from '../../products/product.interface';
@@ -28,7 +28,8 @@ export class EditProductComponent implements OnInit {
     private route: ActivatedRoute,
     private productsService: ProductsService,
     private fb: FormBuilder,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -55,15 +56,18 @@ export class EditProductComponent implements OnInit {
     this.productForm = this.fb.group({
       id: new FormControl(product.id),
       category: new FormControl(product.category),
-      photos: new FormControl(product.photos),
       name: new FormControl(product.name, [
         Validators.required('Название обязательно')
       ]),
       price: new FormControl(product.price, [
         Validators.max(9999999, max => `Максимальная цена ${max}`),
       ]),
+      photos: new FormControl(product.photos),
       description: new FormControl(product.description),
-      published:  new FormControl(product.published)
+      published: new FormControl(product.published),
+      uid: new FormControl(product.uid),
+      date: Date.now(),
+      promoted: new FormControl(product.promoted),
     });
   }
 
@@ -72,6 +76,12 @@ export class EditProductComponent implements OnInit {
     if (this.productForm.invalid) {
       return;
     }
-    this.toastr.error('Work in progress');
+
+    this.productsService.updateEditedProduct(product.id, product)
+      .then(() => this.toastr.success('Данные успешно обновлены', null, {
+        timeOut: 3000
+      }))
+      .then(() => this.router.navigate(['/user/my-products']))
+      .catch(error => this.toastr.error(error));
   }
 }

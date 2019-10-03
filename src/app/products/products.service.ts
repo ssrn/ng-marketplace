@@ -11,6 +11,7 @@ import { Product } from './product.interface';
 import OrderByDirection = firebase.firestore.OrderByDirection;
 import { flatMap } from 'rxjs/operators';
 import { AuthService } from '../auth/auth.service';
+import { User } from '../user/user.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -125,6 +126,11 @@ export class ProductsService {
     }
 
     this.productCollection.doc<Product>(id).update(data)
+      .catch(error => console.log(error));
+  }
+
+  updateEditedProduct(id: string, data: Product): Promise<void> {
+    return this.productCollection.doc<Product>(id).update(data)
       .catch(error => console.log(error));
   }
 

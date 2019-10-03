@@ -32,7 +32,7 @@ export class UserService {
     );
   }
 
-  getSeller(uid): Observable<User[]> {
+  getSeller(uid: string): Observable<User[]> {
     return this.db.collection<User>('users', ref =>
       ref.where('uid', '==', uid))
       .valueChanges();
@@ -43,7 +43,7 @@ export class UserService {
     return ref.getDownloadURL();
   }
 
-  updateUser(id, data): Promise<void> {
+  updateUser(id: string, data: User): Promise<void> {
     return this.userCollection.doc<User>(id).update(data)
       .catch(error => console.log(error));
   }
