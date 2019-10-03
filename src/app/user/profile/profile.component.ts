@@ -15,7 +15,9 @@ import { ToastrService } from 'ngx-toastr';
 export class ProfileComponent implements OnInit {
   user$: Observable<User[]> = this.userService.getCurrentUser();
   userForm: FormGroup;
-  userPhoto$: Observable<string>;
+  userPhoto$: Observable<any>;
+  photoToUpload: FileList;
+  userPhotoPath = '';
   submitted = false;
 
   constructor(
@@ -38,8 +40,12 @@ export class ProfileComponent implements OnInit {
     this.userForm = this.fb.group({
       id: new FormControl(user.id),
       name: new FormControl(user.name, Validators.required('Имя обязательно')),
-      email: new FormControl(user.email, Validators.required('Email обязателен')),
-      phone: new FormControl(user.phone),
+      email: new FormControl(user.email, [
+        Validators.required('Email обязателен'),
+        Validators.email('Неправильный формат')
+      ]),
+      phone: new FormControl(user.phone,
+        Validators.minLength(7, minLength => `Минимальная длина ${minLength} цифр`)),
       photo: new FormControl(user.photo),
       uid: new FormControl(user.uid)
     });
@@ -50,10 +56,21 @@ export class ProfileComponent implements OnInit {
     if (this.userForm.invalid) {
       return;
     }
-    this.userService.updateUser(user)
-      .then(() => this.toastr.success('Товар успешно обновлен', null, {
+    this.userService.updateUser(user.id, user)
+      .then(() => {
+        if (user.photo) {
+          this.userService.uploadUserPhoto(this.photoToUpload);
+        }
+      })
+      .then(() => this.userService.updateUser(user.id,{photo: this.userPhotoPath}))
+      .then(() => this.toastr.success('Данные успешно обновлены', null, {
         timeOut: 3000
       }))
       .catch(error => this.toastr.error(error));
+  }
+
+  handlePhotoInput(files: FileList) {
+    this.photoToUpload = files;
+    this.userPhotoPath = `users/${this.photoToUpload[0].name}`;
   }
 }

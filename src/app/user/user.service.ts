@@ -43,8 +43,14 @@ export class UserService {
     return ref.getDownloadURL();
   }
 
-  updateUser(data): Promise<void> {
-    return this.userCollection.doc<User>(data.id).update(data)
+  updateUser(id, data): Promise<void> {
+    return this.userCollection.doc<User>(id).update(data)
+      .catch(error => console.log(error));
+  }
+
+  uploadUserPhoto(files: FileList): void {
+    const filePath = `users/${files[0].name}`;
+    this.storage.ref(filePath).put(files[0])
       .catch(error => console.log(error));
   }
 }

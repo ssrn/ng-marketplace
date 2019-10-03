@@ -11,7 +11,11 @@
         </div>
         <div class="form-item form-type-file form-item__files-picture-upload">
           <label for="edit-picture-upload" class="visually-hidden">Файл</label>
-          <input id="edit-picture-upload" type="file" name="files[picture_upload]" size="48" class="form-file">
+          <input type="file"
+                 (change)="handlePhotoInput($event.target.files)"
+                 id="edit-picture-upload"
+                 formControlName="photo"
+                 accept="image/gif,image/png,image/jpeg,image/pjpeg">
         </div>
       </div>
 
@@ -31,6 +35,7 @@
       <div class="form-item">
         <label for="fld-user-phone">Телефон</label>
         <input type="text" id="fld-user-phone" formControlName="phone" maxlength="50">
+        <arv-validation-messages for="phone"></arv-validation-messages>
       </div>
       <button type="submit" class="button button--primary button--l">Изменить</button>
     </form>
