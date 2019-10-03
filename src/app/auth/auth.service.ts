@@ -58,7 +58,7 @@ export class AuthService {
       .then((resp) => {
         // this.sendVerificationMail();
         this.setUserData(resp.user, user)
-          .then(() => this.toastr.success('Вы усепшно зарегистрированы!', null, {
+          .then(() => this.toastr.success('Вы усепшно зарегистрированы', null, {
             timeOut: 3000
           }))
           .catch((error) => {

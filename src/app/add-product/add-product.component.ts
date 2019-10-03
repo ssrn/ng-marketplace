@@ -75,7 +75,7 @@ export class AddProductComponent implements OnInit {
         .then(result => this.productId = result.id)
         .then(() => this.products.uploadProductPhotos(this.filesToUpload))
         .then(() => this.products.updateProduct(this.productId, this.productPhotoPaths))
-        .then(() => this.toastr.success('Товар успешно добавлен!', null, {
+        .then(() => this.toastr.success('Товар успешно добавлен', null, {
           timeOut: 3000
         }))
         .catch(error => this.toastr.error(error));
@@ -83,7 +83,7 @@ export class AddProductComponent implements OnInit {
       this.products.addProduct(product)
         .then(result => this.productId = result.id)
         .then(() => this.products.updateProduct(this.productId))
-        .then(() => this.toastr.success('Товар успешно добавлен!', null, {
+        .then(() => this.toastr.success('Товар успешно добавлен', null, {
           timeOut: 3000
         }))
         .catch(error => this.toastr.error(error));

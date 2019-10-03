@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AuthService } from '../auth/auth.service';
 import { switchMap } from 'rxjs/operators';
-import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
+import { AngularFirestore, AngularFirestoreCollection, DocumentReference } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { User } from './user.interface';
 import { AngularFireStorage } from '@angular/fire/storage';
@@ -43,10 +43,8 @@ export class UserService {
     return ref.getDownloadURL();
   }
 
-  updateUser(id: string): void {
-    const data = {};
-
-    this.userCollection.doc<User>(id).update(data)
+  updateUser(data): Promise<void> {
+    return this.userCollection.doc<User>(data.id).update(data)
       .catch(error => console.log(error));
   }
 }

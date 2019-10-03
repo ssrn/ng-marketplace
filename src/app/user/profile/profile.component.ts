@@ -4,8 +4,8 @@ import { User } from '../user.interface';
 import { UserService } from '../user.service';
 import { Observable } from 'rxjs';
 import { AuthService } from '../../auth/auth.service';
-import { switchMap } from 'rxjs/operators';
 import { Validators } from 'angular-reactive-validation';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-profile',
@@ -22,6 +22,7 @@ export class ProfileComponent implements OnInit {
     private userService: UserService,
     private auth: AuthService,
     private fb: FormBuilder,
+    private toastr: ToastrService
   ) { }
 
   ngOnInit() {
@@ -30,18 +31,17 @@ export class ProfileComponent implements OnInit {
         this.userPhoto$ = this.userService.getUserPhoto(user[0].photo);
       }
       this.initUserForm(user[0]);
-    }
-      // switchMap((user) => this.userPhoto$ = this.userService.getUserPhoto(user[0].photo))
-    );
+    });
   }
 
   initUserForm(user) {
     this.userForm = this.fb.group({
-      uid: new FormControl(user.uid),
+      id: new FormControl(user.id),
       name: new FormControl(user.name, Validators.required('Имя обязательно')),
       email: new FormControl(user.email, Validators.required('Email обязателен')),
       phone: new FormControl(user.phone),
-      photo: new FormControl(user.photo)
+      photo: new FormControl(user.photo),
+      uid: new FormControl(user.uid)
     });
   }
 
@@ -50,6 +50,10 @@ export class ProfileComponent implements OnInit {
     if (this.userForm.invalid) {
       return;
     }
-
+    this.userService.updateUser(user)
+      .then(() => this.toastr.success('Товар успешно обновлен', null, {
+        timeOut: 3000
+      }))
+      .catch(error => this.toastr.error(error));
   }
 }
