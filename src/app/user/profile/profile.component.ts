@@ -59,10 +59,10 @@ export class ProfileComponent implements OnInit {
     this.userService.updateUser(user.id, user)
       .then(() => {
         if (user.photo) {
-          this.userService.uploadUserPhoto(this.photoToUpload);
+          this.userService.uploadUserPhoto(this.photoToUpload)
+            .then(() => this.userService.updateUser(user.id, {photo: this.userPhotoPath}));
         }
       })
-      .then(() => this.userService.updateUser(user.id,{photo: this.userPhotoPath}))
       .then(() => this.toastr.success('Данные успешно обновлены', null, {
         timeOut: 3000
       }))

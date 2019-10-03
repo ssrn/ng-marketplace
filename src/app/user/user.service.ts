@@ -48,9 +48,9 @@ export class UserService {
       .catch(error => console.log(error));
   }
 
-  uploadUserPhoto(files: FileList): void {
+  uploadUserPhoto(files: FileList): Promise<void> {
     const filePath = `users/${files[0].name}`;
-    this.storage.ref(filePath).put(files[0])
+    return this.storage.ref(filePath).put(files[0])
       .catch(error => console.log(error));
   }
 }
