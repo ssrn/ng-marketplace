@@ -7,6 +7,7 @@ import { ProductsService } from '../../products/products.service';
 import { Category } from '../../catalog/categories-menu/category.interface';
 import { Product } from '../../products/product.interface';
 import { Validators } from 'angular-reactive-validation';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-edit-product',
@@ -26,7 +27,8 @@ export class EditProductComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private productsService: ProductsService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private toastr: ToastrService
   ) { }
 
   ngOnInit() {
@@ -68,5 +70,6 @@ export class EditProductComponent implements OnInit {
     if (this.productForm.invalid) {
       return;
     }
+    this.toastr.error('Work in progress');
   }
 }
