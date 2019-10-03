@@ -6,6 +6,7 @@ import { Product } from '../products/product.interface';
 import { AuthService } from '../auth/auth.service';
 import { ToastrService } from 'ngx-toastr';
 import { Validators } from 'angular-reactive-validation';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-product',
@@ -17,7 +18,6 @@ export class AddProductComponent implements OnInit {
   productForm: FormGroup;
   filesToUpload: FileList;
   productPhotoPaths: string[] = [];
-  productId: string;
   productMainCategories: Category[];
   productSubcategories: Category[];
   submitted = false;
@@ -26,7 +26,8 @@ export class AddProductComponent implements OnInit {
     private products: ProductsService,
     private fb: FormBuilder,
     private auth: AuthService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -34,7 +35,7 @@ export class AddProductComponent implements OnInit {
       categories => {
         this.productMainCategories = categories.filter(category => category.parentId === '');
         const subCategoriesArr = [];
-        this.productMainCategories.forEach(mainCategory => {
+        this.productMainCategories.map(mainCategory => {
           const subCategory = categories.filter(category => category.parentId === mainCategory.id);
           subCategoriesArr.push(subCategory);
         });
@@ -70,24 +71,23 @@ export class AddProductComponent implements OnInit {
     if (this.productForm.invalid) {
       return;
     }
+
+    const addProduct = this.products.addProduct(product)
+      .then(result => result.id);
+    let afterAddingProduct;
     if (product.photos) {
-      this.products.addProduct(product)
-        .then(result => this.productId = result.id)
-        .then(() => this.products.uploadProductPhotos(this.filesToUpload))
-        .then(() => this.products.updateProduct(this.productId, this.productPhotoPaths))
-        .then(() => this.toastr.success('Товар успешно добавлен', null, {
-          timeOut: 3000
-        }))
-        .catch(error => this.toastr.error(error));
+      afterAddingProduct = addProduct
+        .then((productId) => { this.products.uploadProductPhotos(this.filesToUpload); return productId; })
+        .then((productId) => this.products.updateProduct(productId, this.productPhotoPaths));
     } else {
-      this.products.addProduct(product)
-        .then(result => this.productId = result.id)
-        .then(() => this.products.updateProduct(this.productId))
-        .then(() => this.toastr.success('Товар успешно добавлен', null, {
-          timeOut: 3000
-        }))
-        .catch(error => this.toastr.error(error));
+      afterAddingProduct = addProduct
+        .then((productId) => this.products.updateProduct(productId));
     }
+    afterAddingProduct.then(() => this.toastr.success('Товар успешно добавлен', null, {
+      timeOut: 3000
+    }))
+      .then(() => this.router.navigate(['/user/my-products']))
+      .catch(error => this.toastr.error(error));
   }
 
   handlePhotosInput(files: FileList) {

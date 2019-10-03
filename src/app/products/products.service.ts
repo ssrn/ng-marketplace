@@ -33,7 +33,7 @@ export class ProductsService {
   }
 
   uploadProductPhotos(files: FileList): void {
-    Array.from(files).forEach(file => {
+    Array.from(files).map(file => {
       const filePath = `products/${file.name}`;
       this.storage.ref(filePath).put(file)
         .catch(error => console.log(error));
