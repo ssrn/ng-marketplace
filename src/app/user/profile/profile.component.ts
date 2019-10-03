@@ -15,7 +15,7 @@ import { ToastrService } from 'ngx-toastr';
 export class ProfileComponent implements OnInit {
   user$: Observable<User[]> = this.userService.getCurrentUser();
   userForm: FormGroup;
-  userPhoto$: Observable<any>;
+  userPhoto$: Observable<string>;
   photoToUpload: FileList;
   userPhotoPath = '';
   submitted = false;

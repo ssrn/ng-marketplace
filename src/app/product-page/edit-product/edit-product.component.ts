@@ -44,7 +44,9 @@ export class EditProductComponent implements OnInit {
       }
     );
     this.product$.subscribe((product) => {
-      this.photoUrl$ = this.productsService.getProductPhotos(product.photos);
+      if (product.photos) {
+        this.photoUrl$ = this.productsService.getProductPhotos(product.photos);
+      }
       this.initProductForm(product);
     });
   }
