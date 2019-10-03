@@ -7,7 +7,7 @@
         <optgroup *ngFor="let category of productMainCategories; let i = index;"
                   label="{{category.name}}">
           <option *ngFor="let category of productSubcategories[i]"
-                  [value]="{id: category.id, parentId: category.parentId}">
+                  [ngValue]="{id: category.id, parentId: category.parentId}">
             {{category.name}}
           </option>
         </optgroup>
