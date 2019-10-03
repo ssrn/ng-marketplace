@@ -2,7 +2,9 @@
 
 <div class="user-settings">
   <div *ngIf="user$ | async as user" class="edit-user">
-    <form class="user-settings__form" [formGroup]="userForm" (ngSubmit)="handleSubmit(userForm.value)">
+    <form [formGroup]="userForm"
+          (ngSubmit)="handleSubmit(userForm.value)"
+          [class.submitted]="submitted" class="user-settings__form">
       <div class="user-settings__photo">
         <div *ngIf="userPhoto$ | async as userPhoto" class="user-picture">
           <img class="cropped-image" src="{{userPhoto}}" [alt]="user[0].name">
@@ -17,19 +19,18 @@
         <label for="fld-user-name">Имя</label>
         <h1 class="user-settings__title">
           <span class="visually-hidden">{{user[0].name}}</span>
-          <input type="text" id="fld-user-name" formControlName="name" maxlength="50"
-                 [value]="user[0].name">
+          <input type="text" id="fld-user-name" formControlName="name" maxlength="50">
         </h1>
+        <arv-validation-messages for="name"></arv-validation-messages>
       </div>
       <div class="form-item">
         <label for="fld-user-email">Email</label>
-        <input type="text" id="fld-user-email" formControlName="name" maxlength="50"
-               [value]="user[0].email">
+        <input type="text" id="fld-user-email" formControlName="email" maxlength="50">
+        <arv-validation-messages for="email"></arv-validation-messages>
       </div>
       <div class="form-item">
         <label for="fld-user-phone">Телефон</label>
-        <input type="text" id="fld-user-phone" formControlName="name" maxlength="50"
-               [value]="user[0].phone">
+        <input type="text" id="fld-user-phone" formControlName="phone" maxlength="50">
       </div>
       <button type="submit" class="button button--primary button--l">Изменить</button>
     </form>

@@ -9,6 +9,7 @@ import { AuthModule } from '../auth/auth.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { UserMenuComponent } from './user-menu/user-menu.component';
 import { OrdersComponent } from './orders/orders.component';
+import { ReactiveValidationModule } from 'angular-reactive-validation';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { OrdersComponent } from './orders/orders.component';
     UserRoutingModule,
     ProductsModule,
     AuthModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ReactiveValidationModule
   ],
 })
 export class UserModule { }

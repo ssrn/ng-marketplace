@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { User } from '../user.interface';
 import { UserService } from '../user.service';
 import { Observable } from 'rxjs';
 import { AuthService } from '../../auth/auth.service';
 import { switchMap } from 'rxjs/operators';
+import { Validators } from 'angular-reactive-validation';
 
 @Component({
   selector: 'app-profile',
@@ -14,7 +15,8 @@ import { switchMap } from 'rxjs/operators';
 export class ProfileComponent implements OnInit {
   user$: Observable<User[]> = this.userService.getCurrentUser();
   userForm: FormGroup;
-  userPhoto$;
+  userPhoto$: Observable<string>;
+  submitted = false;
 
   constructor(
     private userService: UserService,
@@ -23,25 +25,28 @@ export class ProfileComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.initUserForm();
-    this.userPhoto$ = this.user$.pipe(
-      switchMap((user) => this.userService.getUserPhoto(user[0].photo))
+    this.user$.subscribe((user) => {
+        this.userPhoto$ = this.userService.getUserPhoto(user[0].photo);
+        this.initUserForm(user[0]);
+    }
+      // switchMap((user) => this.userPhoto$ = this.userService.getUserPhoto(user[0].photo))
     );
   }
 
-  initUserForm() {
+  initUserForm(user) {
     this.userForm = this.fb.group({
-      uid: '',
-      name: ['', [
-        Validators.required,
-        // Validators.pattern(/[А-я]/)
-      ]
-      ],
-      email: '',
-      phone: null,
-      photo: ''
+      uid: new FormControl(user.uid),
+      name: new FormControl(user.name, Validators.required('Имя обязательно')),
+      email: new FormControl(user.email, Validators.required('Email обязателен')),
+      phone: new FormControl(user.phone),
+      photo: new FormControl(user.photo)
     });
   }
 
-  handleSubmit(user: User) {}
+  handleSubmit(user: User) {
+    this.submitted = true;
+    if (this.userForm.invalid) {
+      return;
+    }
+  }
 }
