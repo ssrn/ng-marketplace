@@ -92,8 +92,8 @@ export class AddProductComponent implements OnInit {
 
   handlePhotosInput(files: FileList) {
     this.filesToUpload = files;
-    Array.from(this.filesToUpload).forEach(file => {
-      this.productPhotoPaths.push(`products/${file.name}`);
-    });
+    Array.from(this.filesToUpload).forEach((file) =>
+      this.productPhotoPaths.push(`products/${file.name}`)
+    );
   }
 }

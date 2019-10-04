@@ -3,15 +3,6 @@
   <form [formGroup]="productForm"
         (ngSubmit)="handleSubmit(productForm.value)"
         [class.submitted]="submitted" class="add-product__form">
-    <div *ngIf="photoUrl$ | async as photoUrl;" class="product-pictures">
-      <div *ngFor="let url of photoUrl;" class="product-picture">
-        <img class="cropped-image" src="{{url}}" [alt]="product.name">
-      </div>
-    </div>
-<!--    <div class="form-item form-type-file form-item__files-picture-upload">-->
-<!--      <label for="edit-picture-upload" class="visually-hidden">Файл</label>-->
-<!--      <input id="edit-picture-upload" type="file" name="files[picture_upload]" size="48" class="form-file">-->
-<!--    </div>-->
 
     <div class="form-item">
       <label for="category">Выберете категорию</label>
@@ -38,6 +29,15 @@
       <input type="text" id="fld-product-price" formControlName="price" maxlength="16">
       <span class="number-format-currency"> ₽</span>
     </div>
+    <div *ngIf="photoUrl$ | async as photoUrl;" class="product-pictures">
+      <div *ngFor="let url of photoUrl;" class="product-picture">
+        <img class="cropped-image" src="{{url}}" [alt]="product.name">
+      </div>
+    </div>
+    <!--    <div class="form-item form-type-file form-item__files-picture-upload">-->
+    <!--      <label for="edit-picture-upload" class="visually-hidden">Файл</label>-->
+    <!--      <input id="edit-picture-upload" type="file" name="files[picture_upload]" size="48" class="form-file">-->
+    <!--    </div>-->
     <button type="submit" class="button button--primary button--l">Изменить</button>
   </form>
 </div>
