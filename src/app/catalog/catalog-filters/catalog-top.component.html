@@ -1,9 +1,9 @@
 <div class="catalog-top">
   <div class="catalog-top__item sort-by-relevance">
-    <select aria-label="Сортировать по">
-      <option (click)="handleSortByPopularity()" value="popularity">Популярные</option>
-      <option (click)="handleSortFromLowToHigh()" value="low">Цена: По возрастанию</option>
-      <option (click)="handleSortFromHighToLow()" value="high">Цена: По убыванию</option>
+    <select (change)="handleSort($event.target.value)" aria-label="Сортировать по">
+      <option value="popularity">Популярные</option>
+      <option value="low">Цена: По возрастанию</option>
+      <option value="high">Цена: По убыванию</option>
     </select>
   </div>
   <div class="catalog-top__item catalog-filters-photo button-group">

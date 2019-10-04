@@ -11,7 +11,6 @@ import { Product } from './product.interface';
 import OrderByDirection = firebase.firestore.OrderByDirection;
 import { flatMap } from 'rxjs/operators';
 import { AuthService } from '../auth/auth.service';
-import { User } from '../user/user.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -91,7 +90,7 @@ export class ProductsService {
     return this.uid$.pipe(
       flatMap( (uid) =>
         this.db.collection<Product>('products', ref =>
-          ref.where('uid', '==', uid))
+          ref.where('uid', '==', uid).orderBy('date', 'desc'))
           .valueChanges()
       )
     );

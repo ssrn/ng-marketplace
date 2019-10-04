@@ -36,6 +36,7 @@ export class CatalogComponent {
   }
 
   handleSortByPopularity() {
+    this.isPriceSorted = false;
     this.handleSortingAndFiltering();
   }
 

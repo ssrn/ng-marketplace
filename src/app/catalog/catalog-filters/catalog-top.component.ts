@@ -1,20 +1,29 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-catalog-top',
   templateUrl: './catalog-top.component.html',
   styleUrls: ['./catalog-top.component.scss']
 })
-export class CatalogTopComponent implements OnInit {
+export class CatalogTopComponent {
   @Output() sortByPopularity: EventEmitter<any> = new EventEmitter();
   @Output() sortFromLowToHigh: EventEmitter<any> = new EventEmitter();
   @Output() sortFromHighToLow: EventEmitter<any> = new EventEmitter();
   @Output() sortPhotos: EventEmitter<any> = new EventEmitter();
   @Input() isPhotosChecked: boolean;
 
-  constructor() { }
-
-  ngOnInit() {
+  handleSort(value) {
+    switch (value) {
+      case 'low':
+        this.handleSortFromLowToHigh();
+        break;
+      case 'high':
+        this.handleSortFromHighToLow();
+        break;
+      default:
+        this.handleSortByPopularity();
+        break;
+    }
   }
 
   handleSortByPopularity(): void {
