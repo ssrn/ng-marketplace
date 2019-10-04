@@ -10,6 +10,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { UserMenuComponent } from './user-menu/user-menu.component';
 import { OrdersComponent } from './orders/orders.component';
 import { ReactiveValidationModule } from 'angular-reactive-validation';
+import { SellerProductsComponent } from './seller-products/seller-products.component';
 
 
 @NgModule({
@@ -19,6 +20,7 @@ import { ReactiveValidationModule } from 'angular-reactive-validation';
     ProfileComponent,
     UserMenuComponent,
     OrdersComponent,
+    SellerProductsComponent,
   ],
   imports: [
     CommonModule,
