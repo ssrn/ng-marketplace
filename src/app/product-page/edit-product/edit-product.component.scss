@@ -1,6 +1,13 @@
 @import "../../../styles/init";
 
 :host {
+  .product-pictures {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 128px);
+    grid-column-gap: 30px;
+    grid-row-gap: 16px;
+  }
+
   .product-picture {
     height: 128px;
     width: 128px;

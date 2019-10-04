@@ -3,8 +3,10 @@
   <form [formGroup]="productForm"
         (ngSubmit)="handleSubmit(productForm.value)"
         [class.submitted]="submitted" class="add-product__form">
-    <div *ngFor="let url of photoUrl$ | async;" class="product-picture">
-      <img class="cropped-image" src="{{url}}" [alt]="product.name">
+    <div *ngIf="photoUrl$ | async as photoUrl;" class="product-pictures">
+      <div *ngFor="let url of photoUrl;" class="product-picture">
+        <img class="cropped-image" src="{{url}}" [alt]="product.name">
+      </div>
     </div>
 <!--    <div class="form-item form-type-file form-item__files-picture-upload">-->
 <!--      <label for="edit-picture-upload" class="visually-hidden">Файл</label>-->
