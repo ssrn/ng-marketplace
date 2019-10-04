@@ -1,7 +1,7 @@
 import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ProductsService } from '../products/products.service';
-import { Observable, Subscription } from 'rxjs';
+import { Observable, of, Subscription } from 'rxjs';
 import { NgxGalleryImage, NgxGalleryOptions } from 'ngx-gallery';
 import { switchMap } from 'rxjs/operators';
 import { WishlistService } from '../products/wishlist-btn/wishlist.service';
@@ -49,13 +49,21 @@ export class ProductPageComponent implements OnInit, OnDestroy {
   ngOnInit() {
     // NgxGalleryImage does not accept Observable
     this.subscription = this.photoUrl$.subscribe(urls => {
-      this.galleryImages = urls.map((url) => {
-        return {
-          small: url,
-          medium: url,
-          big: url
-        };
-      });
+      if (urls) {
+        this.galleryImages = urls.map((url) => {
+          return {
+            small: url,
+            medium: url,
+            big: url
+          };
+        });
+      } else {
+        this.galleryImages = [{
+          small: '../../assets/images/svg/no-product-photo.svg',
+          medium: '../../assets/images/svg/no-product-photo.svg',
+          big: '../../assets/images/svg/no-product-photo.svg'
+        }];
+      }
     });
   }
 

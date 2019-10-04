@@ -5,7 +5,7 @@ import {
   DocumentReference
 } from '@angular/fire/firestore';
 import { AngularFireStorage } from '@angular/fire/storage';
-import { combineLatest, forkJoin, Observable } from 'rxjs';
+import { combineLatest, forkJoin, Observable, of } from 'rxjs';
 import { Category } from '../catalog/categories-menu/category.interface';
 import { Product } from './product.interface';
 import OrderByDirection = firebase.firestore.OrderByDirection;
@@ -103,6 +103,9 @@ export class ProductsService {
   }
 
   getProductPhotos(paths: string[]): Observable<string[]> {
+    if (!paths) {
+      return of(null);
+    }
     return forkJoin(paths.map(path => {
       const ref = this.storage.ref(path);
       return ref.getDownloadURL();
