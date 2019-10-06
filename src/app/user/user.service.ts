@@ -43,7 +43,7 @@ export class UserService {
     return ref.getDownloadURL();
   }
 
-  updateUser(id: string, data: User): Promise<void> {
+  updateUser(id: string, data): Promise<void> {
     return this.userCollection.doc<User>(id).update(data)
       .catch(error => console.log(error));
   }

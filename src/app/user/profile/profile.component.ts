@@ -58,7 +58,7 @@ export class ProfileComponent implements OnInit {
     }
     this.userService.updateUser(user.id, user)
       .then(() => {
-        if (user.photo) {
+        if (user.photo && this.photoToUpload) {
           this.userService.uploadUserPhoto(this.photoToUpload)
             .then(() => this.userService.updateUser(user.id, {photo: this.userPhotoPath}));
         }
