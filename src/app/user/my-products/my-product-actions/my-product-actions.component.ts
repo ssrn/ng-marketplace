@@ -21,10 +21,7 @@ export class MyProductActionsComponent {
 
   handleRemove() {
     if (confirm('Вы уверены, что хотите удалить товар?')) {
-      this.toastr.error('This feature is disabled.', null, {
-        timeOut: 3000
-      });
-      // this.remove.emit(null);
+      this.remove.emit(null);
     }
   }
 
