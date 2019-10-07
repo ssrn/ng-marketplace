@@ -31,7 +31,7 @@
   }
 
   .ais-SearchBox-input {
-
+    padding-left: 45px;
   }
 
   .ais-Hits-item {
@@ -41,8 +41,8 @@
   .ais-SearchBox-submit {
     position: absolute;
     top: 0;
-    right: 6px;
     bottom: 0;
+    left: 0;
     width: 40px;
     height: 100%;
     text-indent: -10000px;
@@ -60,6 +60,16 @@
   }
 
   .ais-SearchBox-reset {
-    display: none;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 6px;
+    background: none;
+    border: none;
+  }
+
+  .ais-SearchBox-resetIcon {
+    width: 14px;
+    height: 14px;
   }
 }
